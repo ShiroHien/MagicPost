@@ -1,0 +1,71 @@
+import { transactionPointsModel } from '~/models/transactionPointsModel'
+import ApiError from '~/utils/ApiError'
+import { StatusCodes } from 'http-status-codes'
+
+const createNew = async (reqBody) => {
+  // Xử lý logic dữ liệu tùy đặc thù dự án
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const newTransactionPoint = {
+      ...reqBody,
+      name: 'Điểm giao dịch tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+    }
+
+    // Gọi tới tầng Model để xử lý lưu bản ghi newTransactionPoint vào trong Database
+    const createdTransactionPoint = await transactionPointsModel.createNew(newTransactionPoint)
+
+    // Lấy bản ghi transactionPoint sau khi ghi (Tùy mục đích của dự án mà mình có thể thực hiện bước này hoặc không)
+    const getNewTransactionPoint = await transactionPointsModel.findOneById(createdTransactionPoint.insertedId)
+
+    // Trả kết quả về, trong tầng Service luôn phải có return
+    return getNewTransactionPoint
+  } catch (error) { throw error }
+}
+
+const getDetails = async (transactionPointId) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const transactionPoint = await transactionPointsModel.getDetails(transactionPointId)
+    if (!transactionPoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
+    }
+
+    return transactionPoint
+  } catch (error) { throw error }
+}
+
+const update = async (transactionPointId, reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const updateData = {
+      ...reqBody,
+      name: 'Điểm giao dịch tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+    }
+
+    const updatedTransactionPoint = await transactionPointsModel.update(transactionPointId, updateData)
+    if (!updatedTransactionPoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
+    }
+
+    return updatedTransactionPoint
+  } catch (error) { throw error }
+}
+
+const deleteOne = async (transactionPointId) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const deletedTransactionPoint = await transactionPointsModel.deleteOne(transactionPointId)
+    if (!deletedTransactionPoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
+    }
+
+    return deletedTransactionPoint
+  } catch (error) { throw error }
+}
+
+export const transactionPointsService = {
+  createNew,
+  getDetails,
+  update,
+  deleteOne
+}
