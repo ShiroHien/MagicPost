@@ -53,10 +53,6 @@ const deleteOne = async (accountId) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const deletedAccount = await accountsModel.deleteOne(accountId)
-    if (!deletedAccount) {
-      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
-    }
-
     return deletedAccount
   } catch (error) { throw error }
 }

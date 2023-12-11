@@ -55,10 +55,6 @@ const deleteOne = async (transactionPointId) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const deletedTransactionPoint = await transactionPointsModel.deleteOne(transactionPointId)
-    if (!deletedTransactionPoint) {
-      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
-    }
-
     return deletedTransactionPoint
   } catch (error) { throw error }
 }
