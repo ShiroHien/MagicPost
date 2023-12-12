@@ -1,5 +1,5 @@
-import { StatusCodes } from 'http-status-codes'
 import { warehousePointsService } from '~/services/warehousePointsService'
+import { StatusCodes } from 'http-status-codes'
 
 const createNew = async (req, res, next) => {
   try {
