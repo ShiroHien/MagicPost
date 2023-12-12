@@ -1,7 +1,7 @@
 import Joi from 'joi'
 import { GET_DB } from '~/config/mongodb'
 import { PASSWORD_RULE, PASSWORD_RULE_MESSAGE, PHONE_RULE, PHONE_RULE_MESSAGE, OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators'
-import { typeAccount } from '~/utils/constants'
+import { TYPE_ACCOUNT } from '~/utils/constants'
 import { ObjectId } from 'mongodb'
 
 // Define Collection (name & schema)
@@ -13,10 +13,10 @@ const ACCOUNT_COLLECTION_SCHEMA = Joi.object({
   phone: Joi.string().required().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
   fullname: Joi.string().required().min(3).max(50).trim().strict(),
   typeAccount: Joi.string().valid(
-    typeAccount.leaderOfTransaction,
-    typeAccount.leaderOfWarehouse,
-    typeAccount.staffOfTransaction,
-    typeAccount.staffOfWarehouse
+    TYPE_ACCOUNT.leaderOfTransaction,
+    TYPE_ACCOUNT.leaderOfWarehouse,
+    TYPE_ACCOUNT.staffOfTransaction,
+    TYPE_ACCOUNT.staffOfWarehouse
   ),
   pointId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
 })
