@@ -43,7 +43,8 @@ const Header = () => {
           component= 'h1'
           sx={{
             fontWeight: 700,
-            color: '#e03d3d'
+            color: '#e03d3d',
+            fontSize: '55px'
           }}
         >
                     CÙNG HÀNG VIỆT <br /> ĐI KHẮP MUÔN NƠI
@@ -53,7 +54,7 @@ const Header = () => {
           variant='p'
           component='p'
           sx={{
-            fontSize: '20px',
+            fontSize: '23px',
             py: 3,
             lineHeight: 1.6,
             color: '#4c4c4c'
@@ -65,30 +66,32 @@ const Header = () => {
         </Typography>
 
         <Box>
-          <Button
-            variant='contained'
-            sx={{
-              maxWidth: '100%',
-              mr: 2,
-              px: 4,
-              py: 1,
-              fontSize: '0.9rem',
-              textTransform: 'capitalize',
-              borderRadius: 5,
-              borderColor: '#14192d',
-              color: '#fff',
-              backgroundColor: '#e03d3d',
-              '&&:hover': {
-                backgroundColor: '#343a55'
-              },
-              '&&:focus': {
-                backgroundColor: '#343a55'
-              }
-            }}
-          >
-            Tiếp tục
-            <ArrowForwardIcon sx={{ ml: 1, fontSize: '24px' }} />
-          </Button>
+          <Link to="/services" style={{ textDecoration: 'none' }}>
+            <Button
+              variant='contained'
+              sx={{
+                maxWidth: '100%',
+                mr: 2,
+                px: 4,
+                py: 1,
+                fontSize: '0.9rem',
+                textTransform: 'capitalize',
+                borderRadius: 5,
+                borderColor: '#14192d',
+                color: '#fff',
+                backgroundColor: '#e03d3d',
+                '&&:hover': {
+                  backgroundColor: '#343a55'
+                },
+                '&&:focus': {
+                  backgroundColor: '#343a55'
+                }
+              }}
+            >
+              Tiếp tục
+              <ArrowForwardIcon sx={{ ml: 1, fontSize: '24px' }} />
+            </Button>
+          </Link>
         </Box>
       </BoxText>
 

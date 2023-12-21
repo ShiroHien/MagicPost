@@ -7,6 +7,7 @@ import {
   ListItem,
   Typography,
   styled,
+  Button,
   ListItemButton,
   ListItemText
 } from '@mui/material'
@@ -16,8 +17,6 @@ import DrawerItem from './DrawerItem'
 import { Link } from 'react-router-dom'
 import Logo from '../assets/Logo.png'
 
-
-// personalizacao
 const StyledToolbar = styled(Toolbar) ({
   display: 'flex',
   justifyContent: 'space-between'
@@ -55,15 +54,15 @@ const Navbar = () => {
       position="sticky"
       sx={{
         backgroundColor: 'white',
-        padding: '20px 130px',
+        padding: '0px 130px',
         marginRight: '5rem'
       }}
       elevation={0}
     >
       <StyledToolbar>
-        <Box>
+        <Link to="/">
           <img src={Logo} alt="" width={'80px'}/>
-        </Box>
+        </Link>
         <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
           <DrawerItem />
         </Box>
@@ -83,15 +82,41 @@ const Navbar = () => {
                 >
                   <ListItemText primary={text}
                     primaryTypographyProps={{
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      fontSize: '18px'
                     }}
                   />
                 </ListItemButton>
               </ListItem>
             )
           })}
-
         </ListMenu>
+
+        <Button
+          component={Link}
+          to="/login" // Replace with your login page route
+          variant="contained"
+          sx={{
+            maxWidth: '100%',
+            mr: 2,
+            px: 4,
+            py: 1,
+            fontSize: '0.9rem',
+            textTransform: 'capitalize',
+            borderRadius: 5,
+            borderColor: '#14192d',
+            color: 'white',
+            backgroundColor: '#f54949',
+            '&&:hover': {
+              backgroundColor: '#343a55'
+            },
+            '&&:focus': {
+              backgroundColor: '#343a55'
+            }
+          }}
+        >
+          Đăng nhập/Đăng ký
+        </Button>
       </StyledToolbar>
     </AppBar>
   )

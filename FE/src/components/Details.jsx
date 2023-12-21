@@ -32,7 +32,7 @@ const Details = () => {
     >
       <Title
         text={
-          'Tra cúu mã vận đơn'
+          'Tra cứu mã vận đơn'
         }
         textAlign={'center'}
       />
