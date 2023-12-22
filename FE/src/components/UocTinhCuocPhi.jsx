@@ -141,6 +141,16 @@ const UocTinhCuocPhi = () => {
         }}
         variant="filled"
       />
+      <TextField
+        fullWidth
+        label="Kích thước"
+        id="filled-start-adornment"
+        InputProps={{
+          startAdornment: <InputAdornment position="start">Nhỏ/Vừa/Lớn</InputAdornment>,
+          sx: { marginBottom: '10px' }
+        }}
+        variant="filled"
+      />
       <br />
       <Button variant="contained" fullWidth>Tra cứu</Button>
     </Box>

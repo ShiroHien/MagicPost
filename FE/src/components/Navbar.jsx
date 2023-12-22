@@ -92,31 +92,34 @@ const Navbar = () => {
           })}
         </ListMenu>
 
-        <Button
-          component={Link}
-          to="/login" // Replace with your login page route
-          variant="contained"
-          sx={{
-            maxWidth: '100%',
-            mr: 2,
-            px: 4,
-            py: 1,
-            fontSize: '0.9rem',
-            textTransform: 'capitalize',
-            borderRadius: 5,
-            borderColor: '#14192d',
-            color: 'white',
-            backgroundColor: '#f54949',
-            '&&:hover': {
-              backgroundColor: '#343a55'
-            },
-            '&&:focus': {
-              backgroundColor: '#343a55'
-            }
-          }}
-        >
-          Đăng nhập/Đăng ký
-        </Button>
+        <Link to="/signin">
+          <Button
+          // component={Link}
+          // to=""
+            variant="contained"
+            sx={{
+              maxWidth: '100%',
+              mr: 2,
+              px: 4,
+              py: 1,
+              fontSize: '0.9rem',
+              textTransform: 'capitalize',
+              borderRadius: 5,
+              borderColor: '#14192d',
+              color: 'white',
+              backgroundColor: '#f54949',
+              '&&:hover': {
+                backgroundColor: '#343a55'
+              },
+              '&&:focus': {
+                backgroundColor: '#343a55'
+              }
+            }}
+          >
+          Đăng nhập
+          </Button>
+        </Link>
+
       </StyledToolbar>
     </AppBar>
   )
