@@ -1,15 +1,9 @@
 import React from 'react'
-import {
-  Box,
-  Button,
-  Stack,
-  TextField
-} from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import Title from './Title'
 import Paragraph from './Paragraph'
 
-const Details = () => {
-
+const TraCuuMVD = ({ onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
@@ -17,38 +11,19 @@ const Details = () => {
       mvd: data.get('mvd')
     })
   }
-
-
   return (
-    <Stack
-      component='section'
-      direction="column"
-      justifyContent= 'center'
-      alignItems='center'
-      sx={{
-        py: 10,
-        px: 2
-      }}
-    >
-      <Title
-        text={
-          'Tra cứu mã vận đơn'
-        }
-        textAlign={'center'}
-      />
+    <Box>
+      <Title text='Tra cứu mã vận đơn' textAlign={'center'} />
       <Paragraph
-        text={
-          '(Tra nhiều bill bằng cách thêm dấu phẩy giữa các bill)'
-        }
-        maxWidth = {'sm'}
+        text={'(Tra nhiều bill bằng cách thêm dấu phẩy giữa các bill)'}
+        maxWidth={'sm'}
         mx={0}
         textAlign={'center'}
       />
-
       <Box
         component="form"
         noValidate
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         sx={{
           mt: 1,
           py: 2,
@@ -71,14 +46,13 @@ const Details = () => {
           fullWidth
           type="submit"
           size="medium"
-          sx= {{
+          sx={{
             width: '100px',
             fontSize: '1rem',
             textTransform: 'capitalize',
             py: 2,
             mt: 3,
             mb: 2,
-
             borderRadius: 3,
             backgroundColor: '#e03d3d',
             '&:hover': {
@@ -89,8 +63,8 @@ const Details = () => {
                     Tra cứu
         </Button>
       </Box>
-    </Stack>
+    </Box>
   )
 }
 
-export default Details
+export default TraCuuMVD

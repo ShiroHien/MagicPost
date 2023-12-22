@@ -1,9 +1,14 @@
-import React from 'react'
-import Details from '../../components/Details';
+import TraCuuMVD from '../../components/TraCuuMVD'
+import UocTinhCuocPhi from '../../components/UocTinhCuocPhi'
+import TimKiemBuuCuc from '../../components/TimKiemBuuCuc'
 
 const Search = () => {
   return (
-    <Details />
+    <>
+      <TraCuuMVD />
+      <UocTinhCuocPhi />
+      <TimKiemBuuCuc/>
+    </>
   )
 }
 

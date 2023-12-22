@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Button, styled, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
