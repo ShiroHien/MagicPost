@@ -5,7 +5,7 @@ import { postalGoodsController } from '~/controllers/postalGoodsController'
 
 const Router = express.Router()
 
-Router.route('/')
+Router.route('/:transactionId')
   .get((req, res) => {
     res.status(StatusCodes.OK).json({ message: 'GET: API get postal goods' })
   })

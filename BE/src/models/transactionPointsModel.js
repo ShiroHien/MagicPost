@@ -6,7 +6,9 @@ import { ObjectId } from 'mongodb'
 // Define Collection (name & schema)
 const TRANSACTION_POINT_COLLECTION_NAME = 'transaction_points'
 const TRANSACTION_POINT_COLLECTION_SCHEMA = Joi.object({
-  name: Joi.string().required().min(3).max(100).trim().strict(),
+  leaderId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).default(null),
+
+  name: Joi.string().required().min(3).max(256).trim().strict(),
   streetAddress: Joi.string().required().min(3).max(50).trim().strict(),
   city: Joi.string().required().min(3).max(50).trim().strict(),
   province: Joi.string().required().min(3).max(50).trim().strict(),
@@ -51,6 +53,18 @@ const findOneById = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
+const findOneByAddress = async(warehouseId, receiverCity, receiverProvince) => {
+  try {
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).findOne({
+      province: receiverProvince,
+      city: receiverCity,
+      warehousePointId: new ObjectId(warehouseId)
+    })
+    console.log('result', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 const getDetails = async(id) => {
   try {
     const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).findOne({
@@ -87,6 +101,30 @@ const deleteOne = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
+const setLeaderId = async(account) => {
+  try {
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).findOneAndUpdate(
+      { _id: new ObjectId(account.pointId) },
+      { $set: { leaderId: new ObjectId(account._id) } },
+      { returnDocument: 'after' }
+    )
+    // console.log('transaction with new leaderId', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const pushAccountIds = async(account) => {
+  try {
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).findOneAndUpdate(
+      { _id: new ObjectId(account.pointId) },
+      { $push: { accountIds: new ObjectId(account._id) } },
+      { returnDocument: 'after' }
+    )
+    // console.log('transaction with new accountIds', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const transactionPointsModel = {
   TRANSACTION_POINT_COLLECTION_NAME,
   TRANSACTION_POINT_COLLECTION_SCHEMA,
@@ -94,5 +132,8 @@ export const transactionPointsModel = {
   findOneById,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOneByAddress,
+  setLeaderId,
+  pushAccountIds
 }

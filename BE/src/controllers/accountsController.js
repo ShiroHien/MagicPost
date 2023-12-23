@@ -21,6 +21,16 @@ const getDetails = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const getAccoutListByType = async (req, res, next) => {
+  try {
+    // Điều hướng dữ liệu sang tầng Service (là tầng ở giữa controller và model để xử lý dữ liệu)
+    const account = await accountsService.getAccoutListByType(req.body)
+
+    // Có kết quả thì trả về phía Client
+    res.status(StatusCodes.OK).json(account)
+  } catch (error) { next(error) }
+}
+
 const update = async (req, res, next) => {
   try {
     const updatedAccount = await accountsService.update(req.params.id, req.body)
@@ -39,5 +49,6 @@ export const accountsController = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  getAccoutListByType
 }
