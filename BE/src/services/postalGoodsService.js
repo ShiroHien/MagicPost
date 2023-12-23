@@ -2,15 +2,17 @@ import { postalGoodsModel } from '~/models/postalGoodsModel'
 import ApiError from '~/utils/ApiError'
 import { StatusCodes } from 'http-status-codes'
 import { caculatePostage } from '~/utils/caculateMethods'
-const createNew = async (reqBody) => {
+import { findPath } from '~/utils/findPath'
+
+const createNew = async (transactionId, reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
   // eslint-disable-next-line no-useless-catch
   try {
     const newPostalGood = {
       ...reqBody,
-      postage: caculatePostage(reqBody.type, reqBody.weight, reqBody.size)
+      postage: caculatePostage(reqBody.type, reqBody.weight, reqBody.size),
+      pointIds: await findPath(transactionId, reqBody.receiverCity, reqBody.receiverProvince)
     }
-
     // Gọi tới tầng Model để xử lý lưu bản ghi newPostalGood vào trong Database
     const createdPostalGood = await postalGoodsModel.createNew(newPostalGood)
 

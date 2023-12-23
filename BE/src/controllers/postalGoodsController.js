@@ -4,7 +4,7 @@ import { StatusCodes } from 'http-status-codes'
 const createNew = async (req, res, next) => {
   try {
     // Điều hướng dữ liệu sang tầng Service (là tầng ở giữa controller và model để xử lý dữ liệu)
-    const createdPostalGood = await postalGoodsService.createNew(req.body)
+    const createdPostalGood = await postalGoodsService.createNew(req.params.transactionId, req.body)
 
     // Có kết quả thì trả về phía Client
     res.status(StatusCodes.CREATED).json(createdPostalGood)

@@ -1,6 +1,9 @@
 import { accountsModel } from '~/models/accountsModel'
 import ApiError from '~/utils/ApiError'
 import { StatusCodes } from 'http-status-codes'
+import { TYPE_ACCOUNT } from '~/utils/constants'
+import { transactionPointsModel } from '~/models/transactionPointsModel'
+import { warehousePointsModel } from '~/models/warehousePointsModel'
 
 const createNew = async (reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
@@ -16,6 +19,17 @@ const createNew = async (reqBody) => {
     // Lấy bản ghi account sau khi ghi (Tùy mục đích của dự án mà mình có thể thực hiện bước này hoặc không)
     const getNewAccount = await accountsModel.findOneById(createdAccount.insertedId)
 
+    if (getNewAccount) {
+      if (getNewAccount.typeAccount === TYPE_ACCOUNT.leaderOfTransaction)
+        await transactionPointsModel.setLeaderId(getNewAccount)
+      else if (getNewAccount.typeAccount === TYPE_ACCOUNT.leaderOfWarehouse)
+        await warehousePointsModel.setLeaderId(getNewAccount)
+      else if (getNewAccount.typeAccount === TYPE_ACCOUNT.staffOfTransaction)
+        await transactionPointsModel.pushAccountIds(getNewAccount)
+      else if (getNewAccount.typeAccount === TYPE_ACCOUNT.staffOfWarehouse)
+        await warehousePointsModel.pushAccountIds(getNewAccount)
+    }
+
     // Trả kết quả về, trong tầng Service luôn phải có return
     return getNewAccount
   } catch (error) { throw error }
@@ -25,6 +39,18 @@ const getDetails = async (accountId) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const account = await accountsModel.getDetails(accountId)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    }
+
+    return account
+  } catch (error) { throw error }
+}
+
+const getAccoutListByType = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.getAccoutListByType(reqBody)
     if (!account) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
     }
@@ -61,5 +87,6 @@ export const accountsService = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  getAccoutListByType
 }

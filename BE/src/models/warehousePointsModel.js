@@ -6,7 +6,9 @@ import { ObjectId } from 'mongodb'
 // Define Collection (name & schema)
 const WAREHOUSE_POINT_COLLECTION_NAME = 'warehouse_points'
 const WAREHOUSE_POINT_COLLECTION_SCHEMA = Joi.object({
-  name: Joi.string().required().min(3).max(100).trim().strict(),
+  leaderId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).default(null),
+
+  name: Joi.string().required().min(3).max(256).trim().strict(),
   streetAddress: Joi.string().required().min(3).max(50).trim().strict(),
   city: Joi.string().required().min(3).max(50).trim().strict(),
   province: Joi.string().required().min(3).max(50).trim().strict(),
@@ -52,6 +54,16 @@ const findOneById = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
+const findOneByAddress = async(receiverProvince) => {
+  try {
+    const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOne({
+      province: receiverProvince
+    })
+    // console.log('result', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 const getDetails = async(id) => {
   try {
     const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOne({
@@ -88,6 +100,41 @@ const deleteOne = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
+const pushTransactionPointIds = async (transactionPoint) => {
+  try {
+    const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOneAndUpdate(
+      { _id: new ObjectId(transactionPoint.warehousePointId) },
+      { $push: { transactionPointIds: new ObjectId(transactionPoint._id) } },
+      { returnDocument: 'after' }
+    )
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const setLeaderId = async(account) => {
+  try {
+    const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOneAndUpdate(
+      { _id: new ObjectId(account.pointId) },
+      { $set: { leaderId: new ObjectId(account._id) } },
+      { returnDocument: 'after' }
+    )
+    // console.log('warehouse with new leaderId', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const pushAccountIds = async(account) => {
+  try {
+    const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOneAndUpdate(
+      { _id: new ObjectId(account.pointId) },
+      { $push: { accountIds: new ObjectId(account._id) } },
+      { returnDocument: 'after' }
+    )
+    // console.log('warehouse with new accountIds', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const warehousePointsModel = {
   WAREHOUSE_POINT_COLLECTION_NAME,
   WAREHOUSE_POINT_COLLECTION_SCHEMA,
@@ -95,5 +142,9 @@ export const warehousePointsModel = {
   findOneById,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOneByAddress,
+  pushTransactionPointIds,
+  setLeaderId,
+  pushAccountIds
 }
