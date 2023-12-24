@@ -5,9 +5,7 @@ import Footer from '../../components/Footer/Footer'
 export const LandingLayout = () => (
   <>
     <Navbar />
-
     <Outlet />
-
     <Footer />
   </>
 )

@@ -8,7 +8,7 @@ import { createBrowserRouter } from 'react-router-dom'
 
 // const DashboardDefault = Loadable(lazy(() => import('../pages/dashboard')));
 
-export const LandingRoutes = createBrowserRouter([
+export const RootRoutes = createBrowserRouter([
   {
     path: '/',
     element: <LandingLayout />,
