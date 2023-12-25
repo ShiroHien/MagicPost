@@ -5,6 +5,7 @@ import SignIn from '../pages/Auth/Login'
 import { LandingLayout } from '../pages/Landing/LandingLayout'
 
 import { createBrowserRouter } from 'react-router-dom'
+import ThongKe from '../pages/dashboard/ThongKe'
 
 // const DashboardDefault = Loadable(lazy(() => import('../pages/dashboard')));
 
@@ -25,18 +26,16 @@ export const RootRoutes = createBrowserRouter([
       {
         path: '/search',
         element: <Search />
+      },
+      {
+        path: '/signin',
+        element: <SignIn />
       }
-    //   {
-    //     path: '/signin',
-    //     element: <SignIn />
-    //   }
     ]
   },
   {
-    path: '/signin',
-    element: <SignIn />,
-    // path: '/dashboard',
-    // element: <DashboardDefault />,
+    path: '/statistics',
+    element: <ThongKe />,
     children: [
     ]
   }

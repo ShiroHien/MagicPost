@@ -107,7 +107,7 @@ const TKDiemTK = () => {
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [warning, primaryMain],
+      colors: [primaryMain, warning],
       xaxis: {
         labels: {
           style: {

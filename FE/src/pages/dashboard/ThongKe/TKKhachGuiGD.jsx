@@ -41,7 +41,7 @@ const barChartOptions = {
   }
 }
 
-// ==============================||  BAR CHART ||============================== //
+// =======||  BAR CHART - Thong ke hang khach gui ||===== //
 
 const TKKhachGuiGD = () => {
   const theme = useTheme()
@@ -49,6 +49,7 @@ const TKKhachGuiGD = () => {
   const { primary, secondary } = theme.palette.text
   const info = theme.palette.info.light
 
+  // sửa sô liệu here
   const [series] = useState([
     {
       data: [80, 95, 70, 42, 65, 55, 78]

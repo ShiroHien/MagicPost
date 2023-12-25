@@ -49,6 +49,7 @@ const TKDaGuiGD = () => {
   const { primary, secondary } = theme.palette.text
   const info = theme.palette.info.light
 
+  // sửa số liệu here
   const [series] = useState([
     {
       data: [80, 95, 70, 42, 65, 55, 78]

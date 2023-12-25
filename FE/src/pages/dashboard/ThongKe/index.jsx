@@ -5,7 +5,7 @@ import TKKhachGuiGD from './TKKhachGuiGD'
 import TKDaGuiGD from './TKDaGuiGD'
 import TKDiemTK from './TKDiemTK'
 import TKToanQuoc from './TKToanQuoc'
-import MainCard from 'components/MainCard'
+import MainCard from '../../../components/MainCard'
 // sales report status
 const status = [
   {
