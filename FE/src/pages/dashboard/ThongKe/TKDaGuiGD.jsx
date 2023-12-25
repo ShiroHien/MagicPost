@@ -70,7 +70,15 @@ const TKDaGuiGD = () => {
         }
       },
       tooltip: {
-        theme: 'light'
+        theme: 'light',
+        custom: function({ series, seriesIndex, dataPointIndex, w }) {
+          let day = w.globals.labels[dataPointIndex];
+          let value = series[seriesIndex][dataPointIndex];
+          return `<div style="background-color: #fff; padding: 5px; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);">
+            <div style="font-size: 14px; color: black; margin-bottom: 5px;">${day}</div>
+            <div style="font-size: 13px; font-weight: bold; color: black;">${value} đơn</div>
+          </div>`
+        }
       }
     }))
     // eslint-disable-next-line react-hooks/exhaustive-deps

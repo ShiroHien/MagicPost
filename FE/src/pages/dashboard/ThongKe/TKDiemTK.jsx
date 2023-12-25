@@ -30,11 +30,11 @@ const columnChartOptions = {
     colors: ['transparent']
   },
   xaxis: {
-    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+    categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
   },
   yaxis: {
     title: {
-      text: '$ (thousands)'
+      text: 'Số đơn hàng'
     }
   },
   fill: {
@@ -43,7 +43,7 @@ const columnChartOptions = {
   tooltip: {
     y: {
       formatter(val) {
-        return `$ ${val} thousands`
+        return `${val} đơn`
       }
     }
   },
@@ -79,9 +79,9 @@ const columnChartOptions = {
   ]
 }
 
-// ==============================|| DoubleBarChart- Diem tap ket ||============================== //
+// ==============================|| DoubleBarChart-Toan quoc ||============================== //
 
-const TKDiemTK = () => {
+const TKToanQuoc = () => {
   const theme = useTheme()
 
   const { primary, secondary } = theme.palette.text
@@ -91,14 +91,15 @@ const TKDiemTK = () => {
   const primaryMain = theme.palette.primary.main
   const successDark = theme.palette.success.dark
 
+  // sửa số liệu here
   const [series] = useState([
     {
-      name: 'Net Profit',
-      data: [180, 90, 135, 114, 120, 145]
+      name: 'Hàng đến',
+      data: [180, 90, 135, 114, 120, 145, 150]
     },
     {
-      name: 'Revenue',
-      data: [120, 45, 78, 150, 168, 99]
+      name: 'Hàng đi',
+      data: [200, 50, 70, 150, 160, 90, 110]
     }
   ])
 
@@ -145,4 +146,4 @@ const TKDiemTK = () => {
   )
 }
 
-export default TKDiemTK
+export default TKToanQuoc

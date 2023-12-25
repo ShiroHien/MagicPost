@@ -61,7 +61,7 @@ const TKKhachGuiGD = () => {
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: [info],
+      colors: ['#4fe34f'],
       xaxis: {
         labels: {
           style: {

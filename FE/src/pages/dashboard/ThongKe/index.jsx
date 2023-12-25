@@ -7,25 +7,25 @@ import TKDiemTK from './TKDiemTK'
 import TKToanQuoc from './TKToanQuoc'
 import MainCard from '../../../components/MainCard'
 // sales report status
-const status = [
-  {
-    value: 'today',
-    label: 'Today'
-  },
-  {
-    value: 'month',
-    label: 'This Month'
-  },
-  {
-    value: 'year',
-    label: 'This Year'
-  }
-]
+// const status = [
+//   {
+//     value: 'today',
+//     label: 'Today'
+//   },
+//   {
+//     value: 'month',
+//     label: 'This Month'
+//   },
+//   {
+//     value: 'year',
+//     label: 'This Year'
+//   }
+// ]
 
 // ==============================|| Thong ke||============================== //
 
 const ThongKe = () => {
-  const [value, setValue] = useState('today')
+  // const [value, setValue] = useState('today')
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -39,7 +39,7 @@ const ThongKe = () => {
           <Grid item>
             <Typography variant="h4">Thống kê toàn quốc</Typography>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <TextField
               id="standard-select-currency"
               size="small"
@@ -54,7 +54,7 @@ const ThongKe = () => {
                 </MenuItem>
               ))}
             </TextField>
-          </Grid>
+          </Grid> */}
         </Grid>
         <MainCard sx={{ mt: 1.75 }}>
           <Stack spacing={1.5} sx={{ mb: -12 }}>
@@ -103,7 +103,7 @@ const ThongKe = () => {
           <Grid item>
             <Typography variant="h4">Thống kê điểm tập kết</Typography>
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <TextField
               id="standard-select-currency"
               size="small"
@@ -118,7 +118,7 @@ const ThongKe = () => {
                 </MenuItem>
               ))}
             </TextField>
-          </Grid>
+          </Grid> */}
         </Grid>
         <MainCard sx={{ mt: 1.75 }}>
           <Stack spacing={1.5} sx={{ mb: -12 }}>
