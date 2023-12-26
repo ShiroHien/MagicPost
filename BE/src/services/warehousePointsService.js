@@ -8,7 +8,7 @@ const createNew = async (reqBody) => {
   try {
     const newWarehousePoint = {
       ...reqBody,
-      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city + ', ' + reqBody.province
     }
 
     // Gọi tới tầng Model để xử lý lưu bản ghi newWarehousePoint vào trong Database
@@ -39,7 +39,7 @@ const update = async (warehousePointId, reqBody) => {
   try {
     const updateData = {
       ...reqBody,
-      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city + ', ' + reqBody.province
     }
 
     const updatedWarehousePoint = await warehousePointsModel.update(warehousePointId, updateData)

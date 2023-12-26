@@ -3,6 +3,7 @@ export const WHITELIST_DOMAINS = [
 ]
 
 export const TYPE_ACCOUNT = {
+  admin: 'admin',
   leaderOfTransaction: 'leader of transaction',
   leaderOfWarehouse: 'leader of warehouse',
   staffOfTransaction: 'staff of transaction',
