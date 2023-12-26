@@ -17,4 +17,9 @@ Router.route('/:id')
   .put(accountsValidation.update, accountsController.update)
   .delete(accountsController.deleteOne)
 
+
+//
+Router.route('/:id/type')
+  .get(accountsController.getAccoutListByType)
+
 export const accountsRoute = Router

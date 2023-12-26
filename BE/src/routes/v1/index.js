@@ -4,6 +4,7 @@ import { accountsRoute } from '~/routes/v1/accountsRoute'
 import { transactionPointsRoute } from './transactionPointsRoute'
 import { warehousePointsRoute } from './warehousePointsRoute'
 import { postalGoodsRoute } from './postalGoodsRoute'
+import { ordersRoute } from './ordersRoute'
 
 const Router = express.Router()
 
@@ -23,5 +24,8 @@ Router.use('/warehouse-points', warehousePointsRoute)
 
 // postal good APIs
 Router.use('/postal-goods', postalGoodsRoute)
+
+// order APIs
+// Router.use('/orders', ordersRoute)
 
 export const APIs_V1 = Router

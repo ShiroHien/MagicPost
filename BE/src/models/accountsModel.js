@@ -55,6 +55,18 @@ const getDetails = async(id) => {
     const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).findOne({
       _id: new ObjectId(id)
     })
+
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccoutListByType = async(reqBody) => {
+  try {
+    const types = [TYPE_ACCOUNT.leaderOfTransaction, TYPE_ACCOUNT.leaderOfWarehouse]
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: { $in: types }
+    }).toArray()
+
     return result
   } catch (error) { throw new Error(error) }
 }
@@ -93,5 +105,6 @@ export const accountsModel = {
   findOneById,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  getAccoutListByType
 }

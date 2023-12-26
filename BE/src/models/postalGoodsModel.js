@@ -65,8 +65,15 @@ const createNew = async (data) => {
     const validData = await validateBeforeCreate(data)
     // Chuyển về đúng kiểu ObjectId
     const newPostalGoodToCreate = {
-      ...validData
+      ...validData,
+      pointIds: [
+        new ObjectId(validData.pointIds[0]),
+        new ObjectId(validData.pointIds[1]),
+        new ObjectId(validData.pointIds[2]),
+        new ObjectId(validData.pointIds[3])
+      ]
     }
+    // console.log('validata pointids', validData.pointIds)
     const createdPostalGood = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).insertOne(newPostalGoodToCreate)
     return createdPostalGood
   } catch (error) { throw new Error(error) }

@@ -12,7 +12,6 @@ const createNew = async (req, res, next) => {
     senderStreetAddress: Joi.string().required().min(3).max(50).trim().strict(),
     senderCity: Joi.string().required().min(3).max(50).trim().strict(),
     senderProvince: Joi.string().required().min(3).max(50).trim().strict(),
-    senderCountry: Joi.string().min(3).max(50).trim().strict().default('Viet Nam'),
 
     receiverName: Joi.string().required().min(3).max(50).trim().strict(),
     receiverPhone: Joi.string().required().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
@@ -20,7 +19,6 @@ const createNew = async (req, res, next) => {
     receiverStreetAddress: Joi.string().required().min(3).max(50).trim().strict(),
     receiverCity: Joi.string().required().min(3).max(50).trim().strict(),
     receiverProvince: Joi.string().required().min(3).max(50).trim().strict(),
-    receiverCountry: Joi.string().min(3).max(50).trim().strict().default('Viet Nam'),
 
     type: Joi.string().valid(
       TYPE_GOOD.type1,
@@ -52,7 +50,6 @@ const update = async (req, res, next) => {
     senderStreetAddress: Joi.string().required().min(3).max(50).trim().strict(),
     senderCity: Joi.string().required().min(3).max(50).trim().strict(),
     senderProvince: Joi.string().required().min(3).max(50).trim().strict(),
-    senderCountry: Joi.string().min(3).max(50).trim().strict().default('Viet Nam'),
 
     receiverName: Joi.string().required().min(3).max(50).trim().strict(),
     receiverPhone: Joi.string().required().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
@@ -60,7 +57,6 @@ const update = async (req, res, next) => {
     receiverStreetAddress: Joi.string().required().min(3).max(50).trim().strict(),
     receiverCity: Joi.string().required().min(3).max(50).trim().strict(),
     receiverProvince: Joi.string().required().min(3).max(50).trim().strict(),
-    receiverCountry: Joi.string().min(3).max(50).trim().strict().default('Viet Nam'),
 
     type: Joi.string().valid(
       TYPE_GOOD.type1,

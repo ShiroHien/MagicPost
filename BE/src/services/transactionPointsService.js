@@ -1,6 +1,7 @@
 import { transactionPointsModel } from '~/models/transactionPointsModel'
 import ApiError from '~/utils/ApiError'
 import { StatusCodes } from 'http-status-codes'
+import { warehousePointsModel } from '~/models/warehousePointsModel'
 
 const createNew = async (reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
@@ -16,6 +17,10 @@ const createNew = async (reqBody) => {
 
     // Lấy bản ghi transactionPoint sau khi ghi (Tùy mục đích của dự án mà mình có thể thực hiện bước này hoặc không)
     const getNewTransactionPoint = await transactionPointsModel.findOneById(createdTransactionPoint.insertedId)
+
+    if (getNewTransactionPoint) {
+      await warehousePointsModel.pushTransactionPointIds(getNewTransactionPoint)
+    }
 
     // Trả kết quả về, trong tầng Service luôn phải có return
     return getNewTransactionPoint
