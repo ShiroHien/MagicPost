@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Grid, Stack, TextField, Typography } from '@mui/material'
+import MainCard from '../../../components/MainCard'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -180,9 +182,24 @@ const TKToanQuoc = () => {
   }, [primary, secondary, line, warning, primaryMain, successDark])
 
   return (
-    <div id="chart">
-      <ReactApexChart options={options} series={series} type="bar" height={430} />
-    </div>
+    <Grid item xs={12} md={7} lg={8}>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item>
+          <Typography variant="h4">Thống kê điểm tập kết</Typography>
+        </Grid>
+      </Grid>
+      <MainCard sx={{ mt: 1.75 }}>
+        <Stack spacing={1.5} sx={{ mb: -12 }}>
+          <Typography variant="h6" color="secondary">
+        Tổng đơn
+          </Typography>
+          <Typography variant="h4">500</Typography>
+        </Stack>
+        <div id="chart">
+          <ReactApexChart options={options} series={series} type="bar" height={430} />
+        </div>
+      </MainCard>
+    </Grid>
   )
 }
 

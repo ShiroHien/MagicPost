@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { Grid, Stack, TextField, Typography } from '@mui/material'
+import MainCard from '../../../../components/MainCard'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
@@ -107,8 +109,8 @@ const TKDaGuiGD = () => {
       tooltip: {
         theme: 'light',
         custom: function({ series, seriesIndex, dataPointIndex, w }) {
-          let day = w.globals.labels[dataPointIndex];
-          let value = series[seriesIndex][dataPointIndex];
+          let day = w.globals.labels[dataPointIndex]
+          let value = series[seriesIndex][dataPointIndex]
           return `<div style="background-color: #fff; padding: 5px; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);">
             <div style="font-size: 14px; color: black; margin-bottom: 5px;">${day}</div>
             <div style="font-size: 13px; font-weight: bold; color: black;">${value} đơn</div>
@@ -120,9 +122,21 @@ const TKDaGuiGD = () => {
   }, [primary, info, secondary])
 
   return (
-    <div id="chart">
-      <ReactApexChart options={options} series={series} type="bar" height={365} />
-    </div>
+
+
+    <Grid item xs={12} md={5} lg={4}>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item>
+          <Typography variant="h5">Thống kê hàng đã gửi</Typography>
+        </Grid>
+        <Grid item />
+      </Grid>
+      <MainCard sx={{ mt: 2 }} content={false}>
+        <div id="chart">
+          <ReactApexChart options={options} series={series} type="bar" height={365} />
+        </div>
+      </MainCard>
+    </Grid>
   )
 }
 
