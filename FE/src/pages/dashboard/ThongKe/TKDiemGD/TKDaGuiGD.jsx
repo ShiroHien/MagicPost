@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import { Grid, Stack, TextField, Typography } from '@mui/material'
 import MainCard from '../../../../components/MainCard'
@@ -8,7 +9,7 @@ import { useTheme } from '@mui/material/styles'
 // third-party
 import ReactApexChart from 'react-apexcharts'
 
-import axiosInstance from '../../../utils/AxiosInstance'
+import axiosInstance from '../../../../utils/AxiosInstance'
 
 // chart options
 const barChartOptions = {
@@ -56,7 +57,7 @@ const TKDaGuiGD = () => {
   // sửa số liệu here
   const [series, setSeries] = useState([
     {
-      data: [80, 95, 70, 42, 65, 55, 78]
+      data: [0, 0, 0, 0, 0, 0, 0]
     }
   ])
   const [province, setProvince] = useState('Hà Nội')
@@ -92,9 +93,7 @@ const TKDaGuiGD = () => {
     setSeries(seriesCopy)
   }
 
-
   const [options, setOptions] = useState(barChartOptions)
-
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
@@ -119,7 +118,7 @@ const TKDaGuiGD = () => {
       }
     }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [primary, info, secondary])
+  }, [primary, info, secondary, series])
 
   return (
 

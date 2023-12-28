@@ -6,8 +6,9 @@ import { LandingLayout } from '../pages/Landing/LandingLayout'
 
 import { createBrowserRouter } from 'react-router-dom'
 import ThongKe from '../pages/dashboard/ThongKe'
-
-// const DashboardDefault = Loadable(lazy(() => import('../pages/dashboard')));
+import TKToanQuoc from '../pages/dashboard/ThongKe/TKToanQuoc'
+import TKDiemTK from '../pages/dashboard/ThongKe/TKDiemTK'
+import TKDiemGD from '../pages/dashboard/ThongKe/TKDiemGD'
 
 export const RootRoutes = createBrowserRouter([
   {
@@ -37,6 +38,18 @@ export const RootRoutes = createBrowserRouter([
     path: '/statistics',
     element: <ThongKe />,
     children: [
+      {
+        path: '/statistics/tktoanquoc',
+        element: <TKToanQuoc/>
+      },
+      {
+        path: '/statistics/tkdiemgd',
+        element: <TKDiemGD/>
+      },
+      {
+        path: '/statistics/tkdiemtk',
+        element:  <TKDiemTK />
+      },
     ]
   }
 

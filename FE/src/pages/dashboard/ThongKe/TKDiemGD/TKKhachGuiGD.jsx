@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles'
 // third-party
 import ReactApexChart from 'react-apexcharts'
 
-import axiosInstance from '../../../utils/AxiosInstance'
+import axiosInstance from '../../../../utils/AxiosInstance'
 
 // chart options
 const barChartOptions = {
@@ -93,7 +93,6 @@ const TKKhachGuiGD = () => {
 
 
   const [options, setOptions] = useState(barChartOptions)
-
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
@@ -113,21 +112,19 @@ const TKKhachGuiGD = () => {
   }, [primary, info, secondary])
 
   return (
-    
-
-<Grid item xs={12} md={5} lg={4}>
-<Grid container alignItems="center" justifyContent="space-between">
-  <Grid item>
-    <Typography variant="h5">Thống kê hàng khách gửi</Typography>
-  </Grid>
-  <Grid item />
-</Grid>
-<MainCard sx={{ mt: 2 }} content={false}>
-<div id="chart">
-      <ReactApexChart options={options} series={series} type="bar" height={365} />
-    </div>
-</MainCard>
-</Grid>
+    <Grid item xs={12} md={5} lg={4}>
+      <Grid container alignItems="center" justifyContent="space-between">
+        <Grid item>
+          <Typography variant="h5">Thống kê hàng khách gửi</Typography>
+        </Grid>
+        <Grid item />
+      </Grid>
+      <MainCard sx={{ mt: 2 }} content={false}>
+        <div id="chart">
+          <ReactApexChart options={options} series={series} type="bar" height={365} />
+        </div>
+      </MainCard>
+    </Grid>
   )
 }
 

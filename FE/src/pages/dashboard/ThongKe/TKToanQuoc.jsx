@@ -97,7 +97,7 @@ const TKToanQuoc = () => {
   const warning = theme.palette.warning.main
   const primaryMain = theme.palette.primary.main
   const successDark = theme.palette.success.dark
-
+  const [options, setOptions] = useState(columnChartOptions)
   // sửa số liệu here
   const [series, setSeries] = useState([
     {
@@ -109,7 +109,29 @@ const TKToanQuoc = () => {
       data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
   ])
-  const [options, setOptions] = useState(columnChartOptions)
+
+  {/* tổng đơn - sửa số liệu here */}
+  const [totalTQ, setTotalTQ] = useState()
+
+  useEffect(() => {
+    getDataForFilterTQ()
+  }, [])
+  // Gọi API thống kê tổng đơn toàn quốc trong năm
+  const getDataForFilterTQ = async () => {
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsTQ/`,
+      data: {
+        statisticType: 'total',
+        filterType: 'monthOfYear',
+        filterValue: 2023
+      }
+    })
+    setTotalTQ(response.data[0].count)
+  }
 
   useEffect(() => {
     getDataForFilter()
@@ -178,7 +200,6 @@ const TKToanQuoc = () => {
 
   return (
 
-
     <Grid item xs={12} md={7} lg={8}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
@@ -191,7 +212,7 @@ const TKToanQuoc = () => {
         Tổng đơn
           </Typography>
           {/* tổng đơn - sửa số liệu here */}
-          <Typography variant="h4">1000</Typography>
+          <Typography variant="h4">{totalTQ}</Typography>
         </Stack>
         <div id="chart">
           <ReactApexChart options={options} series={series} type="bar" height={430} />

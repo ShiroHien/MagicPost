@@ -96,6 +96,7 @@ const TKToanQuoc = () => {
   const warning = theme.palette.warning.main
   const primaryMain = theme.palette.primary.main
   const successDark = theme.palette.success.dark
+  const [options, setOptions] = useState(columnChartOptions)
 
   // sửa số liệu here
   const [series, setSeries] = useState([
@@ -108,11 +109,48 @@ const TKToanQuoc = () => {
       data: [0, 0, 0, 0, 0, 0, 0]
     }
   ])
-  const [options, setOptions] = useState(columnChartOptions)
+  {/* tổng đơn - sửa số liệu here */}
+  const [totalTK, setTotalTK] = useState()
 
   const [province, setProvince] = useState('Hà Nội')
   const [district, setDistrict] = useState('Đống Đa')
-  
+
+  useEffect(() => {
+    getDataForFilterTK()
+  }, [province, district])
+  // Gọi API để lấy warehouseId từ province vs district
+  // const getIdByFilter = async () => {
+  //   let response = await axiosInstance({
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     method: 'post',
+  //     url: `http://localhost:3377/v1/warehouse-points/findid`,
+  //     data: {
+  //       province: province,
+  //       city: district
+  //     }
+  //   })
+  //   setId(response.data._id)
+  // }
+  // Gọi API thống kê tổng đơn tập kết trong tuần
+  const getDataForFilterTK = async () => {
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsTK`,
+      data: {
+        province: province,
+        city: district,
+        statisticType: 'total',
+        filterType: 'dayOfWeek',
+        filterValue: 2023 // hiện tại dang để tuần hiện tại nào có filter thì thay sau
+      }
+    })
+    setTotalTK(response.data.count)
+  }
 
   useEffect(() => {
     getDataForFilter()
@@ -193,7 +231,7 @@ const TKToanQuoc = () => {
           <Typography variant="h6" color="secondary">
         Tổng đơn
           </Typography>
-          <Typography variant="h4">500</Typography>
+          <Typography variant="h4">{totalTK}</Typography>
         </Stack>
         <div id="chart">
           <ReactApexChart options={options} series={series} type="bar" height={430} />

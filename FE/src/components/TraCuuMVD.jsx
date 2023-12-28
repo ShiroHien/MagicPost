@@ -7,9 +7,9 @@ const TraCuuMVD = ({ onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    console.log({
-      mvd: data.get('mvd')
-    })
+    // console.log({
+    //   mvd: data.get('mvd')
+    // })
   }
   return (
     <Box>
