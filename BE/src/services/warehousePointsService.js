@@ -59,9 +59,22 @@ const deleteOne = async (warehousePointId) => {
   } catch (error) { throw error }
 }
 
+const findOneByFilter = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const result = await warehousePointsModel.findOneByFilter(reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
+    }
+
+    return result
+  } catch (error) { throw error }
+}
+
 export const warehousePointsService = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOneByFilter
 }

@@ -14,7 +14,6 @@ export let findPath = async (transactionId, receiverCity, receiverProvince) => {
   let warehouseC = await warehousePointsModel.findOneByAddress(receiverProvince)
   idArr[2] = warehouseC._id.toString()
 
-
   // Tìm điểm giao dịch liên kết với điểm tập kết trên và gần với địa chỉ người nhận
   let transactionD = await transactionPointsModel.findOneByAddress(idArr[2], receiverCity, receiverProvince)
   idArr[3] = transactionD._id.toString()

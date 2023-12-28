@@ -3,6 +3,8 @@ import ApiError from '~/utils/ApiError'
 import { StatusCodes } from 'http-status-codes'
 import { caculatePostage } from '~/utils/caculateMethods'
 import { findPath } from '~/utils/findPath'
+import { transactionPointsModel } from '~/models/transactionPointsModel'
+import { warehousePointsModel } from '~/models/warehousePointsModel'
 
 const createNew = async (transactionId, reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
@@ -53,8 +55,56 @@ const update = async (postalGoodId, reqBody) => {
   } catch (error) { throw error }
 }
 
+const statisticsToanQuoc = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const result = await postalGoodsModel.statisticsToanQuoc(reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
+    }
+
+    return result
+  } catch (error) { throw error }
+}
+
+const statisticsGD = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const transactionPoint = await transactionPointsModel.findOneByFilter(reqBody)
+    if (!transactionPoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
+    } else {
+      const result = await postalGoodsModel.statisticsGD(transactionPoint._id, reqBody)
+      if (!result) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
+      }
+      return result
+    }
+  } catch (error) { throw error }
+}
+
+
+const statisticsTK = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const warehousePoint = await warehousePointsModel.findOneByFilter(reqBody)
+    if (!warehousePoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
+    } else {
+      const result = await postalGoodsModel.statisticsTK(warehousePoint._id, reqBody)
+      if (!result) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
+      }
+      return result
+    }
+  } catch (error) { throw error }
+}
+
 export const postalGoodsService = {
   createNew,
   getDetails,
-  update
+  update,
+  statisticsToanQuoc,
+  statisticsGD,
+  statisticsTK
 }

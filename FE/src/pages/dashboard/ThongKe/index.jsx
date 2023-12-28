@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 import { Grid, MenuItem, Stack, TextField, Typography } from '@mui/material'
 import TKKhachGuiGD from './TKKhachGuiGD'
@@ -6,6 +6,10 @@ import TKDaGuiGD from './TKDaGuiGD'
 import TKDiemTK from './TKDiemTK'
 import TKToanQuoc from './TKToanQuoc'
 import MainCard from '../../../components/MainCard'
+
+import axiosInstance from '../../../utils/AxiosInstance'
+
+
 // sales report status
 // const status = [
 //   {
@@ -26,6 +30,70 @@ import MainCard from '../../../components/MainCard'
 
 const ThongKe = () => {
   // const [value, setValue] = useState('today')
+  {/* tổng đơn - sửa số liệu here */}
+  const [totalTQ, setTotalTQ] = useState()
+  const [totalTK, setTotalTK] = useState()
+
+  const [province, setProvince] = useState('Hà Nội')
+  const [district, setDistrict] = useState('Đống Đa')
+
+  useEffect(() => {
+    getDataForFilterTQ()
+  }, [])
+  // Gọi API thống kê tổng đơn toàn quốc trong năm
+  const getDataForFilterTQ = async () => {
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsTQ/`,
+      data: {
+        statisticType: 'total',
+        filterType: 'monthOfYear',
+        filterValue: 2023
+      }
+    })
+    setTotalTQ(response.data[0].count)
+  }
+
+  useEffect(() => {
+    getDataForFilterTK()
+  }, [province, district])
+  // Gọi API để lấy warehouseId từ province vs district
+  // const getIdByFilter = async () => {
+  //   let response = await axiosInstance({
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     method: 'post',
+  //     url: `http://localhost:3377/v1/warehouse-points/findid`,
+  //     data: {
+  //       province: province,
+  //       city: district
+  //     }
+  //   })
+  //   setId(response.data._id)
+  // }
+  // Gọi API thống kê tổng đơn tập kết trong tuần
+  const getDataForFilterTK = async () => {
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsTK`,
+      data: {
+        province: province,
+        city: district,
+        statisticType: 'total',
+        filterType: 'dayOfWeek',
+        filterValue: 2023 // hiện tại dang để tuần hiện tại nào có filter thì thay sau
+      }
+    })
+    setTotalTK(response.data.count)
+  }
+
 
   return (
     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -61,8 +129,8 @@ const ThongKe = () => {
             <Typography variant="h6" color="secondary">
               Tổng đơn
             </Typography>
-            {/* tổng đơn - sửa số liệu here */}
-            <Typography variant="h4">1000</Typography>
+            
+            <Typography variant="h4">{totalTQ}</Typography>
           </Stack>
           <TKToanQuoc />
         </MainCard>
@@ -125,7 +193,7 @@ const ThongKe = () => {
             <Typography variant="h6" color="secondary">
               Tổng đơn
             </Typography>
-            <Typography variant="h4">500</Typography>
+            <Typography variant="h4">{totalTK}</Typography>
           </Stack>
           <TKDiemTK />
         </MainCard>

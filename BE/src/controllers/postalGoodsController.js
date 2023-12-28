@@ -25,8 +25,33 @@ const update = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const statisticsToanQuoc = async (req, res, next) => {
+  try {
+    const result = await postalGoodsService.statisticsToanQuoc(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const statisticsGD = async (req, res, next) => {
+  try {
+    const result = await postalGoodsService.statisticsGD(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const statisticsTK = async (req, res, next) => {
+  try {
+    const result = await postalGoodsService.statisticsTK(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+
 export const postalGoodsController = {
   createNew,
   getDetails,
-  update
+  update,
+  statisticsToanQuoc,
+  statisticsGD,
+  statisticsTK
 }

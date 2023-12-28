@@ -6,6 +6,10 @@ import { useTheme } from '@mui/material/styles'
 // third-party
 import ReactApexChart from 'react-apexcharts'
 
+// API import
+import axiosInstance from '../../../utils/AxiosInstance'
+
+
 // chart options
 const columnChartOptions = {
   chart: {
@@ -92,18 +96,54 @@ const TKToanQuoc = () => {
   const successDark = theme.palette.success.dark
 
   // sửa số liệu here
-  const [series] = useState([
+  const [series, setSeries] = useState([
     {
       name: 'Hàng đến',
-      data: [180, 90, 135, 114, 120, 145, 150]
+      data: [0, 0, 0, 0, 0, 0, 0]
     },
     {
       name: 'Hàng đi',
-      data: [200, 50, 70, 150, 160, 90, 110]
+      data: [0, 0, 0, 0, 0, 0, 0]
     }
   ])
-
   const [options, setOptions] = useState(columnChartOptions)
+
+  const [province, setProvince] = useState('Hà Nội')
+  const [district, setDistrict] = useState('Đống Đa')
+  
+
+  useEffect(() => {
+    getDataForFilter()
+  }, [province, district, series])
+
+  // Gọi API thống kê tổng đơn tập kết trong nătm
+  const getDataForFilter = async () => {
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsTK`,
+      // params: {
+      //   warehouseId: warehouseId
+      // },
+      data: {
+        province: province,
+        city: district,
+        statisticType: null,
+        filterType: 'dayOfWeek',
+        filterValue: 2023 // Sửa Week sau nếu có filter
+      }
+    })
+    let seriesCopy = [...series]
+    for (let t = 0; t < 2; t++) {
+      for (let i = 0; i < response.data[t].length; i++ ) {
+        let value = response.data[t][i].day - 1
+        seriesCopy[t].data[value] += response.data[t][i].count
+      }
+      setSeries(seriesCopy)
+    }
+  }
 
   useEffect(() => {
     setOptions((prevState) => ({

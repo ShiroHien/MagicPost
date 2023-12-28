@@ -1,5 +1,5 @@
 export const WHITELIST_DOMAINS = [
-  'http'
+  'http://localhost:5173'
 ]
 
 export const TYPE_ACCOUNT = {

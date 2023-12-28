@@ -5,16 +5,22 @@ import { warehousePointsController } from '~/controllers/warehousePointsControll
 
 const Router = express.Router()
 
+// ______________________________General API________________________________________
 Router.route('/')
   .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message: 'GET: API get warehouse point' })
+    res.status(StatusCodes.OK).json({ message: 'GET: API get transaction point' })
   })
+
+Router.route('/create')
   .post(warehousePointsValidation.createNew, warehousePointsController.createNew )
 
-// Xét một biến id vào trong trong param của warehouse point để lấy data
-Router.route('/:id')
-  .get(warehousePointsController.getDetails)
-  .put(warehousePointsValidation.update, warehousePointsController.update)
-  .delete(warehousePointsController.deleteOne)
+
+Router.route('/manage/:id')
+  .get(warehousePointsController.getDetails) // API lấy dữ liệu từ id
+  .put(warehousePointsValidation.update, warehousePointsController.update) // API sửa dữ liệu
+  .delete(warehousePointsController.deleteOne) // API xóa dữ liệu
+
+Router.route('/findid')
+  .post(warehousePointsController.findOneByFilter)
 
 export const warehousePointsRoute = Router

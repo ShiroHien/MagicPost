@@ -6,6 +6,8 @@ import { useTheme } from '@mui/material/styles'
 // third-party
 import ReactApexChart from 'react-apexcharts'
 
+import axiosInstance from '../../../utils/AxiosInstance'
+
 // chart options
 const barChartOptions = {
   chart: {
@@ -50,11 +52,44 @@ const TKKhachGuiGD = () => {
   const info = theme.palette.info.light
 
   // sửa sô liệu here
-  const [series] = useState([
+  const [series, setSeries] = useState([
     {
-      data: [80, 95, 70, 42, 65, 55, 78]
+      data: [0, 0, 0, 0, 0, 0, 0]
     }
   ])
+  const [province, setProvince] = useState('Hà Nội')
+  const [district, setDistrict] = useState('Cầu Giấy')
+
+  useEffect(() => {
+    getDataForFilter()
+  }, [province, district, series])
+
+
+  // Gọi API thống kê tổng đơn tập kết trong nătm
+  const getDataForFilter = async () => {
+    let response = await axiosInstance({
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsGD`,
+      data: {
+        province: province,
+        city: district,
+        statisticType: null,
+        filterType: 'dayOfWeek',
+        filterValue: 2023 // Sửa Week sau nếu có filter
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    let seriesCopy = [...series]
+    let t = 0
+    for (let i = 0; i < response.data[t].length; i++ ) {
+      let value = response.data[t][i].day - 1
+      seriesCopy[0].data[value] = response.data[t][i].count
+    }
+    setSeries(seriesCopy)
+  }
+
 
   const [options, setOptions] = useState(barChartOptions)
 
