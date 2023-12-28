@@ -12,7 +12,14 @@ const TraCuuMVD = ({ onSubmit }) => {
     // })
   }
   return (
-    <Box>
+    <Box
+      sx={{
+        width: '55%',
+        height: 'auto',
+        margin: '0px auto',
+        padding: '10px',
+        marginBottom: '30px'
+      }}>
       <Title text='Tra cứu mã vận đơn' textAlign={'center'} />
       <Paragraph
         text={'(Tra nhiều bill bằng cách thêm dấu phẩy giữa các bill)'}
@@ -37,7 +44,7 @@ const TraCuuMVD = ({ onSubmit }) => {
           required
           fullWidth
           id="mvd"
-          label="VD: 123,456"
+          label="VD: 12345, 12346,"
           name="mvd"
           autoFocus
         />

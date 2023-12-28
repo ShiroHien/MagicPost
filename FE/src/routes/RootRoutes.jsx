@@ -9,6 +9,9 @@ import ThongKe from '../pages/dashboard/ThongKe'
 import TKToanQuoc from '../pages/dashboard/ThongKe/TKToanQuoc'
 import TKDiemTK from '../pages/dashboard/ThongKe/TKDiemTK'
 import TKDiemGD from '../pages/dashboard/ThongKe/TKDiemGD'
+import UocTinhCuocPhi from '../components/UocTinhCuocPhi'
+import TraCuuMVD from '../components/TraCuuMVD'
+import TimKiemBuuCuc from '../components/TimKiemBuuCuc'
 
 export const RootRoutes = createBrowserRouter([
   {
@@ -26,7 +29,21 @@ export const RootRoutes = createBrowserRouter([
 
       {
         path: '/search',
-        element: <Search />
+        element: <Search />,
+        children: [
+          {
+            path: '/search/mvd',
+            element: <TraCuuMVD/>
+          },
+          {
+            path: '/search/cuocphi',
+            element: <UocTinhCuocPhi/>
+          },
+          {
+            path: '/search/buucuc',
+            element:  <TimKiemBuuCuc />
+          }
+        ]
       },
       {
         path: '/signin',
@@ -49,7 +66,7 @@ export const RootRoutes = createBrowserRouter([
       {
         path: '/statistics/tkdiemtk',
         element:  <TKDiemTK />
-      },
+      }
     ]
   }
 

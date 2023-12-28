@@ -29,7 +29,7 @@ const UocTinhCuocPhi = () => {
       sx={{
         backgroundColor: 'rgb(236, 234, 234)',
         width: '55%',
-        height: '420px',
+        height: 'auto',
         margin: '0px auto',
         padding: '10px',
         marginBottom: '30px'

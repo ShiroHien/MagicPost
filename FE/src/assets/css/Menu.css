@@ -1,0 +1,29 @@
+.Sidebar {
+  position: fixed;          /* Keep sidebar in place */
+  width: 200px;             /* Adjust width as needed */
+  height: 100vh;       /* Light gray background */
+  padding: 20px;             /* Add spacing around content */
+  overflow-y: auto;         /* Enable scrolling if needed */
+}
+
+.Menu {
+  position: fixed; 
+  list-style: none;          /* Remove default bullet points */
+  padding: 0;   
+  background-color: inherit;             /* Remove default list padding */
+}
+
+.MenuItem {
+  margin-bottom: 10px;      /* Add spacing between items */
+}
+
+.MenuItem a {
+  display: block;           /* Make links fill entire width */
+  padding: 10px 15px;       /* Add padding to links */
+  text-decoration: none;    /* Remove underline from links */
+  color: rgb(237, 9, 9);
+}
+
+.MenuItem a:hover {
+  background-color: #ccd4ec   /* Highlight on hover */
+}

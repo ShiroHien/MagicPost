@@ -200,7 +200,13 @@ const TKToanQuoc = () => {
 
   return (
 
-    <Grid item xs={12} md={7} lg={8}>
+    <Grid sx={{
+      width: '70%',
+      height: 'auto',
+      margin: '0px auto',
+      padding: '10px',
+      marginBottom: '30px'
+    }} item xs={12} md={7} lg={8}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h4">Thống kê toàn quốc</Typography>

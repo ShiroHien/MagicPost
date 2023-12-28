@@ -123,7 +123,13 @@ const TKDaGuiGD = () => {
   return (
 
 
-    <Grid item xs={12} md={5} lg={4}>
+    <Grid sx={{
+      width: '70%',
+      height: 'auto',
+      margin: '0px auto',
+      padding: '10px',
+      marginBottom: '30px'
+    }}item xs={12} md={5} lg={4}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h5">Thống kê hàng đã gửi</Typography>
