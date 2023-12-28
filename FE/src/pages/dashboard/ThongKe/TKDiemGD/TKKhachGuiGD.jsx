@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-
+import { Grid, Stack, TextField, Typography } from '@mui/material'
+import MainCard from '../../../../components/MainCard'
 // material-ui
 import { useTheme } from '@mui/material/styles'
 
@@ -77,9 +78,21 @@ const TKKhachGuiGD = () => {
   }, [primary, info, secondary])
 
   return (
-    <div id="chart">
+    
+
+<Grid item xs={12} md={5} lg={4}>
+<Grid container alignItems="center" justifyContent="space-between">
+  <Grid item>
+    <Typography variant="h5">Thống kê hàng khách gửi</Typography>
+  </Grid>
+  <Grid item />
+</Grid>
+<MainCard sx={{ mt: 2 }} content={false}>
+<div id="chart">
       <ReactApexChart options={options} series={series} type="bar" height={365} />
     </div>
+</MainCard>
+</Grid>
   )
 }
 
