@@ -1,21 +1,15 @@
-//rotas
-import { BrowserRouter, RouterProvider } from 'react-router-dom'
-//pages
-//componentes
-
-import SignIn from './pages/Auth/Login'
-import Router from './routes'
-import { LandingRoutes } from './routes/LandingRoutes'
+// project import
+import Routes from 'routes';
+import ThemeCustomization from 'themes';
+import ScrollTop from 'components/ScrollTop';
 
 
-function App() {
-  return (
-    <>
-      <BrowserRouter>
-        
-      </BrowserRouter>
-    </>
-  )
-}
+const App = () => (
+  <ThemeCustomization>
+    <ScrollTop>
+      <Routes />
+    </ScrollTop>
+  </ThemeCustomization>
+);
 
-export default App
+export default App;

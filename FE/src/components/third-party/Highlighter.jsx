@@ -1,23 +1,23 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 // material-ui
-import { Box, CardActions, Collapse, Divider, IconButton, Tooltip } from '@mui/material'
+import { Box, CardActions, Collapse, Divider, IconButton, Tooltip } from '@mui/material';
 
 // third-party
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import reactElementToJSXString from 'react-element-to-jsx-string'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import reactElementToJSXString from 'react-element-to-jsx-string';
 
 // project import
-import SyntaxHighlight from '../../utils/SyntaxHighlight'
+import SyntaxHighlight from 'utils/SyntaxHighlight';
 
 // assets
-import { CodeOutlined, CopyOutlined } from '@ant-design/icons'
+import { CodeOutlined, CopyOutlined } from '@ant-design/icons';
 
 // ==============================|| CLIPBOARD & HIGHLIGHTER   ||============================== //
 
 const Highlighter = ({ children }) => {
-  const [highlight, setHighlight] = useState(false)
+  const [highlight, setHighlight] = useState(false);
 
   return (
     <Box sx={{ position: 'relative' }}>
@@ -55,11 +55,11 @@ const Highlighter = ({ children }) => {
         )}
       </Collapse>
     </Box>
-  )
-}
+  );
+};
 
 Highlighter.propTypes = {
   children: PropTypes.node
-}
+};
 
-export default Highlighter
+export default Highlighter;

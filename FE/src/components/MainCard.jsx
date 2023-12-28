@@ -1,18 +1,18 @@
-import PropTypes from 'prop-types'
-import { forwardRef } from 'react'
+import PropTypes from 'prop-types';
+import { forwardRef } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles'
-import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material'
+import { useTheme } from '@mui/material/styles';
+import { Card, CardContent, CardHeader, Divider, Typography } from '@mui/material';
 
 // project import
-import Highlighter from './third-party/Highlighter'
+import Highlighter from './third-party/Highlighter';
 
 // header style
 const headerSX = {
   p: 2.5,
   '& .MuiCardHeader-action': { m: '0px auto', alignSelf: 'center' }
-}
+};
 
 // ==============================|| CUSTOM - MAIN CARD ||============================== //
 
@@ -35,8 +35,8 @@ const MainCard = forwardRef(
     },
     ref
   ) => {
-    const theme = useTheme()
-    boxShadow = theme.palette.mode === 'dark' ? boxShadow || true : boxShadow
+    const theme = useTheme();
+    boxShadow = theme.palette.mode === 'dark' ? boxShadow || true : boxShadow;
 
     return (
       <Card
@@ -80,9 +80,9 @@ const MainCard = forwardRef(
           </>
         )}
       </Card>
-    )
+    );
   }
-)
+);
 
 MainCard.propTypes = {
   border: PropTypes.bool,
@@ -98,6 +98,6 @@ MainCard.propTypes = {
   codeHighlight: PropTypes.bool,
   content: PropTypes.bool,
   children: PropTypes.node
-}
+};
 
-export default MainCard
+export default MainCard;

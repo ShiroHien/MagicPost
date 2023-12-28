@@ -1,13 +1,11 @@
-import { useEffect, useState } from 'react'
-import { Grid, Stack, TextField, Typography } from '@mui/material'
-import MainCard from '../../../components/MainCard'
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+import { useEffect, useState } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles'
-
+import { useTheme } from '@mui/material/styles';
+import { Grid, Stack, Typography } from '@mui/material';
+import MainCard from 'components/MainCard';
 // third-party
-import ReactApexChart from 'react-apexcharts'
+import ReactApexChart from 'react-apexcharts';
 
 // chart options
 const columnChartOptions = {
@@ -46,13 +44,13 @@ const columnChartOptions = {
   tooltip: {
     y: {
       formatter(val) {
-        return `${val} đơn`
+        return `${val} đơn`;
       }
     }
   },
   legend: {
     show: true,
-    fontFamily: '\'Public Sans\', sans-serif',
+    fontFamily: `'Public Sans', sans-serif`,
     offsetX: 10,
     offsetY: 10,
     labels: {
@@ -80,19 +78,19 @@ const columnChartOptions = {
       }
     }
   ]
-}
+};
 
 // ==============================|| DoubleBarChart-Toan quoc ||============================== //
 
 const TKToanQuoc = () => {
-  const theme = useTheme()
+  const theme = useTheme();
 
-  const { primary, secondary } = theme.palette.text
-  const line = theme.palette.divider
+  const { blue, secondary } = theme.palette.text;
+  const line = theme.palette.divider;
 
-  const warning = theme.palette.warning.main
-  const primaryMain = theme.palette.primary.main
-  const successDark = theme.palette.success.dark
+  const warning = theme.palette.warning.main;
+  const primaryMain = theme.palette.blue.main;
+  const successDark = theme.palette.success.dark;
 
   // sửa số liệu here
   const [series] = useState([
@@ -104,9 +102,9 @@ const TKToanQuoc = () => {
       name: 'Thất bại',
       data: [20, 5, 7, 15, 16, 9, 11, 7, 15, 16, 9, 11]
     }
-  ])
+  ]);
 
-  const [options, setOptions] = useState(columnChartOptions)
+  const [options, setOptions] = useState(columnChartOptions);
 
   useEffect(() => {
     setOptions((prevState) => ({
@@ -139,12 +137,10 @@ const TKToanQuoc = () => {
           colors: 'grey.500'
         }
       }
-    }))
-  }, [primary, secondary, line, warning, primaryMain, successDark])
+    }));
+  }, [blue, secondary, line, warning, primaryMain, successDark]);
 
   return (
-
-
     <Grid item xs={12} md={7} lg={8}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
@@ -152,9 +148,9 @@ const TKToanQuoc = () => {
         </Grid>
       </Grid>
       <MainCard sx={{ mt: 1.75 }}>
-        <Stack spacing={1.5} sx={{ mb: -12 }}>
+        <Stack spacing={1.5} sx={{ mb: 0 }}>
           <Typography variant="h6" color="secondary">
-        Tổng đơn
+            Tổng đơn
           </Typography>
           {/* tổng đơn - sửa số liệu here */}
           <Typography variant="h4">1000</Typography>
@@ -164,7 +160,7 @@ const TKToanQuoc = () => {
         </div>
       </MainCard>
     </Grid>
-  )
-}
+  );
+};
 
-export default TKToanQuoc
+export default TKToanQuoc;
