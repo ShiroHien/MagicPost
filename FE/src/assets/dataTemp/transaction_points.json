@@ -1,0 +1,552 @@
+[
+  {
+    "_id": {
+      "$oid": "658a92f16b2259e743f614c3"
+    },
+    "streetAddress": "123 Chùa Láng",
+    "city": "Ba Đình",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội",
+    "leaderId": {
+      "$oid": "658a96d14907f5edd3cb0257"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a97304907f5edd3cb0258"
+    },
+    "streetAddress": "35 Cầu Diễn",
+    "city": "Bắc Từ Liêm",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 35 Cầu Diễn, Bắc Từ Liêm, Hà Nội",
+    "leaderId": {
+      "$oid": "658a977c4907f5edd3cb0259"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    },
+    "streetAddress": "163 Hoàng Quốc Việt",
+    "city": "Cầu Giấy",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 163 Hoàng Quốc Việt, Cầu Giấy, Hà Nội",
+    "leaderId": {
+      "$oid": "658a97d74907f5edd3cb025b"
+    },
+    "country": "Viet Nam",
+    "accountIds": [
+      {
+        "$oid": "658aa89c4907f5edd3cb0298"
+      },
+      {
+        "$oid": "658aa8ed4907f5edd3cb0299"
+      },
+      {
+        "$oid": "658aa9264907f5edd3cb029a"
+      },
+      {
+        "$oid": "658aa9624907f5edd3cb029b"
+      },
+      {
+        "$oid": "658aa98d4907f5edd3cb029c"
+      }
+    ],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a97f34907f5edd3cb025c"
+    },
+    "streetAddress": "240 La Thàn",
+    "city": "Đống Đa",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 240 La Thàn, Đống Đa, Hà Nội",
+    "leaderId": {
+      "$oid": "658a98284907f5edd3cb025d"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a987a4907f5edd3cb025e"
+    },
+    "streetAddress": "328 Lê Trọng Tấn",
+    "city": "Hoàng Mai",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 328 Lê Trọng Tấn, Hoàng Mai, Hà Nội",
+    "leaderId": {
+      "$oid": "658a98ac4907f5edd3cb025f"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a98c24907f5edd3cb0260"
+    },
+    "streetAddress": "63 Lê Đức Thọ",
+    "city": "Nam Từ Liêm",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 63 Lê Đức Thọ, Nam Từ Liêm, Hà Nội",
+    "leaderId": {
+      "$oid": "658a99134907f5edd3cb0261"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a993d4907f5edd3cb0262"
+    },
+    "streetAddress": "236 Khương Đình",
+    "city": "Thanh Xuân",
+    "province": "Hà Nội",
+    "warehousePointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "name": "Điểm giao dịch tại: 236 Khương Đình, Thanh Xuân, Hà Nội",
+    "leaderId": {
+      "$oid": "658a99624907f5edd3cb0263"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a99b74907f5edd3cb0264"
+    },
+    "streetAddress": "25 Quang Trung",
+    "city": "Hiệp Hoà",
+    "province": "Bắc Giang",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ee"
+    },
+    "name": "Điểm giao dịch tại: Số 25 Ngô Quyền, Lục Ngạn, Bắc Giang",
+    "leaderId": {
+      "$oid": "658a99f74907f5edd3cb0265"
+    },
+    "country": "Viet Nam",
+    "accountIds": [
+      {
+        "$oid": "658aab194907f5edd3cb029f"
+      },
+      {
+        "$oid": "658aab304907f5edd3cb02a0"
+      }
+    ],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9a0b4907f5edd3cb0266"
+    },
+    "streetAddress": "135 Trần Phú",
+    "city": "Sơn Động",
+    "province": "Bắc Giang",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ee"
+    },
+    "name": "Điểm giao dịch tại: 135 Trần Phú, Sơn Động, Bắc Giang",
+    "leaderId": {
+      "$oid": "658a9a2e4907f5edd3cb0267"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9a3d4907f5edd3cb0268"
+    },
+    "streetAddress": "30 Lý Thường Kiệt",
+    "city": "Tân Yên",
+    "province": "Bắc Giang",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ee"
+    },
+    "name": "Điểm giao dịch tại: 30 Lý Thường Kiệt, Tân Yên, Bắc Giang",
+    "leaderId": {
+      "$oid": "658a9a764907f5edd3cb0269"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9a854907f5edd3cb026a"
+    },
+    "streetAddress": "110 Lê Lợi",
+    "city": "Yên Dũng",
+    "province": "Bắc Giang",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ee"
+    },
+    "name": "Điểm giao dịch tại: 110 Lê Lợi, Yên Dũng, Bắc Giang",
+    "leaderId": {
+      "$oid": "658a9ab64907f5edd3cb026b"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9afc4907f5edd3cb026c"
+    },
+    "streetAddress": "29 Trần Hưng Đạo",
+    "city": "TP. Nam Định",
+    "province": "Nam Định",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "name": "Điểm giao dịch tại: 29 Trần Hưng Đạo, TP. Nam Định, Nam Định",
+    "leaderId": {
+      "$oid": "658a9b5b4907f5edd3cb026d"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9b694907f5edd3cb026e"
+    },
+    "streetAddress": "83 Lê Hồng Phong",
+    "city": "Nam Trực",
+    "province": "Nam Định",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "name": "Điểm giao dịch tại: 83 Lê Hồng Phong, Nam Trực, Nam Định",
+    "leaderId": {
+      "$oid": "658a9bd24907f5edd3cb026f"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9bf24907f5edd3cb0270"
+    },
+    "streetAddress": "65 Nghĩa Minh",
+    "city": "Nghĩa Hưng",
+    "province": "Nam Định",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "name": "Điểm giao dịch tại: 65 Nghĩa Minh, Nghĩa Hưng, Nam Định",
+    "leaderId": {
+      "$oid": "658a9c5b4907f5edd3cb0271"
+    },
+    "country": "Viet Nam",
+    "accountIds": [
+      {
+        "$oid": "658aaa974907f5edd3cb029d"
+      },
+      {
+        "$oid": "658aaac14907f5edd3cb029e"
+      }
+    ],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9c7f4907f5edd3cb0272"
+    },
+    "streetAddress": "145 Trần Bình",
+    "city": "Ý Yên",
+    "province": "Nam Định",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "name": "Điểm giao dịch tại: 145 Trần Bình, Ý Yên, Nam Định",
+    "leaderId": {
+      "$oid": "658a9cb34907f5edd3cb0273"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9cc14907f5edd3cb0274"
+    },
+    "streetAddress": "14 Hải Vân",
+    "city": "Hải Hậu",
+    "province": "Nam Định",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "name": "Điểm giao dịch tại: 14 Hải Vân, Hải Hậu, Nam Định",
+    "leaderId": {
+      "$oid": "658a9cf04907f5edd3cb0275"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9cff4907f5edd3cb0276"
+    },
+    "streetAddress": "17 Xuân Phương",
+    "city": "Xuân Trường",
+    "province": "Nam Định",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "name": "Điểm giao dịch tại: 17 Xuân Phương, Xuân Trường, Nam Định",
+    "leaderId": {
+      "$oid": "658a9d284907f5edd3cb0277"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9d354907f5edd3cb0278"
+    },
+    "streetAddress": "14 Đà Lạt",
+    "city": "TP. Đà Nẵng",
+    "province": "Đà Nẵng",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ef"
+    },
+    "name": "Điểm giao dịch tại: 14 Đà Lạt, TP. Đà Nẵng, Đà Nẵng",
+    "leaderId": {
+      "$oid": "658a9d614907f5edd3cb0279"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9d714907f5edd3cb027a"
+    },
+    "streetAddress": "45 Bạch Đằng",
+    "city": "Hải Châu",
+    "province": "Đà Nẵng",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ef"
+    },
+    "name": "Điểm giao dịch tại: 45 Bạch Đằng, Hải Châu, Đà Nẵng",
+    "leaderId": {
+      "$oid": "658a9da34907f5edd3cb027b"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9db34907f5edd3cb027c"
+    },
+    "streetAddress": "53 Nguyễn Văn Linh",
+    "city": "Thanh Khê",
+    "province": "Đà Nẵng",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ef"
+    },
+    "name": "Điểm giao dịch tại: 53 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng",
+    "leaderId": {
+      "$oid": "658a9dd04907f5edd3cb027d"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9de34907f5edd3cb027e"
+    },
+    "streetAddress": "132 Sơn Chiều",
+    "city": "Sơn Trà",
+    "province": "Đà Nẵng",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ef"
+    },
+    "name": "Điểm giao dịch tại: 132 Sơn Chiều, Sơn Trà, Đà Nẵng",
+    "leaderId": {
+      "$oid": "658a9e0a4907f5edd3cb027f"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9e264907f5edd3cb0280"
+    },
+    "streetAddress": "163 Hà Huy Tập",
+    "city": "Liên Chiểu",
+    "province": "Đà Nẵng",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510ef"
+    },
+    "name": "Điểm giao dịch tại: 163 Hà Huy Tập, Liên Chiểu, Đà Nẵng",
+    "leaderId": {
+      "$oid": "658a9e404907f5edd3cb0281"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9e824907f5edd3cb0282"
+    },
+    "streetAddress": "84 Trần Thái Tông",
+    "city": "Quận 2",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 84 Trần Thái Tông, Quận 2, Hồ Chí Minh",
+    "leaderId": {
+      "$oid": "658a9eb04907f5edd3cb0283"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9f054907f5edd3cb0284"
+    },
+    "streetAddress": "34 Nguyễn Huệ",
+    "city": "Quận 9",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 34 Nguyễn Huệ, Quận 9, Hồ Chí Minh",
+    "leaderId": {
+      "$oid": "658a9f4a4907f5edd3cb0285"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9f5f4907f5edd3cb0286"
+    },
+    "streetAddress": "82 Thảo Điền",
+    "city": "Thủ Đức",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 82 Thảo Điền, Thủ Đức, Hồ Chí Minh",
+    "leaderId": {
+      "$oid": "658a9f854907f5edd3cb0287"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9f954907f5edd3cb0288"
+    },
+    "streetAddress": "51 Võ Văn Tần",
+    "city": "Quận 7",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 51 Võ Văn Tần, Quận 7, Hồ Chí Minh",
+    "leaderId": {
+      "$oid": "658a9fba4907f5edd3cb0289"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658a9fc64907f5edd3cb028a"
+    },
+    "streetAddress": "132 Tôn Đức Thắng",
+    "city": "Quận 12",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 132 Tôn Đức Thắng, Quận 12, Hồ Chí Minh",
+    "leaderId": {
+      "$oid": "658a9ff64907f5edd3cb028b"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658aa0024907f5edd3cb028c"
+    },
+    "streetAddress": "22 Châu Văn Liêm",
+    "city": "Tân Phú",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 22 Châu Văn Liêm, Tân Phú, Hồ Chí Minh",
+    "leaderId": {
+      "$oid": "658aa0364907f5edd3cb028d"
+    },
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  },
+  {
+    "_id": {
+      "$oid": "658d05ac1342318dfa640047"
+    },
+    "streetAddress": "22 Châu Văn Liêm",
+    "city": "Tân",
+    "province": "Hồ Chí Minh",
+    "warehousePointId": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "name": "Điểm giao dịch tại: 22 Châu Văn Liêm, Tân, Hồ Chí Minh",
+    "leaderId": null,
+    "country": "Viet Nam",
+    "accountIds": [],
+    "orderIds": []
+  }
+]

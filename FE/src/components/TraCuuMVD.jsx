@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import { Box, Button, TextField } from '@mui/material'
 import Title from './Title'
 import Paragraph from './Paragraph'
@@ -7,18 +7,12 @@ const TraCuuMVD = ({ onSubmit }) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-  
-    
+    console.log({
+      mvd: data.get('mvd')
+    })
   }
   return (
-    <Box
-      sx={{
-        width: '55%',
-        height: 'auto',
-        margin: '0px auto',
-        padding: '10px',
-        marginBottom: '30px'
-      }}>
+    <Box>
       <Title text='Tra cứu mã vận đơn' textAlign={'center'} />
       <Paragraph
         text={'(Tra nhiều bill bằng cách thêm dấu phẩy giữa các bill)'}
@@ -43,7 +37,7 @@ const TraCuuMVD = ({ onSubmit }) => {
           required
           fullWidth
           id="mvd"
-          label="VD: 12345, 12346,"
+          label="VD: 123,456"
           name="mvd"
           autoFocus
         />

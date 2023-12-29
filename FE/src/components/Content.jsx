@@ -24,10 +24,7 @@ const Content = () => {
         justifyContent: 'center',
         alignItems: 'center',
         py: 10,
-        px: 2,
-
-        minHeight: '80vh'
-
+        px: 2
       }}
     >
       <Grid item xs={12} sm={12} md={4} component = 'section'>

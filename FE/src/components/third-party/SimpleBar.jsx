@@ -1,19 +1,19 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 // material-ui
-import { alpha, styled } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles'
+import { Box } from '@mui/material'
 
 // third-party
-import SimpleBar from 'simplebar-react';
-import { BrowserView, MobileView } from 'react-device-detect';
+import SimpleBar from 'simplebar-react'
+import { BrowserView, MobileView } from 'react-device-detect'
 
 // root style
 const RootStyle = styled(BrowserView)({
   flexGrow: 1,
   height: '100%',
   overflow: 'hidden'
-});
+})
 
 // scroll bar wrapper
 const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
@@ -35,7 +35,7 @@ const SimpleBarStyle = styled(SimpleBar)(({ theme }) => ({
   '& .simplebar-mask': {
     zIndex: 'inherit'
   }
-}));
+}))
 
 // ==============================|| SIMPLE SCROLL BAR  ||============================== //
 
@@ -53,10 +53,10 @@ export default function SimpleBarScroll({ children, sx, ...other }) {
         </Box>
       </MobileView>
     </>
-  );
+  )
 }
 
 SimpleBarScroll.propTypes = {
   children: PropTypes.node,
   sx: PropTypes.object
-};
+}
