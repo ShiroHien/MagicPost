@@ -1,0 +1,61 @@
+.center-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.modal-lg {
+  max-width: 80%;
+}
+
+.modal-header {
+  background-color: #f8f9fa;
+}
+
+.title {
+  color: #343a40;
+}
+
+.listOrders {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.listOrders th, .listOrders td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.listOrders th {
+  background-color: #f2f2f2;
+}
+
+.listOrders tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.listOrders tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-footer button {
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.modal-footer button:hover {
+  background-color: #bd2130;
+}

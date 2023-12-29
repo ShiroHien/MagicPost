@@ -19,9 +19,10 @@ function Sidebar() {
   };
 
   const handleNavLinkClick = () => {
-    if (isTokenExpired(Cookies.get('jwt'))) {
-      window.location.reload();
-    }
+    // if (isTokenExpired(Cookies.get('jwt'))) {
+      
+    // }
+    window.location.reload();
   };
   return (
     <>
