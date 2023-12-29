@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { useRef, useState, useEffect, useContext } from 'react'
 
-export default function SignIn() {
+export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setUser('')
@@ -88,7 +88,7 @@ export default function SignIn() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Link to="/statistics">
+              <Link to="/leader">
                 <Button
                   type="submit"
                   fullWidth

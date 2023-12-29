@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Outlet } from 'react-router-dom'
-import AdminDashboard from "./LeaderDashBoard";
+import ManagerDGDHome from "./ManagerDGDHome";
 
-
- const IndexLeader = () => (
+ const IndexmanagerDGD = () => (
   <>
-    <AdminDashboard/>
+    <ManagerDGDHome/>
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
           {/* <Outlet/> */}
@@ -13,4 +11,4 @@ import AdminDashboard from "./LeaderDashBoard";
 
   </>
 )
-export default IndexLeader
+export default IndexmanagerDGD

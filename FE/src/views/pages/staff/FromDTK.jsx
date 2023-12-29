@@ -84,6 +84,8 @@ function FromDTK() {
   const [modal2, setModal2] = React.useState(false);
   const [selectedRows, setSelectedRows] = React.useState([]);
   const [detail, setDetail] = useState([]);
+  const [modal3, setModal3] = React.useState(false);
+  const [newOrders, setNewOrders] = useState([]);
 
   const pdfExportComponent = useRef(null);
   const handleExportWithComponent = (event) => {
@@ -102,6 +104,13 @@ function FromDTK() {
     console.log("Form submitted successfully", selectedRows);
   }
 
+  const handleReceived = async (e) => {
+    setModal3(true);
+    setNewOrders(listOrder)
+    e.preventDefault();
+    console.log("Received successfully");
+  }
+
   const detailRowData = (rowData) => {
     const detailRowData = rowData.map((id) => listOrder.find((row) => row.ID === id));
     setDetail(detailRowData)
@@ -117,16 +126,14 @@ function FromDTK() {
     [],
   );
 
-  
-
   const columns = [
-    { field: "ID", headerName: "Mã vận đơn", width: 130 },
+    { field: "ID", headerName: "Mã vận đơn", width: 190 },
     { field: "senderName", headerName: "Người gửi", width: 160 },
-    { field: "senderPhone", headerName: "Điện thoại", width: 110 },
+    { field: "senderPhone", headerName: "Điện thoại", width: 150 },
     { field: "receiverName", headerName: "Người nhận", width: 160 },
-    { field: "receiverPhone", headerName: "Điện thoại", width: 110 },
+    { field: "receiverPhone", headerName: "Điện thoại", width: 150 },
     { field: "receiverAddress", headerName: "Địa chỉ", width: 250 },
-    { field: "type", headerName: "Loại", width: 90 },
+    { field: "type", headerName: "Loại", width: 110 },
     {
       field: "action",
       type: 'actions',
@@ -139,7 +146,8 @@ function FromDTK() {
             onClick={detailOrder(params)}
           />,
       ]
-    } 
+    }
+    
   ];
   const excludeField = (columns, excludedField) => {
     return columns.filter(column => column.field !== excludedField);
@@ -154,13 +162,22 @@ function FromDTK() {
         <div>
         <Card>
           <CardBody>
-          <CardTitle className="my-form-title" >Danh sách đơn hàng cần gửi tới Điểm Tập Kết</CardTitle>
+          <CardTitle className="my-form-title" >Danh sách đơn hàng cần gửi tới Khách Hàng</CardTitle>
           <form onSubmit={handleSubmit}> 
             <Button
                 color="danger"
                 className="btn-round"
                 type="submit">
                 Tạo đơn gửi Shipper
+            </Button>
+            <div className="spaceHeader"></div>
+          </form> 
+          <form onSubmit={handleReceived}> 
+            <Button
+                color="danger"
+                className="btn-round"
+                type="submit">
+                Nhận đơn từ Điểm Tập Kết
             </Button>
             <div className="spaceHeader"></div>
           </form> 
@@ -287,6 +304,78 @@ function FromDTK() {
             type="button"
             onClick={() => {
               setModal2(false);
+              window.location.reload() 
+            }}
+          >
+            Close
+          </Button>
+        </div>
+      </Modal>
+
+      <Modal isOpen={modal3} toggle={() => setModal2(false)} className="modal-lg">
+        <div className="modal-header justify-content-center">
+          <h4 className="title title-up">
+            Danh sách đơn gửi từ Điểm Tập Kết
+          </h4>
+        </div>
+        <ModalBody>
+          
+          <div style={{ padding: '0 0' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}
+            >
+              <div style={{ height: 600, width: 600 }} className='centerList'>
+                <table className="listOrders">
+                  <tr>
+                    <th>Mã vận đơn</th>
+                    <th>Người gửi</th>
+                    <th>Điện thoại</th>
+                    <th>Người nhận</th>
+                    <th>Điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Loại</th>
+                  </tr>
+                  <tbody>
+                  {selectedRows.map((rowData) => (
+                    <tr key={rowData}>
+                      <td>{rowData.ID}</td>
+                      <td>{rowData.senderName}</td>
+                      <td>{rowData.senderPhone}</td>
+                      <td>{rowData.receiverName}</td>
+                      <td>{rowData.receiverPhone}</td>
+                      <td>{rowData.receiverAddress}</td>
+                      <td>{rowData.type}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </ModalBody>
+        <div className="modal-footer">
+          <Button
+            color="danger"
+            type="button"
+            onClick={() => {
+              setModal2(false);
+              window.location.reload() 
+            }}
+          >
+            Đã nhận
+          </Button>
+          <Button
+            color="danger"
+            type="button"
+            onClick={() => {
+              setModal2(false);
+              listOrder.concat(newOrders)
+              console.log(listOrder)
               window.location.reload() 
             }}
           >

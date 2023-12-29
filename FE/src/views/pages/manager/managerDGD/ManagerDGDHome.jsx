@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function StaffHome() {
+export default function ManagerDGDHome() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -147,37 +147,6 @@ export default function StaffHome() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItemButton onClick={handleListClick}>
-            <ListItemIcon>
-              <ManageHistoryIcon />
-            </ListItemIcon>
-            <ListItemText primary="Quản lý" />
-            {listOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={listOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton
-                sx={{ pl: 4 }}
-                component={Link}
-                to="fromKH"
-              >
-                <ListItemIcon>
-                  <LocalShippingIcon />
-                </ListItemIcon>
-                <ListItemText primary="Điểm giao dịch" />
-              </ListItemButton>
-              <ListItemButton
-                sx={{ pl: 4 }}
-                component={Link}
-                to="fromDTK"
-              >
-                <ListItemIcon>
-                  <WarehouseIcon />
-                </ListItemIcon>
-                <ListItemText primary="Điểm tập kết" />
-              </ListItemButton>
-            </List>
-          </Collapse>
           <ListItemButton component={Link} to="account">
             <ListItemIcon>
               <AccountCircleIcon />

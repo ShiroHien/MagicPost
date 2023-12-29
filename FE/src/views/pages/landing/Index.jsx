@@ -7,7 +7,10 @@ import Home from "./Home";
  const Index = () => (
   <>
     <Navbar></Navbar>
-    <Home/>
+    <div className="spaceHeader"></div>
+      <div className="bodyContainer">
+          <Outlet/>
+      </div>
     <Footer/>
   </>
 )

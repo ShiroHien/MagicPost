@@ -1,0 +1,786 @@
+[
+  {
+    "_id": {
+      "$oid": "658a55c97b36454f8476fac6"
+    },
+    "email": "dinhttramy@gmail.com",
+    "username": "admin",
+    "password": "12345678",
+    "phone": "0359276235",
+    "fullname": "Dinh Thi Tra My",
+    "typeAccount": "admin",
+    "pointId": {
+      "$oid": "65859d71e4abb1176e812e46"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a96d14907f5edd3cb0257"
+    },
+    "email": "nam.tran@gmail.com",
+    "username": "nam",
+    "password": "password",
+    "phone": "0987654321",
+    "fullname": "Trần Văn Nam",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a92f16b2259e743f614c3"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a977c4907f5edd3cb0259"
+    },
+    "email": "nghia@gmail.com",
+    "username": "nghia",
+    "password": "password",
+    "phone": "0985655321",
+    "fullname": "Trần Văn Nghĩa",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a97304907f5edd3cb0258"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a97d74907f5edd3cb025b"
+    },
+    "email": "tai@gmail.com",
+    "username": "tai",
+    "password": "password",
+    "phone": "0985655321",
+    "fullname": "Trần Bá Tài",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a98284907f5edd3cb025d"
+    },
+    "email": "thanh@gmail.com",
+    "username": "thanh",
+    "password": "password",
+    "phone": "0985655321",
+    "fullname": "Lê Đình Thanh",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a97f34907f5edd3cb025c"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a98ac4907f5edd3cb025f"
+    },
+    "email": "hoa@gmail.com",
+    "username": "hoa",
+    "password": "password",
+    "phone": "0985655321",
+    "fullname": "Trần Thị Hoa",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a987a4907f5edd3cb025e"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a99134907f5edd3cb0261"
+    },
+    "email": "xuan@gmail.com",
+    "username": "xuan",
+    "password": "password",
+    "phone": "0358675423",
+    "fullname": "Đào Thị Xuân",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a98c24907f5edd3cb0260"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a99624907f5edd3cb0263"
+    },
+    "email": "hien@gmail.com",
+    "username": "hien",
+    "password": "password",
+    "phone": "0358675423",
+    "fullname": "Nguyễn Thu Hiền",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a993d4907f5edd3cb0262"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a99f74907f5edd3cb0265"
+    },
+    "email": "linh@gmail.com",
+    "username": "linh",
+    "password": "password",
+    "phone": "0358677543",
+    "fullname": "Nguyễn Thuỳ Linh",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a99b74907f5edd3cb0264"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9a2e4907f5edd3cb0267"
+    },
+    "email": "tra@gmail.com",
+    "username": "tra",
+    "password": "password",
+    "phone": "0358677543",
+    "fullname": "Nguyễn Thị Trà",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9a0b4907f5edd3cb0266"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9a764907f5edd3cb0269"
+    },
+    "email": "lananh@gmail.com",
+    "username": "lananh",
+    "password": "password",
+    "phone": "0358659988",
+    "fullname": "Trần Thị Lan Anh",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9a3d4907f5edd3cb0268"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9ab64907f5edd3cb026b"
+    },
+    "email": "huong@gmail.com",
+    "username": "huong",
+    "password": "password",
+    "phone": "0978657788",
+    "fullname": "Trần Thị Hương",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9a854907f5edd3cb026a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9b5b4907f5edd3cb026d"
+    },
+    "email": "trang@gmail.com",
+    "username": "trang",
+    "password": "password",
+    "phone": "0978335588",
+    "fullname": "Trần Thị Trang",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9afc4907f5edd3cb026c"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9bd24907f5edd3cb026f"
+    },
+    "email": "cuong@gmail.com",
+    "username": "cuong123",
+    "password": "password",
+    "phone": "0978335588",
+    "fullname": "Trần Văn Cường",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9b694907f5edd3cb026e"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9c5b4907f5edd3cb0271"
+    },
+    "email": "tramy@gmail.com",
+    "username": "tramy132",
+    "password": "password",
+    "phone": "0359276235",
+    "fullname": "Đinh Thị Trà My",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9bf24907f5edd3cb0270"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9cb34907f5edd3cb0273"
+    },
+    "email": "yyen@gmail.com",
+    "username": "yyen",
+    "password": "password",
+    "phone": "0984544444",
+    "fullname": "Trần Ý Yên",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9c7f4907f5edd3cb0272"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9cf04907f5edd3cb0275"
+    },
+    "email": "haihau@gmail.com",
+    "username": "haihau",
+    "password": "password",
+    "phone": "0984544555",
+    "fullname": "Trần Hải Hậu",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9cc14907f5edd3cb0274"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9d284907f5edd3cb0277"
+    },
+    "email": "xuantruong@gmail.com",
+    "username": "xuantruong",
+    "password": "password",
+    "phone": "0984544444",
+    "fullname": "Trần Xuân Trường",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9cff4907f5edd3cb0276"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9d614907f5edd3cb0279"
+    },
+    "email": "huyen12@gmail.com",
+    "username": "huyen12",
+    "password": "password",
+    "phone": "0984542222",
+    "fullname": "Trần Thi Huyền",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9d354907f5edd3cb0278"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9da34907f5edd3cb027b"
+    },
+    "email": "haichau12@gmail.com",
+    "username": "haichau234",
+    "password": "password",
+    "phone": "0984542222",
+    "fullname": "Vũ Hải Châu",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9d714907f5edd3cb027a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9dd04907f5edd3cb027d"
+    },
+    "email": "thanhkhe@gmail.com",
+    "username": "thanhkhe",
+    "password": "password",
+    "phone": "0984542222",
+    "fullname": "Vũ Thanh Khê",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9db34907f5edd3cb027c"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9e0a4907f5edd3cb027f"
+    },
+    "email": "sontra@gmail.com",
+    "username": "sontra",
+    "password": "password",
+    "phone": "0379895555",
+    "fullname": "Nguyễn Sơn Trà",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9de34907f5edd3cb027e"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9e404907f5edd3cb0281"
+    },
+    "email": "lienchieu@gmail.com",
+    "username": "lienchieu",
+    "password": "password",
+    "phone": "0379895555",
+    "fullname": "Nguyễn Liên Chiểu",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9e264907f5edd3cb0280"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9eb04907f5edd3cb0283"
+    },
+    "email": "minhquan@gmail.com",
+    "username": "quan2",
+    "password": "password",
+    "phone": "0379895555",
+    "fullname": "Nguyễn Minh Quân",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9e824907f5edd3cb0282"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9f4a4907f5edd3cb0285"
+    },
+    "email": "quan9@gmail.com",
+    "username": "quan9",
+    "password": "password",
+    "phone": "0875432332",
+    "fullname": "Nguyễn Văn Quân",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9f054907f5edd3cb0284"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9f854907f5edd3cb0287"
+    },
+    "email": "thuduc@gmail.com",
+    "username": "thuduc",
+    "password": "password",
+    "phone": "0875432332",
+    "fullname": "Trần Thủ Đức",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9f5f4907f5edd3cb0286"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9fba4907f5edd3cb0289"
+    },
+    "email": "quan7@gmail.com",
+    "username": "quan7",
+    "password": "password",
+    "phone": "0885432222",
+    "fullname": "Trần Mạnh Quân",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9f954907f5edd3cb0288"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a9ff64907f5edd3cb028b"
+    },
+    "email": "quan12@gmail.com",
+    "username": "quan12",
+    "password": "password",
+    "phone": "0885433344",
+    "fullname": "Đinh Bách Quân",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658a9fc64907f5edd3cb028a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa0364907f5edd3cb028d"
+    },
+    "email": "tanphu@gmail.com",
+    "username": "tanphu",
+    "password": "password",
+    "phone": "0985435534",
+    "fullname": "Vũ Tân Phú",
+    "typeAccount": "leader of transaction",
+    "pointId": {
+      "$oid": "658aa0024907f5edd3cb028c"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa5624907f5edd3cb028e"
+    },
+    "email": "hanoi@gmail.com",
+    "username": "hanoi",
+    "password": "password",
+    "phone": "0985435534",
+    "fullname": "Trưởng điểm Hà Nội",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa5a14907f5edd3cb028f"
+    },
+    "email": "bacgiang@gmail.com",
+    "username": "bacgiang",
+    "password": "password",
+    "phone": "0986667777",
+    "fullname": "Trưởng điểm Bắc Giang",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510ee"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa66a4907f5edd3cb0290"
+    },
+    "email": "danang@gmail.com",
+    "username": "danang",
+    "password": "password",
+    "phone": "0986667777",
+    "fullname": "Trưởng điểm Đà Nẵng",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510ef"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa6a34907f5edd3cb0291"
+    },
+    "email": "hanam@gmail.com",
+    "username": "hanam",
+    "password": "password",
+    "phone": "0986669999",
+    "fullname": "Trưởng điểm Hà Nam",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa6d44907f5edd3cb0292"
+    },
+    "email": "haiduong@gmail.com",
+    "username": "haiduong",
+    "password": "password",
+    "phone": "0368761234",
+    "fullname": "Trưởng điểm Hải Dương",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa6fb4907f5edd3cb0293"
+    },
+    "email": "haiphong@gmail.com",
+    "username": "haiphong",
+    "password": "password",
+    "phone": "0368764321",
+    "fullname": "Trưởng điểm Hải Phòng",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa7284907f5edd3cb0294"
+    },
+    "email": "hochiminh@gmail.com",
+    "username": "hochiminh",
+    "password": "password",
+    "phone": "0378881277",
+    "fullname": "Trưởng điểm Hồ Chí Minh",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f3"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa7594907f5edd3cb0295"
+    },
+    "email": "namdinh@gmail.com",
+    "username": "namdinh",
+    "password": "password",
+    "phone": "0378876666",
+    "fullname": "Trưởng điểm Nam Định",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa77c4907f5edd3cb0296"
+    },
+    "email": "thanhhoa@gmail.com",
+    "username": "thanhhoa",
+    "password": "password",
+    "phone": "0378873333",
+    "fullname": "Trưởng điểm Thanh Hóa",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f5"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa7a94907f5edd3cb0297"
+    },
+    "email": "vinhphuc@gmail.com",
+    "username": "vinhphuc",
+    "password": "password",
+    "phone": "0987654321",
+    "fullname": "Trưởng điểm Vĩnh Phúc",
+    "typeAccount": "leader of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa89c4907f5edd3cb0298"
+    },
+    "email": "buihung@gmail.com",
+    "username": "gdvCG1",
+    "password": "password",
+    "phone": "0987654321",
+    "fullname": "Bùi Văn Hùng",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa8ed4907f5edd3cb0299"
+    },
+    "email": "longdang@gmail.com",
+    "username": "gdvCG2",
+    "password": "password",
+    "phone": "0987654321",
+    "fullname": "Đặng Hoàng Long",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa9264907f5edd3cb029a"
+    },
+    "email": "trangnguyen@gmail.com",
+    "username": "gdvCG3",
+    "password": "password",
+    "phone": "0559876547",
+    "fullname": "Nguyễn Thị Trang",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa9624907f5edd3cb029b"
+    },
+    "email": "huongnguyen@gmail.com",
+    "username": "gdvCG4",
+    "password": "password",
+    "phone": "0559876547",
+    "fullname": "Nguyễn Thị Hương",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aa98d4907f5edd3cb029c"
+    },
+    "email": "vannguyen@gmail.com",
+    "username": "gdvCG5",
+    "password": "password",
+    "phone": "0974328888",
+    "fullname": "Nguyễn Thị Vân",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a97b34907f5edd3cb025a"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aaa974907f5edd3cb029d"
+    },
+    "email": "vannguyen@gmail.com",
+    "username": "gdvNH1",
+    "password": "password",
+    "phone": "0974328883",
+    "fullname": "Nguyễn Thị Vân",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a9bf24907f5edd3cb0270"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aaac14907f5edd3cb029e"
+    },
+    "email": "thaonguyen@gmail.com",
+    "username": "gdvNH2",
+    "password": "password",
+    "phone": "0974327777",
+    "fullname": "Nguyễn Phương Thảo",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a9bf24907f5edd3cb0270"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aab194907f5edd3cb029f"
+    },
+    "email": "thaonguyen@gmail.com",
+    "username": "gdvHHBG1",
+    "password": "password",
+    "phone": "0974327777",
+    "fullname": "Nguyễn Phương Thảo",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a99b74907f5edd3cb0264"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aab304907f5edd3cb02a0"
+    },
+    "email": "vynguyen@gmail.com",
+    "username": "gdvHHBG2",
+    "password": "password",
+    "phone": "0974327788",
+    "fullname": "Nguyễn Phương Vy",
+    "typeAccount": "staff of transaction",
+    "pointId": {
+      "$oid": "658a99b74907f5edd3cb0264"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aab854907f5edd3cb02a1"
+    },
+    "email": "vynguyen@gmail.com",
+    "username": "nvDDHN1",
+    "password": "password",
+    "phone": "0974327788",
+    "fullname": "Nguyễn Phương Vy",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aabac4907f5edd3cb02a2"
+    },
+    "email": "vietnguyen@gmail.com",
+    "username": "nvDDHN2",
+    "password": "password",
+    "phone": "0359873333",
+    "fullname": "Nguyễn Đức Việt",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aabcf4907f5edd3cb02a3"
+    },
+    "email": "truongnguyen@gmail.com",
+    "username": "nvDDHN3",
+    "password": "password",
+    "phone": "0359877733",
+    "fullname": "Nguyễn Đức Trường",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aac584907f5edd3cb02a4"
+    },
+    "email": "tutran@gmail.com",
+    "username": "nvDDHN4",
+    "password": "password",
+    "phone": "0378721212",
+    "fullname": "Trần Tuần Tú",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aac894907f5edd3cb02a5"
+    },
+    "email": "tutran@gmail.com",
+    "username": "nvTPND1",
+    "password": "password",
+    "phone": "0378721212",
+    "fullname": "Trần Tuần Tú",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aac9b4907f5edd3cb02a6"
+    },
+    "email": "taitran@gmail.com",
+    "username": "nvTPND2",
+    "password": "password",
+    "phone": "0378721231",
+    "fullname": "Trần Tuần Tài",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510f4"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aace54907f5edd3cb02a7"
+    },
+    "email": "taitran@gmail.com",
+    "username": "nvTPBG1",
+    "password": "password",
+    "phone": "0378721231",
+    "fullname": "Trần Tuần Tài",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510ee"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658aad234907f5edd3cb02a8"
+    },
+    "email": "kimthinh@gmail.com",
+    "username": "nvTPBG2",
+    "password": "password",
+    "phone": "0848721835",
+    "fullname": "Đào Thị Kim Thịnh",
+    "typeAccount": "staff of warehouse",
+    "pointId": {
+      "$oid": "658a64da86776465254510ee"
+    }
+  }
+]

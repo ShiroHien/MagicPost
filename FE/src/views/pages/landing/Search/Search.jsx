@@ -30,14 +30,12 @@ const Search = () => {
           </Menu>
         </Sidebar> */}
         {/* {(activePage == '') ? <TraCuuMVD /> : <Outlet />} */}
-        <Navbar />
         <div className="bodyContainer">
           <Sidebar />
             <div className="others">
               <Outlet/>
             </div>
         </div>
-        <Footer />
     </div>
     </>
     

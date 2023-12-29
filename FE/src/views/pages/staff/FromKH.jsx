@@ -90,25 +90,6 @@ function FromKH() {
     pdfExportComponent.current.save();
   }
 
-
-  // useEffect(() => {
-  //   getCar();
-
-  // }, []);
-
-  // const getCar = async () => {
-  //   let response = await axiosInstance({
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     method: 'get',
-  //     url: `http://localhost:3010/statistics/${JSON.parse(Cookies.get('info')).center_ID}`,
-  //   })
-  //   setData(response.data);
-  //   setDataCar(response.data.cars);
-  //   console.log("check data", response.data);
-  // }
-
   const onRowsSelectionHandler = (ids) => {
     const selectedRowsData = ids.map((id) => listOrder.find((row) => row.ID === id));
     setSelectedRows(selectedRowsData)
@@ -135,17 +116,14 @@ function FromKH() {
     },
     [],
   );
-
-  
-
   const columns = [
-    { field: "ID", headerName: "Mã vận đơn", width: 130 },
+    { field: "ID", headerName: "Mã vận đơn", width: 190 },
     { field: "senderName", headerName: "Người gửi", width: 160 },
-    { field: "senderPhone", headerName: "Điện thoại", width: 110 },
+    { field: "senderPhone", headerName: "Điện thoại", width: 150 },
     { field: "receiverName", headerName: "Người nhận", width: 160 },
-    { field: "receiverPhone", headerName: "Điện thoại", width: 110 },
+    { field: "receiverPhone", headerName: "Điện thoại", width: 150 },
     { field: "receiverAddress", headerName: "Địa chỉ", width: 250 },
-    { field: "type", headerName: "Loại", width: 90 },
+    { field: "type", headerName: "Loại", width: 110 },
     {
       field: "action",
       type: 'actions',
@@ -200,7 +178,7 @@ function FromKH() {
         />
       </div>
 
-      <Modal isOpen={modal1} toggle={() => setModal1(false)} className="modal-lg">
+      <Modal isOpen={modal1} toggle={() => setModal1(false)} size='sm' className="modal-lg">
         <div className="modal-header justify-content-center">
           <h4 className="title title-up">
             Thông tin chi tiết đơn hàng
@@ -210,7 +188,6 @@ function FromKH() {
           <div>
             <div className="infoLine">
               <div style={{ height: 300, width: '100%' }} className='centerList'>
-              
                 <table className="listOrders">
                   <tr>
                     <th>Mã vận đơn</th>

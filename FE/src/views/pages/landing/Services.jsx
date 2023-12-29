@@ -6,9 +6,8 @@ import Footer from '../../../components/Footer/Footer'
 const Services = () => {
   return (
     <>
-      <Navbar />
       <Content />
-      <Footer />
+    
     </>
   )
 }

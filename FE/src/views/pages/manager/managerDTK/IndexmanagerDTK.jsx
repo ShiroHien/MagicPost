@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Outlet } from 'react-router-dom'
-import AdminDashboard from "./LeaderDashBoard";
+import ManagerDTKHome from "./ManagerDTKHome";
 
-
- const IndexLeader = () => (
+ const IndexmanagerDTK = () => (
   <>
-    <AdminDashboard/>
+    <ManagerDTKHome/>
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
           {/* <Outlet/> */}
+          
       </div>
 
   </>
 )
-export default IndexLeader
+export default IndexmanagerDTK

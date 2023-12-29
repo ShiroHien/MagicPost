@@ -9,7 +9,7 @@ import FromKH from "./fromKH";
     <StaffHome/>
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
-          <Outlet/>
+          {/* <Outlet/> */}
       </div>
 
   </>
