@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Grid, Stack, Typography } from '@mui/material';
-import MainCard from 'components/MainCard';
+import { useTheme } from '@mui/material/styles'
+import { Grid, Stack, Typography } from '@mui/material'
+import MainCard from 'components/MainCard'
 
 // third-party
-import ReactApexChart from 'react-apexcharts';
+import ReactApexChart from 'react-apexcharts'
 
 // chart options
 const columnChartOptions = {
@@ -45,7 +45,7 @@ const columnChartOptions = {
   tooltip: {
     y: {
       formatter(val) {
-        return `${val} đơn`;
+        return `${val} đơn`
       }
     }
   },
@@ -79,19 +79,19 @@ const columnChartOptions = {
       }
     }
   ]
-};
+}
 
 // ==============================|| DoubleBarChart-Diem TK ||============================== //
 
 const TKDiemTK = () => {
-  const theme = useTheme();
+  const theme = useTheme()
 
-  const { blue, secondary } = theme.palette.text;
-  const line = theme.palette.divider;
+  const { blue, secondary } = theme.palette.text
+  const line = theme.palette.divider
 
-  const warning = theme.palette.warning.main;
-  const primaryMain = theme.palette.blue.main;
-  const successDark = theme.palette.success.dark;
+  const warning = theme.palette.warning.main
+  const primaryMain = theme.palette.blue.main
+  const successDark = theme.palette.success.dark
 
   // sửa số liệu here
   const [series] = useState([
@@ -103,9 +103,9 @@ const TKDiemTK = () => {
       name: 'Hàng đi',
       data: [200, 50, 70, 150, 160, 90, 110]
     }
-  ]);
+  ])
 
-  const [options, setOptions] = useState(columnChartOptions);
+  const [options, setOptions] = useState(columnChartOptions)
 
   useEffect(() => {
     setOptions((prevState) => ({
@@ -138,8 +138,8 @@ const TKDiemTK = () => {
           colors: 'grey.500'
         }
       }
-    }));
-  }, [blue, secondary, line, warning, primaryMain, successDark]);
+    }))
+  }, [blue, secondary, line, warning, primaryMain, successDark])
 
   return (
     <Grid item xs={12} md={7} lg={8} mt={3}>
@@ -160,7 +160,7 @@ const TKDiemTK = () => {
         </div>
       </MainCard>
     </Grid>
-  );
-};
+  )
+}
 
-export default TKDiemTK;
+export default TKDiemTK

@@ -55,7 +55,7 @@ const Header = () => {
             color: '#4c4c4c'
           }}
         >
-          Với mong muốn đem đến cho khách hàng sự yên tâm và những trải nghiệm tuyệt vời nhất khi sử dụng dịch vụ chuyển phát. KikiPost luôn
+          Với mong muốn đem đến cho khách hàng sự yên tâm và những trải nghiệm tuyệt vời nhất khi sử dụng dịch vụ chuyển phát. MagicPost luôn
           không ngừng thay đổi để ngày càng đáp ứng sự mong đợi của Khách hàng.
         </Typography>
 

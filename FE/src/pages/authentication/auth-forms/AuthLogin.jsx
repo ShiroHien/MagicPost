@@ -1,5 +1,6 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { useState, useContext } from 'react'
+import { useNavigate, Link as RouterLink } from 'react-router-dom'
+import AuthContext from 'context/AuthProvider'
 
 // material-ui
 import {
@@ -15,38 +16,39 @@ import {
   OutlinedInput,
   Stack,
   Typography
-} from '@mui/material';
+} from '@mui/material'
 
 // third party
-import * as Yup from 'yup';
-import { Formik } from 'formik';
+import * as Yup from 'yup'
+import { Formik } from 'formik'
 
 // project import
-import AnimateButton from 'components/@extended/AnimateButton';
+import AnimateButton from 'components/@extended/AnimateButton'
 
 // assets
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
-  const [checked, setChecked] = React.useState(false);
-
-  const [showPassword, setShowPassword] = React.useState(false);
+  const [checked, setChecked] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const { login } = useContext(AuthContext) // Using AuthContext
+  const navigate = useNavigate()
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+    event.preventDefault()
+  }
 
   return (
     <>
       <Formik
         initialValues={{
-          email: 'thaohien@gmail.com',
-          password: '123456',
+          email: '',
+          password: '',
           submit: null
         }}
         validationSchema={Yup.object().shape({
@@ -55,12 +57,18 @@ const AuthLogin = () => {
         })}
         onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
           try {
-            setStatus({ success: false });
-            setSubmitting(false);
+            if (login(values.email, values.password)) {
+              navigate('/main/dashboard') // Navigate to dashboard on successful login
+              setStatus({ success: true })
+            } else {
+              setStatus({ success: false })
+              setErrors({ submit: 'Invalid email or password' })
+            }
           } catch (err) {
-            setStatus({ success: false });
-            setErrors({ submit: err.message });
-            setSubmitting(false);
+            setStatus({ success: false })
+            setErrors({ submit: err.message })
+          } finally {
+            setSubmitting(false)
           }
         }}
       >
@@ -169,7 +177,7 @@ const AuthLogin = () => {
         )}
       </Formik>
     </>
-  );
-};
+  )
+}
 
-export default AuthLogin;
+export default AuthLogin

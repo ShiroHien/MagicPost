@@ -1,18 +1,19 @@
-import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+import PropTypes from 'prop-types'
+import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import { Avatar, Box, ButtonBase, CardContent, ClickAwayListener, Grid, Paper, Popper, Stack, Tab, Tabs, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles'
+import { Avatar, Box, ButtonBase, CardContent, ClickAwayListener, Grid, Paper, Popper, Stack, Tab, Tabs, Typography } from '@mui/material'
 
 // project import
-import MainCard from 'components/MainCard';
-import Transitions from 'components/@extended/Transitions';
-import ProfileTab from './ProfileTab';
+import MainCard from 'components/MainCard'
+import Transitions from 'components/@extended/Transitions'
+import ProfileTab from './ProfileTab'
 
 // assets
-import avatar1 from 'assets/images/users/avatar-1.png';
-import { UserOutlined } from '@ant-design/icons';
+import avatar1 from 'assets/images/users/avatar-1.png'
+import { UserOutlined } from '@ant-design/icons'
 
 // tab panel wrapper
 function TabPanel({ children, value, index, ...other }) {
@@ -20,51 +21,53 @@ function TabPanel({ children, value, index, ...other }) {
     <div role="tabpanel" hidden={value !== index} id={`profile-tabpanel-${index}`} aria-labelledby={`profile-tab-${index}`} {...other}>
       {value === index && children}
     </div>
-  );
+  )
 }
 
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired
-};
+}
 
 function a11yProps(index) {
   return {
     id: `profile-tab-${index}`,
     'aria-controls': `profile-tabpanel-${index}`
-  };
+  }
 }
 
 // ==============================|| HEADER CONTENT - PROFILE ||============================== //
 
 const Profile = () => {
-  const theme = useTheme();
+  const navigate = useNavigate()
+  const theme = useTheme()
 
   const handleLogout = async () => {
-    // logout
-  };
+    // Perform logout logic (e.g., clear auth data)
+    navigate('/')
+  }
 
-  const anchorRef = useRef(null);
-  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null)
+  const [open, setOpen] = useState(false)
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+    setOpen((prevOpen) => !prevOpen)
+  }
 
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
+      return
     }
-    setOpen(false);
-  };
+    setOpen(false)
+  }
 
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
-  const iconBackColorOpen = 'grey.300';
+  const iconBackColorOpen = 'grey.300'
 
   return (
     <Box sx={{ flexShrink: 0, ml: 0.75 }}>
@@ -166,7 +169,7 @@ const Profile = () => {
         )}
       </Popper>
     </Box>
-  );
-};
+  )
+}
 
-export default Profile;
+export default Profile

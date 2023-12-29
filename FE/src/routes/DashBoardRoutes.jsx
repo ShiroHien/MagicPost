@@ -10,21 +10,12 @@ const DashboardDefault = Loadable(lazy(() => import('pages/dashboard/ThongKe')))
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
-  path: '/',
+  path: '/main',
   element: <MainLayout />,
   children: [
     {
-      path: '/',
-      element: <DashboardDefault />
-    },
-    {
       path: 'dashboard',
-      children: [
-        {
-          path: 'default',
-          element: <DashboardDefault />
-        }
-      ]
+      element: <DashboardDefault />
     }
   ]
 };
