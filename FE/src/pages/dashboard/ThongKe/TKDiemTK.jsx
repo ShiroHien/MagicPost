@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Grid, Stack, TextField, Typography } from '@mui/material'
-import MainCard from '../../../components/MainCard'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
+import { Grid, Stack, Typography } from '@mui/material'
+import MainCard from 'components/MainCard'
 
 // third-party
 import ReactApexChart from 'react-apexcharts'
@@ -85,16 +85,16 @@ const columnChartOptions = {
   ]
 }
 
-// ==============================|| DoubleBarChart-Toan quoc ||============================== //
+// ==============================|| DoubleBarChart-Diem TK ||============================== //
 
-const TKToanQuoc = () => {
+const TKDiemTK = () => {
   const theme = useTheme()
 
-  const { primary, secondary } = theme.palette.text
+  const { blue, secondary } = theme.palette.text
   const line = theme.palette.divider
 
   const warning = theme.palette.warning.main
-  const primaryMain = theme.palette.primary.main
+  const primaryMain = theme.palette.blue.main
   const successDark = theme.palette.success.dark
   const [options, setOptions] = useState(columnChartOptions)
 
@@ -217,16 +217,10 @@ const TKToanQuoc = () => {
         }
       }
     }))
-  }, [primary, secondary, line, warning, primaryMain, successDark])
+  }, [blue, secondary, line, warning, primaryMain, successDark])
 
   return (
-    <Grid sx={{
-      width: '70%',
-      height: 'auto',
-      margin: '0px auto',
-      padding: '10px',
-      marginBottom: '30px'
-    }} item xs={12} md={7} lg={8}>
+    <Grid item xs={12} md={7} lg={8} mt={3}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h4">Thống kê điểm tập kết</Typography>
@@ -235,7 +229,7 @@ const TKToanQuoc = () => {
       <MainCard sx={{ mt: 1.75 }}>
         <Stack spacing={1.5} sx={{ mb: -12 }}>
           <Typography variant="h6" color="secondary">
-        Tổng đơn
+            Tổng đơn
           </Typography>
           <Typography variant="h4">{totalTK}</Typography>
         </Stack>
@@ -247,4 +241,4 @@ const TKToanQuoc = () => {
   )
 }
 
-export default TKToanQuoc
+export default TKDiemTK

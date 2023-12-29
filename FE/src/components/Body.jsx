@@ -1,11 +1,10 @@
-import { Box, Button, styled, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import headerImg from '../assets/home-banner-image.png'
+import { Box, Button, styled, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import headerImg from '../assets/home-banner-image.png';
 
 const Header = () => {
-
-  const CustomBox = styled(Box) (({ theme }) => ({
+  const CustomBox = styled(Box)(({ theme }) => ({
     minHeight: '80vh',
     display: 'flex',
     justifyContent: 'center',
@@ -17,9 +16,9 @@ const Header = () => {
       alignItems: 'center',
       textAlign: 'center'
     }
-  }))
+  }));
 
-  const BoxText = styled(Box) (({ theme }) => ({
+  const BoxText = styled(Box)(({ theme }) => ({
     flex: '1',
     paddingLeft: theme.spacing(20),
     [theme.breakpoints.down('md')]: {
@@ -28,30 +27,27 @@ const Header = () => {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2)
     }
-  }))
-
+  }));
 
   return (
-    <CustomBox component='header'>
+    <CustomBox component="header">
       {/*  Box text  */}
-      <BoxText
-        component='section'
-      >
+      <BoxText component="section">
         <Typography
-          variant='h2'
-          component= 'h1'
+          variant="h2"
+          component="h1"
           sx={{
             fontWeight: 700,
             color: '#e03d3d',
             fontSize: '55px'
           }}
         >
-                    CÙNG HÀNG VIỆT <br /> ĐI KHẮP MUÔN NƠI
+          CÙNG HÀNG VIỆT <br /> ĐI KHẮP MUÔN NƠI
         </Typography>
 
         <Typography
-          variant='p'
-          component='p'
+          variant="p"
+          component="p"
           sx={{
             fontSize: '23px',
             py: 3,
@@ -59,15 +55,14 @@ const Header = () => {
             color: '#4c4c4c'
           }}
         >
-                    Với mong muốn đem đến cho khách hàng sự yên tâm và những trải nghiệm
-                    tuyệt vời nhất khi sử dụng dịch vụ chuyển phát. KikiPost luôn không
-                    ngừng thay đổi để ngày càng đáp ứng sự mong đợi của Khách hàng.
+          Với mong muốn đem đến cho khách hàng sự yên tâm và những trải nghiệm tuyệt vời nhất khi sử dụng dịch vụ chuyển phát. MagicPost luôn
+          không ngừng thay đổi để ngày càng đáp ứng sự mong đợi của Khách hàng.
         </Typography>
 
         <Box>
           <Link to="/services" style={{ textDecoration: 'none' }}>
             <Button
-              variant='contained'
+              variant="contained"
               sx={{
                 maxWidth: '100%',
                 mr: 2,
@@ -94,19 +89,20 @@ const Header = () => {
         </Box>
       </BoxText>
 
-      <Box sx={theme => ({
-        display: 'flex', // Add display flex
-        justifyContent: 'center', // Center content horizontally
-        alignItems: 'start',
-        [theme.breakpoints.down('md')]:{
-          flex: '1',
-          paddingTop: '30px',
-          alignSelf: 'center'
-        },
-        [theme.breakpoints.up('md')]:{
-          flex: '2'
-        }
-      })}
+      <Box
+        sx={(theme) => ({
+          display: 'flex', // Add display flex
+          justifyContent: 'center', // Center content horizontally
+          alignItems: 'start',
+          [theme.breakpoints.down('md')]: {
+            flex: '1',
+            paddingTop: '30px',
+            alignSelf: 'center'
+          },
+          [theme.breakpoints.up('md')]: {
+            flex: '2'
+          }
+        })}
       >
         <img
           src={headerImg}
@@ -116,9 +112,8 @@ const Header = () => {
           }}
         />
       </Box>
-
     </CustomBox>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

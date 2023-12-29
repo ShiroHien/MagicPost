@@ -15,7 +15,7 @@ import {
 import DrawerItem from './DrawerItem'
 // rotas
 import { Link } from 'react-router-dom'
-import Logo from '../assets/Logo.png'
+import Logo from '../assets/images/Logo.png'
 
 const StyledToolbar = styled(Toolbar) ({
   display: 'flex',

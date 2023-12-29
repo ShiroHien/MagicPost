@@ -1,23 +1,21 @@
-import TKKhachGuiGD from './TKKhachGuiGD'
-import TKDaGuiGD from './TKDaGuiGD'
-import { Grid, Stack, TextField, Typography } from '@mui/material'
+import TKKhachGuiGD from './TKKhachGuiGD';
+import TKDaGuiGD from './TKDaGuiGD';
+import { Grid, Typography } from '@mui/material';
 
 const TKDiemGD = () => {
   return (
     <>
-      <Grid item xs={12} sx={{ mb: -2.25 }}>
-        <Typography sx={{
-          width: '70%',
-          height: 'auto',
-          margin: '0px auto',
-          padding: '10px',
-          marginBottom: '30px'
-        }} variant="h4">Thống kê hàng tại điểm giao dịch</Typography>
+      <Grid item xs={12} sx={{ mb: 2.25 }}>
+        <Typography variant="h4">Thống kê hàng tại điểm giao dịch</Typography>
+      </Grid>
+      <Grid item xs={12} sx={{ mb: 2.25 }}>
         <TKKhachGuiGD />
+      </Grid>
+      <Grid item xs={12} sx={{ mb: 2 }}>
         <TKDaGuiGD />
       </Grid>
     </>
-  )
-}
+  );
+};
 
-export default TKDiemGD
+export default TKDiemGD;

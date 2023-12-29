@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Grid, Stack, TextField, Typography } from '@mui/material'
-import MainCard from '../../../../components/MainCard'
+import { Grid, Typography } from '@mui/material'
+import MainCard from 'components/MainCard'
 // material-ui
 import { useTheme } from '@mui/material/styles'
 
@@ -112,13 +112,7 @@ const TKKhachGuiGD = () => {
   }, [primary, info, secondary])
 
   return (
-    <Grid sx={{
-      width: '70%',
-      height: 'auto',
-      margin: '0px auto',
-      padding: '10px',
-      marginBottom: '30px'
-    }}item xs={12} md={5} lg={4}>
+    <Grid item xs={12} md={5} lg={4}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
           <Typography variant="h5">Thống kê hàng khách gửi</Typography>
