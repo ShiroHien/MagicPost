@@ -100,7 +100,7 @@ const TimKiemBuuCuc = () => {
 
   return (
     <>
-      <Dialog 
+      <Dialog
         open={open}
         onClose={() => setOpen(false)}
         maxWidth="lg" // Chọn kích thước tối đa (xs, sm, md, lg, xl)
@@ -188,7 +188,7 @@ const TimKiemBuuCuc = () => {
           </FormControl>
           <Button variant="contained" fullWidth onClick={handleSearch}>Tìm kiếm</Button>
         </Box>
-        </Dialog>
+      </Dialog>
     </>
   )
 }
