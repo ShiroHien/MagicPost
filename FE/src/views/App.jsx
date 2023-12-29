@@ -1,6 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import "../assets/css/bootstrap.min.css";
+import "../assets/scss/now-ui-kit.scss?v=1.5.0";
+import "../assets/demo/demo.css?v=1.5.0";
+import "../assets/demo/nucleo-icons-page-styles.css?v=1.5.0";
+
+
 import Index from "./pages/landing/Index";
 import Home from "./pages/landing/Home";
 import Search from "./pages/landing/search/Search";
@@ -24,6 +30,7 @@ import AccountDGD from "./pages/manager/managerDGD/AccountDGD";
 import ManagerDGDHome from "./pages/manager/managerDGD/ManagerDGDHome";
 import ManagerDTKHome from "./pages/manager/managerDTK/ManagerDTKHome";
 import Login from "./pages/Login";
+import NewModal from "./pages/staff/NewModal";
 
 export const App = () => {
     return (
@@ -62,6 +69,8 @@ export const App = () => {
                 <Route path="account" element={<AccountDGD />} />
                 <Route path="statistics" element={<StatisticDGD />}/>
             </Route>
+
+            <Route path="/NewModal" element={<NewModal/>}></Route>
             
         </Routes>
 

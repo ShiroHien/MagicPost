@@ -178,7 +178,7 @@ function FromKH() {
         />
       </div>
 
-      <Modal isOpen={modal1} toggle={() => setModal1(false)} size='sm' className="modal-lg">
+      <Modal isOpen={modal1} toggle={() => setModal1(false)} className="modal-lg">
         <div className="modal-header justify-content-center">
           <h4 className="title title-up">
             Thông tin chi tiết đơn hàng
