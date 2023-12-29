@@ -38,13 +38,13 @@ const ThongKe = () => {
       <Sidebar>
         <Menu class='Menu'>
           <MenuItem class='MenuItem' onClick={() => setActivePage('TKToanQuoc')}>
-            <NavLink class='NavLink' to="/statistics/tktoanquoc">Thống kê toàn quốc</NavLink>
+            <NavLink to="/statistics/tktoanquoc">Thống kê toàn quốc</NavLink>
           </MenuItem>
           <MenuItem class='MenuItem' onClick={() => setActivePage('TKDiemGD')}>
-            <NavLink class='NavLink' to="/statistics/tkdiemgd">Thống kê hàng tại điểm giao dịch</NavLink>
+            <NavLink to="/statistics/tkdiemgd">Thống kê hàng tại điểm giao dịch</NavLink>
           </MenuItem>
           <MenuItem class='MenuItem' onClick={() => setActivePage('TKDiemTK')}>
-            <NavLink class='NavLink' to="/statistics/tkdiemtk">Thống kê điểm tập kết</NavLink>
+            <NavLink to="/statistics/tkdiemtk">Thống kê điểm tập kết</NavLink>
           </MenuItem>
         </Menu>
       </Sidebar>

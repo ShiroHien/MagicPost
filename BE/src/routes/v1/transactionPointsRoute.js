@@ -23,4 +23,7 @@ Router.route('/manage/:id')
 Router.route('/findid')
   .post(transactionPointsController.findOneByFilter)
 
+Router.route('/finddistrict')
+  .post(transactionPointsController.findDistrictByProvince)
+
 export const transactionPointsRoute = Router

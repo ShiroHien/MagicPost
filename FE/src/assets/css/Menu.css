@@ -1,13 +1,14 @@
 .Sidebar {
   position: fixed;          /* Keep sidebar in place */
-  width: 200px;             /* Adjust width as needed */
-  height: 100vh;       /* Light gray background */
+  width: 300px;             /* Adjust width as needed */
+  height: 50vh;       /* Light gray background */
   padding: 20px;             /* Add spacing around content */
   overflow-y: auto;         /* Enable scrolling if needed */
 }
 
 .Menu {
-  position: fixed; 
+  position: inherit; 
+  width: 300px; 
   list-style: none;          /* Remove default bullet points */
   padding: 0;   
   background-color: inherit;             /* Remove default list padding */
@@ -21,6 +22,7 @@
   display: block;           /* Make links fill entire width */
   padding: 10px 15px;       /* Add padding to links */
   text-decoration: none;    /* Remove underline from links */
+  text-align: center;
   color: rgb(237, 9, 9);
 }
 
