@@ -4,7 +4,6 @@ import Title from '../Title'
 import Paragraph from '../Paragraph'
 import Navbar from '../../../../components/Navbars/Navbar'
 import Footer from '../../../../components/Footer/Footer'
-import Sidebar from './Sidebar/Sidebar'
 
 const TraCuuMVD = ({ onSubmit }) => {
   const handleSubmit = (event) => {
@@ -18,7 +17,6 @@ const TraCuuMVD = ({ onSubmit }) => {
     <>
     <div>
       <Navbar />
-      <Sidebar/>
       <div className="others">
           <Box
           sx={{

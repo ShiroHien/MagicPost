@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function AdminDashboard() {
+export default function LeaderDashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -130,7 +130,7 @@ export default function AdminDashboard() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            ADMIN DASHBOARD
+            Dashboard Lãnh đạo
           </Typography>
         </Toolbar>
       </AppBar>

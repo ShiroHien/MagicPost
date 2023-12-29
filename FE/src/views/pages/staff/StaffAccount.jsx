@@ -4,6 +4,8 @@ import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 
+function StaffAccount() {
+
 const columns = [
   { field: 'fullname', headerName: 'Full name', width: 130 },
   { field: 'phone', headerName: 'Phone', width: 200 },
@@ -23,7 +25,7 @@ const rows = [
   { email: 2, fullname: 'Snow', firstName: 'Jon', age: 35 },
 ];
 
-const StaffAccount = () => {
+
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -51,5 +53,6 @@ const StaffAccount = () => {
     </div>
   );
 };
+
 
 export default StaffAccount;

@@ -13,6 +13,7 @@ import {
   CardBody,
   CardTitle,
   Form,
+  Button,
   FormGroup,
   Input,
   Modal,
@@ -21,7 +22,7 @@ import {
 } from "reactstrap";
 // import './FromDTK.css'
 import InfoIcon from '@mui/icons-material/Info';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 
 function FromDTK() {
 
@@ -89,25 +90,6 @@ function FromDTK() {
     pdfExportComponent.current.save();
   }
 
-
-  // useEffect(() => {
-  //   getCar();
-
-  // }, []);
-
-  // const getCar = async () => {
-  //   let response = await axiosInstance({
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     method: 'get',
-  //     url: `http://localhost:3010/statistics/${JSON.parse(Cookies.get('info')).center_ID}`,
-  //   })
-  //   setData(response.data);
-  //   setDataCar(response.data.cars);
-  //   console.log("check data", response.data);
-  // }
-
   const onRowsSelectionHandler = (ids) => {
     const selectedRowsData = ids.map((id) => listOrder.find((row) => row.ID === id));
     setSelectedRows(selectedRowsData)
@@ -156,9 +138,7 @@ function FromDTK() {
             label="Info"
             onClick={detailOrder(params)}
           />,
-        
       ]
-
     } 
   ];
   const excludeField = (columns, excludedField) => {
@@ -176,26 +156,11 @@ function FromDTK() {
           <CardBody>
           <CardTitle className="my-form-title" >Danh sách đơn hàng cần gửi tới Điểm Tập Kết</CardTitle>
           <form onSubmit={handleSubmit}> 
-          <Button variant="contained"
-              sx={{
-                maxWidth: '100%',
-                mr: 2,
-                px: 4,
-                py: 1,
-                fontSize: '0.9rem',
-                textTransform: 'capitalize',
-                borderRadius: 5,
-                borderColor: '#14192d',
-                color: '#fff',
-                backgroundColor: '#e03d3d',
-                '&&:hover': {
-                  backgroundColor: '#343a55'
-                },
-                '&&:focus': {
-                  backgroundColor: '#343a55'
-                }
-              }}>
-              Giao cho shipper
+            <Button
+                color="danger"
+                className="btn-round"
+                type="submit">
+                Tạo đơn gửi Shipper
             </Button>
             <div className="spaceHeader"></div>
           </form> 

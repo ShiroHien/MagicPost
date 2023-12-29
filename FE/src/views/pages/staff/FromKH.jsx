@@ -15,14 +15,14 @@ import {
   Form,
   FormGroup,
   Input,
-
+  Button,
   Modal,
   ModalBody,
   InputGroup,
 } from "reactstrap";
 // import './FromKH.css'
 import InfoIcon from '@mui/icons-material/Info';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 
 function FromKH() {
 
@@ -177,26 +177,12 @@ function FromKH() {
           <CardBody>
           <CardTitle className="my-form-title" >Danh sách đơn hàng cần gửi tới Điểm Tập Kết</CardTitle>
           <form onSubmit={handleSubmit}> 
-          <Button variant="contained"
-              sx={{
-                maxWidth: '100%',
-                mr: 2,
-                px: 4,
-                py: 1,
-                fontSize: '0.9rem',
-                textTransform: 'capitalize',
-                borderRadius: 5,
-                borderColor: '#14192d',
-                color: '#fff',
-                backgroundColor: '#e03d3d',
-                '&&:hover': {
-                  backgroundColor: '#343a55'
-                },
-                '&&:focus': {
-                  backgroundColor: '#343a55'
-                }
-              }}>
-              Tạo đơn
+            <Button
+                color="danger"
+                className="btn-round"
+                type="submit">
+                
+                Tạo đơn gửi ĐTK
             </Button>
           </form> 
           </CardBody>

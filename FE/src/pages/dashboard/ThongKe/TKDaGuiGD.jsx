@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react'
 import { Grid, Stack, TextField, Typography } from '@mui/material'
-import MainCard from '../../../../components/MainCard'
+import MainCard from '../../../components/MainCard'
+
 // material-ui
 import { useTheme } from '@mui/material/styles'
 
 // third-party
 import ReactApexChart from 'react-apexcharts'
 
-import axiosInstance from '../../../../utils/AxiosInstance'
+import axiosInstance from '../../../utils/AxiosInstance'
 
 // chart options
 const barChartOptions = {
@@ -44,15 +46,15 @@ const barChartOptions = {
   }
 }
 
-// =======||  BAR CHART - Thong ke hang khach gui ||===== //
+// ==============================||  BAR CHART ||============================== //
 
-const TKKhachGuiGD = () => {
+const TKDaGuiGD = () => {
   const theme = useTheme()
 
   const { primary, secondary } = theme.palette.text
   const info = theme.palette.info.light
 
-  // sửa sô liệu here
+  // sửa số liệu here
   const [series, setSeries] = useState([
     {
       data: [0, 0, 0, 0, 0, 0, 0]
@@ -83,7 +85,7 @@ const TKKhachGuiGD = () => {
       }
     })
     let seriesCopy = [...series]
-    let t = 0
+    let t = 1
     for (let i = 0; i < response.data[t].length; i++ ) {
       let value = response.data[t][i].day - 1
       seriesCopy[0].data[value] = response.data[t][i].count
@@ -91,12 +93,11 @@ const TKKhachGuiGD = () => {
     setSeries(seriesCopy)
   }
 
-
   const [options, setOptions] = useState(barChartOptions)
   useEffect(() => {
     setOptions((prevState) => ({
       ...prevState,
-      colors: ['#4fe34f'],
+      colors: [info],
       xaxis: {
         labels: {
           style: {
@@ -105,13 +106,23 @@ const TKKhachGuiGD = () => {
         }
       },
       tooltip: {
-        theme: 'light'
+        theme: 'light',
+        custom: function({ series, seriesIndex, dataPointIndex, w }) {
+          let day = w.globals.labels[dataPointIndex]
+          let value = series[seriesIndex][dataPointIndex]
+          return `<div style="background-color: #fff; padding: 5px; border-radius: 5px; box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);">
+            <div style="font-size: 14px; color: black; margin-bottom: 5px;">${day}</div>
+            <div style="font-size: 13px; font-weight: bold; color: black;">${value} đơn</div>
+          </div>`
+        }
       }
     }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [primary, info, secondary])
+  }, [primary, info, secondary, series])
 
   return (
+
+
     <Grid sx={{
       width: '70%',
       height: 'auto',
@@ -121,7 +132,7 @@ const TKKhachGuiGD = () => {
     }}item xs={12} md={5} lg={4}>
       <Grid container alignItems="center" justifyContent="space-between">
         <Grid item>
-          <Typography variant="h5">Thống kê hàng khách gửi</Typography>
+          <Typography variant="h5">Thống kê hàng đã gửi</Typography>
         </Grid>
         <Grid item />
       </Grid>
@@ -134,4 +145,4 @@ const TKKhachGuiGD = () => {
   )
 }
 
-export default TKKhachGuiGD
+export default TKDaGuiGD

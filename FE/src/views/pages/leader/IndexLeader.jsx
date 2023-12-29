@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from 'react-router-dom'
-import StaffHome from "./StaffHome";
-import FromKH from "./fromKH";
+import AdminDashboard from "./LeaderDashBoard";
 
 
- const Indexstaff = () => (
+ const IndexLeader = () => (
   <>
-    <StaffHome/>
+    <AdminDashboard/>
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
           <Outlet/>
@@ -14,4 +13,4 @@ import FromKH from "./fromKH";
 
   </>
 )
-export default Indexstaff
+export default IndexLeader
