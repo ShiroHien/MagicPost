@@ -1,7 +1,8 @@
 import { Box, Button, styled, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import headerImg from '../assets/home-banner-image.png'
+// import headerImg from '../assets/home-banner-image.png'
+import headerImg from '../../../assets/home-banner-image.png'
 
 const Header = () => {
 
@@ -43,10 +44,10 @@ const Header = () => {
           sx={{
             fontWeight: 700,
             color: '#e03d3d',
-            fontSize: '55px'
+            fontSize: '45px'
           }}
         >
-                    CÙNG HÀNG VIỆT <br /> ĐI KHẮP MUÔN NƠI
+                    MAGICPOST <br /> ĐI KHẮP MUÔN NƠI
         </Typography>
 
         <Typography
@@ -60,8 +61,8 @@ const Header = () => {
           }}
         >
                     Với mong muốn đem đến cho khách hàng sự yên tâm và những trải nghiệm
-                    tuyệt vời nhất khi sử dụng dịch vụ chuyển phát. KikiPost luôn không
-                    ngừng thay đổi để ngày càng đáp ứng sự mong đợi của Khách hàng.
+                    tuyệt vời nhất khi sử dụng dịch vụ chuyển phát. MagicPost luôn không
+                    ngừng thay đổi để ngày càng đáp ứng sự mong đợi của khách hàng.
         </Typography>
 
         <Box>
