@@ -20,6 +20,10 @@ import IndexLeader from "./pages/leader/IndexLeader";
 import LeaderAccount from "./pages/leader/LeaderAccount";
 import LeaderDashboard from "./pages/leader/LeaderDashBoard";
 import ThongKe from "../pages/dashboard/ThongKe";
+import TKDiemTK from "../pages/dashboard/ThongKe/TKDiemTK";
+import TKDaGuiGD from "../pages/dashboard/ThongKe/TKDaGuiGD";
+import TKKhachGuiGD from "../pages/dashboard/ThongKe/TKKhachGuiGD";
+import TKToanQuoc from "../pages/dashboard/ThongKe/TKToanQuoc";
 import StaffStatistic from "./pages/staff/StaffStatistic";
 import IndexmanagerDTK from "./pages/manager/managerDTK/IndexmanagerDTK";
 import AccountDTK from "./pages/manager/managerDTK/AccountDTK";
@@ -30,7 +34,8 @@ import AccountDGD from "./pages/manager/managerDGD/AccountDGD";
 import ManagerDGDHome from "./pages/manager/managerDGD/ManagerDGDHome";
 import ManagerDTKHome from "./pages/manager/managerDTK/ManagerDTKHome";
 import Login from "./pages/Login";
-import NewModal from "./pages/staff/NewModal";
+import LeaderDTK from "./pages/leader/LeaderDTK";
+
 
 export const App = () => {
     return (
@@ -46,8 +51,10 @@ export const App = () => {
 
             <Route path="leader" element={<IndexLeader />}>
                 <Route index element={<LeaderDashboard  />}/>
-                <Route path="statistics" element={<ThongKe/>} />
+                <Route path="statistics" element={<TKToanQuoc/>} />
                 <Route path="account" element={<LeaderAccount />} />
+                <Route path="DTK" element={<LeaderDTK />} />
+                <Route path="DGD" element={<TKKhachGuiGD />} />
             </Route>
             
             <Route path="staff" element={<Indexstaff />}>
@@ -69,8 +76,6 @@ export const App = () => {
                 <Route path="account" element={<AccountDGD />} />
                 <Route path="statistics" element={<StatisticDGD />}/>
             </Route>
-
-            <Route path="/NewModal" element={<NewModal/>}></Route>
             
         </Routes>
 

@@ -159,7 +159,7 @@ export default function LeaderDashboard() {
               <ListItemButton
                 sx={{ pl: 4 }}
                 component={Link}
-                to="manageTransaction"
+                to="DTK"
               >
                 <ListItemIcon>
                   <LocalShippingIcon />
@@ -169,7 +169,7 @@ export default function LeaderDashboard() {
               <ListItemButton
                 sx={{ pl: 4 }}
                 component={Link}
-                to="manageWarehouse"
+                to="DGD"
               >
                 <ListItemIcon>
                   <WarehouseIcon />

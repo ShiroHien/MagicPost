@@ -141,6 +141,7 @@ const TKToanQuoc = () => {
 
   return (
     <div id="chart">
+      <h3>THỐNG KÊ TRÊN TOÀN QUỐC</h3>
       <ReactApexChart options={options} series={series} type="bar" height={430} />
     </div>
   )
