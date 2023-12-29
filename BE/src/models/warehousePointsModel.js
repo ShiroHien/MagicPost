@@ -135,6 +135,16 @@ const pushAccountIds = async(account) => {
   } catch (error) { throw new Error(error) }
 }
 
+const findOneByFilter = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOne({
+      province: reqBody.province,
+      city: reqBody.city
+    })
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const warehousePointsModel = {
   WAREHOUSE_POINT_COLLECTION_NAME,
   WAREHOUSE_POINT_COLLECTION_SCHEMA,
@@ -146,5 +156,6 @@ export const warehousePointsModel = {
   findOneByAddress,
   pushTransactionPointIds,
   setLeaderId,
-  pushAccountIds
+  pushAccountIds,
+  findOneByFilter
 }

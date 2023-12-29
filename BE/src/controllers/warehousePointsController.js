@@ -32,9 +32,17 @@ const deleteOne = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const findOneByFilter = async (req, res, next) => {
+  try {
+    const result = await warehousePointsService.findOneByFilter(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
 export const warehousePointsController = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOneByFilter
 }

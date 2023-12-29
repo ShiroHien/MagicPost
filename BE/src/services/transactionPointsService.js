@@ -9,7 +9,7 @@ const createNew = async (reqBody) => {
   try {
     const newTransactionPoint = {
       ...reqBody,
-      name: 'Điểm giao dịch tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+      name: 'Điểm giao dịch tại: ' + reqBody.streetAddress + ', ' + reqBody.city + ', ' + reqBody.province
     }
 
     // Gọi tới tầng Model để xử lý lưu bản ghi newTransactionPoint vào trong Database
@@ -44,7 +44,7 @@ const update = async (transactionPointId, reqBody) => {
   try {
     const updateData = {
       ...reqBody,
-      name: 'Điểm giao dịch tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+      name: 'Điểm giao dịch tại: ' + reqBody.streetAddress + ', ' + reqBody.city + ', ' + reqBody.province
     }
 
     const updatedTransactionPoint = await transactionPointsModel.update(transactionPointId, updateData)
@@ -64,9 +64,22 @@ const deleteOne = async (transactionPointId) => {
   } catch (error) { throw error }
 }
 
+const findOneByFilter = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const transactionPoint = await transactionPointsModel.findOneByFilter(reqBody)
+    if (!transactionPoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
+    }
+
+    return transactionPoint
+  } catch (error) { throw error }
+}
+
 export const transactionPointsService = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOneByFilter
 }

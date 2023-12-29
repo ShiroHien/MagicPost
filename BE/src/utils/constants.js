@@ -1,8 +1,9 @@
 export const WHITELIST_DOMAINS = [
-  'http'
+  'http://localhost:5173'
 ]
 
 export const TYPE_ACCOUNT = {
+  admin: 'admin',
   leaderOfTransaction: 'leader of transaction',
   leaderOfWarehouse: 'leader of warehouse',
   staffOfTransaction: 'staff of transaction',
