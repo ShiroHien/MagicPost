@@ -1,6 +1,9 @@
 import TraCuuMVD from '../../components/TraCuuMVD'
-import UocTinhCuocPhi from '../../components/UocTinhCuocPhi'
-import TimKiemBuuCuc from '../../components/TimKiemBuuCuc'
+
+import { useState } from 'react'
+import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar'
+import { NavLink, Outlet } from 'react-router-dom'
+
 
 const Search = () => {
   return (
