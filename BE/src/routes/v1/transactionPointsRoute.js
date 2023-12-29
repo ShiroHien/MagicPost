@@ -1,26 +1,26 @@
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
-import { transactionPointsValidation } from '~/validations/transactionPointsValidation'
-import { transactionPointsController } from '~/controllers/transactionPointsController'
+import { warehousePointsValidation } from '~/validations/warehousePointsValidation'
+import { warehousePointsController } from '~/controllers/warehousePointsController'
 
-const Router = express.Router()
+const warehousePointsRoute = express.Router()
 
 // ______________________________General API________________________________________
-Router.route('/')
+warehousePointsRoute.route('/')
   .get((req, res) => {
     res.status(StatusCodes.OK).json({ message: 'GET: API get transaction point' })
   })
 
-Router.route('/create')
-  .post(transactionPointsValidation.createNew, transactionPointsController.createNew )
+warehousePointsRoute.route('/create')
+  .post(warehousePointsValidation.createNew, warehousePointsController.createNew )
 
 
-Router.route('/manage/:id')
-  .get(transactionPointsController.getDetails) // API lấy dữ liệu từ id
-  .put(transactionPointsValidation.update, transactionPointsController.update) // API sửa dữ liệu
-  .delete(transactionPointsController.deleteOne) // API xóa dữ liệu
+warehousePointsRoute.route('/manage/:id')
+  .get(warehousePointsController.getDetails) // API lấy dữ liệu từ id
+  .put(warehousePointsValidation.update, warehousePointsController.update) // API sửa dữ liệu
+  .delete(warehousePointsController.deleteOne) // API xóa dữ liệu
 
-Router.route('/findid')
-  .post(transactionPointsController.findOneByFilter)
+warehousePointsRoute.route('/findid')
+  .post(warehousePointsController.findOneByFilter)
 
-export const transactionPointsRoute = Router
+module.exports = warehousePointsRoute

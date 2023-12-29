@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable indent */
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Index from "./pages/landing/Index";
@@ -17,12 +17,12 @@ import Statistics from "./pages/leader/statistic";
 import LeaderDashboard from "./pages/leader/LeaderDashBoard";
 import ThongKe from "../pages/dashboard/ThongKe";
 
-
 export const App = () => {
     return (
     <BrowserRouter>
         <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/home" element={<Search />}/>
             <Route path="/search" element={<Search />}/>
                 {/* <Route element={<TraCuuMVD />}/> */}
                 <Route path="/search/vd" element={<TraCuuMVD />}/>
@@ -31,23 +31,23 @@ export const App = () => {
 
 
             <Route path="leader" element={<IndexLeader />}>
-                <Route index element={<LeaderDashboard  />}/>
+                <Route index element={<LeaderDashboard />}/>
                 <Route path="statistics" element={<ThongKe/>} />
                 <Route path="account" element={<LeaderAccount />} />
             </Route>
-            
-        
+
+
             <Route path="staff" element={<Indexstaff />}>
                 <Route index element={<StaffHome />}/>
                 <Route path="fromKH" element={<FromKH />}/>
                 <Route path="account" element={<StaffAccount />} />
                 <Route path="fromDTK" element={<FromDTK />}/>
             </Route>
-            
-            
+
+
         </Routes>
-        
-        
+
+
     </BrowserRouter >
     )
 }

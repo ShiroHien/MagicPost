@@ -133,6 +133,34 @@ const findOneByFilter = async(reqBody) => {
     return result
   } catch (error) { throw new Error(error) }
 }
+const findDistrictByProvince = async(reqBody) => {
+  try {
+    const pipeline = [
+      {
+        '$match': {
+          '$expr': {
+            '$eq': ['$province', reqBody.selectedprovince]
+          }
+        }
+      },
+      {
+        '$group': {
+          // '_id': '$district', // Sử dụng trường 'district' để nhóm theo quận/huyện
+          _id: '$city',
+          'label': { '$first': '$city' }
+        }
+      },
+      {
+        '$project': {
+          '_id': 0,
+          'label': 1
+        }
+      }
+    ]
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).aggregate(pipeline).toArray()
+    return result || null
+  } catch (error) { throw new Error(error) }
+}
 
 export const transactionPointsModel = {
   TRANSACTION_POINT_COLLECTION_NAME,
@@ -145,5 +173,6 @@ export const transactionPointsModel = {
   findOneByAddress,
   setLeaderId,
   pushAccountIds,
-  findOneByFilter
+  findOneByFilter,
+  findDistrictByProvince
 }

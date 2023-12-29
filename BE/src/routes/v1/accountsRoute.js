@@ -3,23 +3,23 @@ import { StatusCodes } from 'http-status-codes'
 import { accountsValidation } from '~/validations/accountsValidation'
 import { accountsController } from '~/controllers/accountsController'
 
-const Router = express.Router()
+const accountsRoute = express.Router()
 
-Router.route('/')
+accountsRoute.route('/')
   .get((req, res) => {
     res.status(StatusCodes.OK).json({ message: 'GET: API get account' })
   })
   .post(accountsValidation.createNew, accountsController.createNew )
 
 // Xét một biến id vào trong trong param của account để lấy data
-Router.route('/:id')
+accountsRoute.route('/:id')
   .get(accountsController.getDetails)
   .put(accountsValidation.update, accountsController.update)
   .delete(accountsController.deleteOne)
 
 
 //
-Router.route('/:id/type')
+accountsRoute.route('/:id/type')
   .get(accountsController.getAccoutListByType)
 
-export const accountsRoute = Router
+module.exports = accountsRoute
