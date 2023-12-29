@@ -40,10 +40,18 @@ const findOneByFilter = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const findDistrictByProvince = async (req, res, next) => {
+  try {
+    const result = await transactionPointsService.findDistrictByProvince(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
 export const transactionPointsController = {
   createNew,
   getDetails,
   update,
   deleteOne,
-  findOneByFilter
+  findOneByFilter,
+  findDistrictByProvince
 }

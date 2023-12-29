@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "_id": {
@@ -276,3 +277,283 @@
     }
   }
 ]
+=======
+[
+  {
+    "_id": {
+      "$oid": "658a5d48408f214ddcb8c0de"
+    },
+    "streetAddress": "173 Quốc Tử Giám",
+    "city": "Đống Đa",
+    "province": "Hà Nội",
+    "name": "Điểm tập kết tại: 173 Quốc Tử Giám, Đống Đa, Hà Nội",
+    "country": "Viet Nam",
+    "transactionPointIds": [
+      {
+        "$oid": "658a92f16b2259e743f614c3"
+      },
+      {
+        "$oid": "658a97304907f5edd3cb0258"
+      },
+      {
+        "$oid": "658a97b34907f5edd3cb025a"
+      },
+      {
+        "$oid": "658a97f34907f5edd3cb025c"
+      },
+      {
+        "$oid": "658a987a4907f5edd3cb025e"
+      },
+      {
+        "$oid": "658a98c24907f5edd3cb0260"
+      },
+      {
+        "$oid": "658a993d4907f5edd3cb0262"
+      }
+    ],
+    "accountIds": [
+      {
+        "$oid": "658aab854907f5edd3cb02a1"
+      },
+      {
+        "$oid": "658aabac4907f5edd3cb02a2"
+      },
+      {
+        "$oid": "658aabcf4907f5edd3cb02a3"
+      },
+      {
+        "$oid": "658aac584907f5edd3cb02a4"
+      }
+    ],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa5624907f5edd3cb028e"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510ee"
+    },
+    "streetAddress": "13 Lê Thánh Tông",
+    "city": "TP. Bắc Giang",
+    "province": "Bắc Giang",
+    "name": "Điểm tập kết tại: 13 Lê Thánh Tông, TP. Bắc Giang, Bắc Giang",
+    "country": "Viet Nam",
+    "transactionPointIds": [
+      {
+        "$oid": "658a99b74907f5edd3cb0264"
+      },
+      {
+        "$oid": "658a9a0b4907f5edd3cb0266"
+      },
+      {
+        "$oid": "658a9a3d4907f5edd3cb0268"
+      },
+      {
+        "$oid": "658a9a854907f5edd3cb026a"
+      }
+    ],
+    "accountIds": [
+      {
+        "$oid": "658aace54907f5edd3cb02a7"
+      },
+      {
+        "$oid": "658aad234907f5edd3cb02a8"
+      }
+    ],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa5a14907f5edd3cb028f"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510ef"
+    },
+    "streetAddress": "34 Cao Thắng",
+    "city": "Hải Châu",
+    "province": "Đà Nẵng",
+    "name": "Điểm tập kết tại: 34 Cao Thắng, Hải Châu, Đà Nẵng",
+    "country": "Viet Nam",
+    "transactionPointIds": [
+      {
+        "$oid": "658a9d354907f5edd3cb0278"
+      },
+      {
+        "$oid": "658a9d714907f5edd3cb027a"
+      },
+      {
+        "$oid": "658a9db34907f5edd3cb027c"
+      },
+      {
+        "$oid": "658a9de34907f5edd3cb027e"
+      },
+      {
+        "$oid": "658a9e264907f5edd3cb0280"
+      }
+    ],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa66a4907f5edd3cb0290"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f0"
+    },
+    "streetAddress": "57 Khu Đô thị Liêm Chính",
+    "city": "TP. Hà Nam",
+    "province": "Hà Nam",
+    "name": "Điểm tập kết tại: 57 Khu Đô thị Liêm Chính, TP. Hà Nam, Hà Nam",
+    "country": "Viet Nam",
+    "transactionPointIds": [],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa6a34907f5edd3cb0291"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f1"
+    },
+    "streetAddress": "187 Nguyễn Lương Bằng",
+    "city": "TP. Hải Dương",
+    "province": "Hải Dương",
+    "name": "Điểm tập kết tại: 187 Nguyễn Lương Bằng, TP. Hải Dương, Hải Dương",
+    "country": "Viet Nam",
+    "transactionPointIds": [],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa6d44907f5edd3cb0292"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f2"
+    },
+    "streetAddress": "33 Võ Nguyên Giáp",
+    "city": "TP. Hải Phòng",
+    "province": "Hải Phòng",
+    "name": "Điểm tập kết tại: 33 Võ Nguyên Giáp, TP. Hải Phòng, Hải Phòng",
+    "country": "Viet Nam",
+    "transactionPointIds": [],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa6fb4907f5edd3cb0293"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f3"
+    },
+    "streetAddress": "136 Nguyễn Trường Tộ",
+    "city": "TP. Hồ Chí Minh",
+    "province": "Hồ Chí Minh",
+    "name": "Điểm tập kết tại: 136 Nguyễn Trường Tộ, TP. Hồ Chí Minh, Hồ Chí Minh",
+    "country": "Viet Nam",
+    "transactionPointIds": [
+      {
+        "$oid": "658a9e824907f5edd3cb0282"
+      },
+      {
+        "$oid": "658a9f054907f5edd3cb0284"
+      },
+      {
+        "$oid": "658a9f5f4907f5edd3cb0286"
+      },
+      {
+        "$oid": "658a9f954907f5edd3cb0288"
+      },
+      {
+        "$oid": "658a9fc64907f5edd3cb028a"
+      },
+      {
+        "$oid": "658aa0024907f5edd3cb028c"
+      }
+    ],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa7284907f5edd3cb0294"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f4"
+    },
+    "streetAddress": "25 Trần Hưng Đạo",
+    "city": "TP. Nam Định",
+    "province": "Nam Định",
+    "name": "Điểm tập kết tại: 25 Trần Hưng Đạo, TP. Nam Định, Nam Định",
+    "country": "Viet Nam",
+    "transactionPointIds": [
+      {
+        "$oid": "658a9afc4907f5edd3cb026c"
+      },
+      {
+        "$oid": "658a9b694907f5edd3cb026e"
+      },
+      {
+        "$oid": "658a9bf24907f5edd3cb0270"
+      },
+      {
+        "$oid": "658a9c7f4907f5edd3cb0272"
+      },
+      {
+        "$oid": "658a9cc14907f5edd3cb0274"
+      },
+      {
+        "$oid": "658a9cff4907f5edd3cb0276"
+      }
+    ],
+    "accountIds": [
+      {
+        "$oid": "658aac894907f5edd3cb02a5"
+      },
+      {
+        "$oid": "658aac9b4907f5edd3cb02a6"
+      }
+    ],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa7594907f5edd3cb0295"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f5"
+    },
+    "streetAddress": "167 Phố Đào Duy Từ",
+    "city": "TP. Thanh Hóa",
+    "province": "Thanh Hóa",
+    "name": "Điểm tập kết tại: 167 Phố Đào Duy Từ, TP. Thanh Hóa, Thanh Hóa",
+    "country": "Viet Nam",
+    "transactionPointIds": [],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa77c4907f5edd3cb0296"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "658a64da86776465254510f6"
+    },
+    "streetAddress": "172 Phố Lưu Quý An",
+    "city": "TP. Vĩnh Phúc",
+    "province": "Vĩnh Phúc",
+    "name": "Điểm tập kết tại: 172 Phố Lưu Quý An, TP. Vĩnh Phúc, Vĩnh Phúc",
+    "country": "Viet Nam",
+    "transactionPointIds": [],
+    "accountIds": [],
+    "orderIds": [],
+    "leaderId": {
+      "$oid": "658aa7a94907f5edd3cb0297"
+    }
+  }
+]
+>>>>>>> be
