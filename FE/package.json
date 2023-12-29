@@ -15,19 +15,11 @@
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
-<<<<<<< Updated upstream
     "@testing-library/user-event": "^14.4.3",
     "apexcharts": "^3.35.5",
-=======
-    "@testing-library/user-event": "^13.5.0",
-    "apexcharts": "^3.45.1",
-    "axios": "^1.6.3",
->>>>>>> Stashed changes
     "formik": "^2.2.9",
     "framer-motion": "^7.3.6",
     "history": "^5.3.0",
-    "js-cookie": "^3.0.5",
-    "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
@@ -52,7 +44,6 @@
     "web-vitals": "^3.0.2",
     "yup": "^0.32.11"
   },
-<<<<<<< Updated upstream
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -69,17 +60,6 @@
     "presets": [
       "@babel/preset-react"
     ]
-=======
-  "devDependencies": {
-    "@types/react": "^18.2.37",
-    "@types/react-dom": "^18.2.15",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^8.53.0",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^5.0.0"
->>>>>>> Stashed changes
   },
   "browserslist": {
     "production": [
