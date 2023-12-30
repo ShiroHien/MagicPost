@@ -99,11 +99,23 @@ const signIn = async(reqBody) => {
   } catch (error) { throw error }
 }
 
+const getAccounts = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.getAccounts(reqBody)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    }
+    return account
+  } catch (error) { throw error }
+}
+
 export const accountsService = {
   createNew,
   getDetails,
   update,
   deleteOne,
   getAccoutListByType,
-  signIn
+  signIn,
+  getAccounts
 }

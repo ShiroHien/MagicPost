@@ -26,8 +26,9 @@ const rows = [
 const Account = () => {
   const [user, setUser] = useState([]);
 
+  // Api get ds all accounts
   useEffect(() => {
-    axios.get('../src/assets/dataTemp/accounts.json').then((res) => {
+    axios.get(`http://localhost:3377/v1/accounts/`).then((res) => {
       console.log('data2', res.data);
       setUser(res.data);
     });

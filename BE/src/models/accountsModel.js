@@ -109,6 +109,15 @@ const signIn = async(reqBody) => {
   } catch (error) { throw new Error(error) }
 }
 
+const getAccounts = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({}).toArray()
+
+    console.log('data', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const accountsModel = {
   ACCOUNT_COLLECTION_NAME,
   ACCOUNT_COLLECTION_SCHEMA,
@@ -118,5 +127,6 @@ export const accountsModel = {
   update,
   deleteOne,
   getAccoutListByType,
-  signIn
+  signIn,
+  getAccounts
 }

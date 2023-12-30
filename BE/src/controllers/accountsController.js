@@ -51,11 +51,19 @@ const signIn = async (req, res, next) => {
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
 }
+
+const getAccounts = async (req, res, next) => {
+  try {
+    const result = await accountsService.getAccounts(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
 export const accountsController = {
   createNew,
   getDetails,
   update,
   deleteOne,
   getAccoutListByType,
-  signIn
+  signIn,
+  getAccounts
 }

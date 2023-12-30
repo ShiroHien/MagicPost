@@ -6,9 +6,7 @@ import { accountsController } from '~/controllers/accountsController'
 const Router = express.Router()
 
 Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message: 'GET: API get account' })
-  })
+  .get(accountsController.getAccounts)
 
 Router.route('/create')
   .post(accountsValidation.createNew, accountsController.createNew )
