@@ -1,5 +1,7 @@
 import { accountsService } from '~/services/accountsService'
 import { StatusCodes } from 'http-status-codes'
+const jwt = require('jsonwebtoken')
+const cookieParser = require('cookie-parser');
 
 const createNew = async (req, res, next) => {
   try {
@@ -47,7 +49,16 @@ const deleteOne = async (req, res, next) => {
 
 const signIn = async (req, res, next) => {
   try {
-    const result = await accountsService.signIn(req.body)
+    const account = await accountsService.signIn(req.body)
+    const secretKey = 'MYserCRETKey'
+    const email = account.email
+    const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' })
+    res.cookie('token', token, { httpOnly: true })
+    const result = {
+      ...account,
+      token: token,
+      success: true
+    }
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
 }

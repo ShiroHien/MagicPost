@@ -6,6 +6,7 @@ import { CONNECT_DB, CLOSE_DB } from '~/config/mongodb'
 import { env } from '~/config/environment'
 import { APIs_V1 } from './routes/v1'
 import { errorHandlingMiddleware } from '~/middlewares/errorHandlingMiddleware'
+const cookieParser = require('cookie-parser')
 
 const START_SERVER = () => {
   const app = express()
@@ -17,6 +18,9 @@ const START_SERVER = () => {
 
   // Use APIs_V1
   app.use('/v1', APIs_V1)
+
+  // Sử dụng cookie-parser để xử lý cookie
+  app.use(cookieParser())
 
   // Middleware xử lý lỗi tập trung
   app.use(errorHandlingMiddleware)

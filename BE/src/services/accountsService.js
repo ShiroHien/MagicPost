@@ -4,7 +4,8 @@ import { StatusCodes } from 'http-status-codes'
 import { TYPE_ACCOUNT } from '~/utils/constants'
 import { transactionPointsModel } from '~/models/transactionPointsModel'
 import { warehousePointsModel } from '~/models/warehousePointsModel'
-
+import jwt from 'jsonwebtoken'
+import cookieParser from 'cookie-parser'
 const createNew = async (reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
   // eslint-disable-next-line no-useless-catch
@@ -89,13 +90,8 @@ const signIn = async(reqBody) => {
     const account = await accountsModel.signIn(reqBody)
     if (!account) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
-    } else {
-      const result = {
-        ...account,
-        result: true
-      }
-      return result
-    }
+    } 
+    return account
   } catch (error) { throw error }
 }
 

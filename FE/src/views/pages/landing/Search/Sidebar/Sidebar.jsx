@@ -1,6 +1,9 @@
 import React from 'react';
 import '../../../../../assets/css/Sidebar.css'
 import { Link } from 'react-router-dom';
+import Storefront from '@mui/icons-material/Storefront'
+import PaidIcon from '@mui/icons-material/Paid'
+import SearchIcon from '@mui/icons-material/Search'
 // import Cookies from 'js-cookie';
 import {
   DropdownToggle,
@@ -36,20 +39,17 @@ function Sidebar() {
 
               <NavLink to='vd' component={Link} onClick={() => handleNavLinkClick()} >
                 <li className='sidebarListItem'>
-                  <i className='sidebarIcon now-ui-icons users_single-02'></i>
-                  Tra cứu vận đơn
+                  <SearchIcon/>Tra cứu vận đơn
                 </li>
               </NavLink>
               <NavLink to='dgd' tag={Link} onClick={() => handleNavLinkClick()}>
                 <li className='sidebarListItem'>
-                  <i className='sidebarIcon now-ui-icons files_paper'></i>
-                  Tra cứu Điểm Giao Dịch
+                  <Storefront />Tra cứu Điểm Giao Dịch
                 </li>
               </NavLink>
               <NavLink to='cuoc' tag={Link} onClick={() => handleNavLinkClick()}>
                 <li className='sidebarListItem'>
-                  <i className='sidebarIcon now-ui-icons files_paper'></i>
-                  Ước tính cước phí
+                  <PaidIcon/> Ước tính cước phí
                 </li>
               </NavLink>
             </ul>
@@ -70,17 +70,15 @@ function Sidebar() {
         </DropdownToggle>
         <DropdownMenu aria-labelledby='dropdownMenuButton'>
           <DropdownItem to='vd' tag={Link} onClick={() => handleNavLinkClick()}>
-            <i className='sidebarIcon now-ui-icons users_single-02'></i>
-            Tra cứu vận đơn
+            <SearchIcon/>Tra cứu vận đơn
+
           </DropdownItem>
         </DropdownMenu>
         <DropdownItem to='dgd' tag={Link} onClick={() => handleNavLinkClick()}>
-          <i className='sidebarIcon now-ui-icons files_paper'></i>
-          Tra cứu Điểm Giao Dịch
+          <Storefront />Tra cứu Điểm Giao Dịch
         </DropdownItem>
         <DropdownItem to='cuoc' tag={Link} onClick={() => handleNavLinkClick()}>
-          <i className='sidebarIcon now-ui-icons files_paper'></i>
-          Ước tính cước phí
+          <PaidIcon/> Ước tính cước phí
         </DropdownItem>
       </UncontrolledDropdown>
     </>

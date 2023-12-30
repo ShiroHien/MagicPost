@@ -154,13 +154,13 @@ const TKToanQuoc = () => {
         <Grid item xs={12} sm={6} md={2} lg={3}>
           <AnalyticEcommerce
             title="Điểm tập kết"
-            count="2"
+            count="5"
             icon={() => <WarehouseIcon style={{ color: '#DC143C' }} />}/>
         </Grid>
         <Grid item xs={12} sm={6} md={2} lg={3}>
           <AnalyticEcommerce
             title="Điểm giao dịch"
-            count="5"
+            count="28"
             icon={() => <WarehouseIcon style={{ color: '#EEE732' }} />}/>
         </Grid>
         <Grid item xs={12} sm={6} md={2} lg={3}>
@@ -172,7 +172,7 @@ const TKToanQuoc = () => {
         <Grid item xs={12} sm={6} md={2} lg={3}>
           <AnalyticEcommerce
             title="Nhân viên"
-            count="30"
+            count="56"
             icon={() => <PeopleOutlineRoundedIcon style={{ color: '#FF9933' }} />}/>
         </Grid>
       </Grid>

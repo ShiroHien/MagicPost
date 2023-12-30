@@ -9,11 +9,13 @@ const axiosInstance = axios.create()
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = Cookies.get('jwt')
-
+    console.log("Token:", token)
+    const parts = token.split('.')
+    console.log("Parts:", parts)
     // Kiểm tra xem token có tồn tại và chưa hết hạn hay không
     if (token) {
-      const decodedToken = jwtDecode(token)
-      const currentTime = Date.now() / 1000
+      const decodedToken = jwtDecode
+      let currentTime = Date.now() / 1000
 
       if (decodedToken.exp < currentTime) {
         // Token đã hết hạn, điều hướng người dùng về trang đăng nhập

@@ -10,7 +10,7 @@ import axiosInstance from '../../../../utils/AxiosInstance'
 import TableCuocPhi from '../../../../utils/TableCuocPhi'
 
 const UocTinhCuocPhi = () => {
-  const [open, setOpen] = useState('false')
+  const [open, setOpen] = useState(false)
   // const [provinces, setProvinces] = useState([])
   const [districts, setDistricts] = useState([])
   const [districts2, setDistricts2] = useState([])

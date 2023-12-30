@@ -17,10 +17,10 @@ import {
 import axiosInstance from '../../../../utils/AxiosInstance'
 
 const TimKiemDgd = () => {
-  const [open, setOpen] = useState('false')
+  const [open, setOpen] = useState(false)
 
   const [pointInfo, setInfo] = useState()
-  const [areaFilter, setAterFilter] = useState('false')
+  const [areaFilter, setAterFilter] = useState(false)
   // const [provinces, setProvinces] = useState([])
   const [districts, setDistricts] = useState([])
   const [selectedDistrict, setSelectedDistrict] = useState('')
