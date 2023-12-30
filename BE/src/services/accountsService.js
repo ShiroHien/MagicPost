@@ -83,10 +83,27 @@ const deleteOne = async (accountId) => {
   } catch (error) { throw error }
 }
 
+const signIn = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.signIn(reqBody)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    } else {
+      const result = {
+        ...account,
+        result: true
+      }
+      return result
+    }
+  } catch (error) { throw error }
+}
+
 export const accountsService = {
   createNew,
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType
+  getAccoutListByType,
+  signIn
 }

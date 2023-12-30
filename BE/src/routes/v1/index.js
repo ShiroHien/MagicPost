@@ -4,7 +4,6 @@ import { accountsRoute } from '~/routes/v1/accountsRoute'
 import { transactionPointsRoute } from './transactionPointsRoute'
 import { warehousePointsRoute } from './warehousePointsRoute'
 import { postalGoodsRoute } from './postalGoodsRoute'
-import { ordersRoute } from './ordersRoute'
 
 const Router = express.Router()
 
