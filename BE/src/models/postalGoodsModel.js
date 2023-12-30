@@ -63,7 +63,7 @@ const POSTAL_GOOD_COLLECTION_SCHEMA = Joi.object({
   // proofListForCost ver 2 update later
 })
 
-const INVALID_UPDATE_FIELD = ['_id', 'createdAt']
+const INVALID_UPDATE_FIELD = ['_id']
 
 const validateBeforeCreate = async (data) => {
   return await POSTAL_GOOD_COLLECTION_SCHEMA.validateAsync(data, { abortEarly: false })

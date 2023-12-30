@@ -100,11 +100,15 @@ const findOneByCode = async (reqBody) => {
 
         let status = [[result[time].createdAt, 'Đã gửi hàng thành công tại ' + data1.name]]
         const names = ['Đang trên đường đến ' + data2.name, 'Đã đến ' + data2.name, 'Đang trên đường đến ' + data3.name,
-          'Đã đến ' + data3.name, 'Đang trên đường đến ' + data4.name, 'Đã đến ' + data4.name, 'Đang giao hàng ', 'Đã đến tay người nhận']
-        let cnt = result[time].orderNo * 2 +1
+          'Đã đến ' + data3.name, 'Đang trên đường đến ' + data4.name, 'Đã đến ' + data4.name, 'Đang giao hàng', 'Đã đến tay người nhận']
+        let cnt = result[time].orderNo * 2
         if (result[time].status != STATUS.pending) {
+          if (result[time].status != STATUS.shipped) {
+            cnt = cnt + 2
+          }
           cnt++
         }
+        console.log('cnt', cnt)
         for (let i = 0; i <cnt; i++) {
           status.push([result[time].updatedAtArray[i], names[i]])
         }

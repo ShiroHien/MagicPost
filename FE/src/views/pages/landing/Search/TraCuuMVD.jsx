@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { Box, Button, TextField, Dialog} from '@mui/material'
 import Title from '../Title'
 import Paragraph from '../Paragraph'
-import Navbar from '../../../../components/Navbars/Navbar'
-import Footer from '../../../../components/Footer/Footer'
 import TableStatus from '../../../../utils/TableStatus'
 import axiosInstance from '../../../../utils/AxiosInstance'
 
@@ -15,8 +13,9 @@ const TraCuuMVD = ({ onSubmit }) => {
   const handleChangeMVD = (event) => {
     setCode(event.target.value)
   }
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     if (code) {
+      e.preventDefault()
       getData()
       setOpen(true)
     }
@@ -83,11 +82,11 @@ const TraCuuMVD = ({ onSubmit }) => {
               label="VD: 12345, 12346,"
               name="mvd"
               value={code}
-              onChange={() => handleChangeMVD()}
+              onChange={handleChangeMVD}
               autoFocus
             />
             <Button
-              onClick={() => handleSubmit()}
+              onClick={handleSubmit}
               variant="contained"
               fullWidth
               type="submit"
