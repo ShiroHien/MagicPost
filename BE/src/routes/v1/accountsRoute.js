@@ -9,17 +9,19 @@ Router.route('/')
   .get((req, res) => {
     res.status(StatusCodes.OK).json({ message: 'GET: API get account' })
   })
+
+Router.route('/create')
   .post(accountsValidation.createNew, accountsController.createNew )
 
-// Xét một biến id vào trong trong param của account để lấy data
-Router.route('/:id')
+Router.route('/manage/:id')
   .get(accountsController.getDetails)
   .put(accountsValidation.update, accountsController.update)
   .delete(accountsController.deleteOne)
 
+Router.route('/type')
+  .post(accountsController.getAccoutListByType)
 
-//
-Router.route('/:id/type')
-  .get(accountsController.getAccoutListByType)
+Router.route('/signin')
+  .post(accountsController.signIn)
 
 export const accountsRoute = Router

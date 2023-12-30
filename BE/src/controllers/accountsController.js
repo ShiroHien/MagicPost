@@ -45,10 +45,17 @@ const deleteOne = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const signIn = async (req, res, next) => {
+  try {
+    const result = await accountsService.signIn(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
 export const accountsController = {
   createNew,
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType
+  getAccoutListByType,
+  signIn
 }
