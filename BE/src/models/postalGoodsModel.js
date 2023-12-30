@@ -3,6 +3,8 @@ import { GET_DB } from '~/config/mongodb'
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE, PHONE_RULE, PHONE_RULE_MESSAGE } from '~/utils/validators'
 import { ObjectId } from 'mongodb'
 import { TYPE_GOOD, SIZE_GOOD, STATUS } from '~/utils/constants'
+import { transactionPointsModel } from './transactionPointsModel'
+import { warehousePointsModel } from './warehousePointsModel'
 
 // Define Collection (name & schema)
 const POSTAL_GOOD_COLLECTION_NAME = 'postal_goods'
@@ -485,6 +487,15 @@ const statisticsTK = async(warehouseId, reqBody) => {
   } catch (error) { throw new Error(error) }
 }
 
+const findOneByCode = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).findOne({
+      code: reqBody.code
+    })
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const postalGoodsModel = {
   POSTAL_GOOD_COLLECTION_NAME,
   POSTAL_GOOD_COLLECTION_SCHEMA,
@@ -494,5 +505,6 @@ export const postalGoodsModel = {
   update,
   statisticsToanQuoc,
   statisticsGD,
-  statisticsTK
+  statisticsTK,
+  findOneByCode
 }

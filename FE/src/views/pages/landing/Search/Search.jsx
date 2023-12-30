@@ -1,12 +1,10 @@
-import '../../../../assets/css/Menu.css'
-import UocTinhCuocPhi from '../../../../components/UocTinhCuocPhi'
-// import TimKiemBuuCuc from './TimKiemBuuCuc'
-import Navbar from '../../../../components/Navbars/Navbar'
-import Footer from '../../../../components/Footer/Footer'
+// import UocTinhCuocPhi from '../../../../components/UocTinhCuocPhi'
+// import TimKiemDgd from './TimKiemDgd'
+// import Navbar from '../../../../components/Navbars/Navbar'
+// import Footer from '../../../../components/Footer/Footer'
 import Sidebar from './Sidebar/Sidebar'
-// import '../Search/ofSearch.css'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
 
@@ -32,11 +30,11 @@ const Search = () => {
         {/* {(activePage == '') ? <TraCuuMVD /> : <Outlet />} */}
         <div className="bodyContainer">
           <Sidebar />
-            <div className="others">
-              <Outlet/>
-            </div>
+          <div className="others">
+            <Outlet/>
+          </div>
         </div>
-    </div>
+      </div>
     </>
     
   )

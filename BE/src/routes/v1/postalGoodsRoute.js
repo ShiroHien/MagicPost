@@ -37,4 +37,7 @@ Router.route('/statisticsGD')
 Router.route('/statisticsTK')
   .post(postalGoodsController.statisticsTK)
 
+Router.route('/findbycode')
+  .post(postalGoodsController.findOneByCode)
+
 export const postalGoodsRoute = Router

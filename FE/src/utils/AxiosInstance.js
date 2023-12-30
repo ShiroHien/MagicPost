@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
-import { jwtDecode } from "jwt-decode"
+import { jwtDecode } from 'jwt-decode'
 
 // Tạo instance của Axios
 const axiosInstance = axios.create()
@@ -31,4 +31,4 @@ axiosInstance.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-export default axiosInstance 
+export default axiosInstance

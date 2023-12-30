@@ -1,24 +1,54 @@
-import React from 'react'
-import { Box, Button, TextField } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Button, TextField, Dialog} from '@mui/material'
 import Title from '../Title'
 import Paragraph from '../Paragraph'
 import Navbar from '../../../../components/Navbars/Navbar'
 import Footer from '../../../../components/Footer/Footer'
+import TableStatus from '../../../../utils/TableStatus'
+import axiosInstance from '../../../../utils/AxiosInstance'
 
 const TraCuuMVD = ({ onSubmit }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const data = new FormData(event.currentTarget)
-    // console.log({
-    //   mvd: data.get('mvd')
-    // })
+  const [code, setCode] = useState('')
+  const [status, setStatus] = useState([])
+  const [open, setOpen] =useState(false)
+
+  const handleChangeMVD = (event) => {
+    setCode(event.target.value)
   }
+  const handleSubmit = () => {
+    if (code) {
+      getData()
+      setOpen(true)
+    }
+  }
+
+  const getData = async() => {
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/findbycode`,
+      data: {
+        code: code
+      }
+    })
+    console.log('data', response.data)
+    setStatus(response.data)
+  }
+
   return (
     <>
-    <div>
-      <Navbar />
-      <div className="others">
-          <Box
+      <div>
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          maxWidth='lg' // Chọn kích thước tối đa (xs, sm, md, lg, xl)
+          fullWidth
+        >
+          <div>{TableStatus(status)}</div>
+        </Dialog>
+        <Box
           sx={{
             width: '55%',
             height: 'auto',
@@ -52,9 +82,12 @@ const TraCuuMVD = ({ onSubmit }) => {
               id="mvd"
               label="VD: 12345, 12346,"
               name="mvd"
+              value={code}
+              onChange={() => handleChangeMVD()}
               autoFocus
             />
             <Button
+              onClick={() => handleSubmit()}
               variant="contained"
               fullWidth
               type="submit"
@@ -77,15 +110,8 @@ const TraCuuMVD = ({ onSubmit }) => {
             </Button>
           </Box>
         </Box>
-        </div>
-      
-    </div>
-      
-    <div>
-      <Footer />
-    </div>
+      </div>
     </>
-    
   )
 }
 

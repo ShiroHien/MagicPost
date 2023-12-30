@@ -45,6 +45,12 @@ const statisticsTK = async (req, res, next) => {
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
 }
+const findOneByCode = async (req, res, next) => {
+  try {
+    const result = await postalGoodsService.findOneByCode(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
 
 
 export const postalGoodsController = {
@@ -53,5 +59,6 @@ export const postalGoodsController = {
   update,
   statisticsToanQuoc,
   statisticsGD,
-  statisticsTK
+  statisticsTK,
+  findOneByCode
 }

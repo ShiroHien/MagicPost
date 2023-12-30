@@ -83,6 +83,33 @@ const statisticsGD = async (reqBody) => {
   } catch (error) { throw error }
 }
 
+const findOneByCode = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const result = await postalGoodsModel.findOneByCode(reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
+    } else {
+      const name1 = await transactionPointsModel.getDetails(result.pointIds[0])
+      const name2 = await warehousePointsModel.getDetails(result.pointIds[1])
+      const name3 = await warehousePointsModel.getDetails(result.pointIds[2])
+      const name4 = await transactionPointsModel.getDetails(result.pointIds[3])
+      const status = [
+        [result.createdAt, name1.name],
+        [result.updatedAtArray[0], name2.name],
+        [result.updatedAtArray[1], name2.name],
+        [result.updatedAtArray[2], name3.name],
+        [result.updatedAtArray[3], name3.name],
+        [result.updatedAtArray[4], name4.name],
+        [result.updatedAtArray[5], name4.name],
+        [result.updatedAtArray[6], '']
+      ]
+      return status
+    }
+
+    
+  } catch (error) { throw error }
+}
 
 const statisticsTK = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
@@ -106,5 +133,6 @@ export const postalGoodsService = {
   update,
   statisticsToanQuoc,
   statisticsGD,
-  statisticsTK
+  statisticsTK,
+  findOneByCode
 }
