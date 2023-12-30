@@ -5,6 +5,7 @@ import { ObjectId } from 'mongodb'
 import { TYPE_GOOD, SIZE_GOOD, STATUS } from '~/utils/constants'
 import { transactionPointsModel } from './transactionPointsModel'
 import { warehousePointsModel } from './warehousePointsModel'
+import { validateStatus } from '~/utils/validateStatus'
 
 // Define Collection (name & schema)
 const POSTAL_GOOD_COLLECTION_NAME = 'postal_goods'
@@ -489,9 +490,11 @@ const statisticsTK = async(warehouseId, reqBody) => {
 
 const findOneByCode = async(reqBody) => {
   try {
-    const result = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).findOne({
-      code: reqBody.code
-    })
+    const codes = validateStatus(reqBody.code)
+    const result = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).find({
+      code: {$in: codes}
+    }).toArray()
+    console.log('result', result)
     return result
   } catch (error) { throw new Error(error) }
 }

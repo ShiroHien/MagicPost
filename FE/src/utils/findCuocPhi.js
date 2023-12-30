@@ -8,7 +8,7 @@ const ADD_POSTAGE = 2750
 const HESO = [0.25, 1, 1.5, 2, 3]
 const CPWEIGHT = [500, 1000, 2000, 4000]
 
-export const findCuocPhi = (w ,type, weight, size) => {
+export const findCuocPhi = (w, type, weight, size) => {
   let multi = 1
   if (type === TYPE_GOOD.type1) {
     multi = multi + HESO[1]
@@ -38,5 +38,6 @@ export const findCuocPhi = (w ,type, weight, size) => {
 
   console.log(w)
   let postageWithoutVAT = MAIN_POSTAGE + ORTHER_POSTAGE + ADD_POSTAGE * multi
-  return postageWithoutVAT * w + postageWithoutVAT * VAT
+  let postage = postageWithoutVAT * (w + VAT)
+  return postageWithoutVAT.toFixed(2)
 }

@@ -1,7 +1,6 @@
 import { transactionPointsService } from '~/services/transactionPointsService'
 import { StatusCodes } from 'http-status-codes'
 
-
 const createNew = async (req, res, next) => {
   try {
     // Điều hướng dữ liệu sang tầng Service (là tầng ở giữa controller và model để xử lý dữ liệu)

@@ -5,6 +5,7 @@ import { caculatePostage } from '~/utils/caculateMethods'
 import { findPath } from '~/utils/findPath'
 import { transactionPointsModel } from '~/models/transactionPointsModel'
 import { warehousePointsModel } from '~/models/warehousePointsModel'
+import { STATUS } from '~/utils/constants'
 
 const createNew = async (transactionId, reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
@@ -90,24 +91,28 @@ const findOneByCode = async (reqBody) => {
     if (!result) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
     } else {
-      const name1 = await transactionPointsModel.getDetails(result.pointIds[0])
-      const name2 = await warehousePointsModel.getDetails(result.pointIds[1])
-      const name3 = await warehousePointsModel.getDetails(result.pointIds[2])
-      const name4 = await transactionPointsModel.getDetails(result.pointIds[3])
-      const status = [
-        [result.createdAt, name1.name],
-        [result.updatedAtArray[0], name2.name],
-        [result.updatedAtArray[1], name2.name],
-        [result.updatedAtArray[2], name3.name],
-        [result.updatedAtArray[3], name3.name],
-        [result.updatedAtArray[4], name4.name],
-        [result.updatedAtArray[5], name4.name],
-        [result.updatedAtArray[6], '']
-      ]
-      return status
-    }
+      let statuses = []
+      for (let time = 0; time< result.length; time++) {
+        const data1 = await transactionPointsModel.getDetails(result[time].pointIds[0])
+        const data2 = await warehousePointsModel.getDetails(result[time].pointIds[1])
+        const data3 = await warehousePointsModel.getDetails(result[time].pointIds[2])
+        const data4 = await transactionPointsModel.getDetails(result[time].pointIds[3])
 
-    
+        let status = [[result[time].createdAt, 'Đã gửi hàng thành công tại ' + data1.name]]
+        const names = ['Đang trên đường đến ' + data2.name, 'Đã đến ' + data2.name, 'Đang trên đường đến ' + data3.name,
+          'Đã đến ' + data3.name, 'Đang trên đường đến ' + data4.name, 'Đã đến ' + data4.name, 'Đang giao hàng ', 'Đã đến tay người nhận']
+        let cnt = result[time].orderNo * 2 +1
+        if (result[time].status != STATUS.pending) {
+          cnt++
+        }
+        for (let i = 0; i <cnt; i++) {
+          status.push([result[time].updatedAtArray[i], names[i]])
+        }
+        statuses.push(status)
+      }
+      console.log('ds', statuses)
+      return statuses
+    }
   } catch (error) { throw error }
 }
 
