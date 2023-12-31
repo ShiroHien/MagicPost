@@ -157,7 +157,9 @@ const findDistrictByProvince = async(reqBody) => {
         }
       }
     ]
+    
     const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).aggregate(pipeline).toArray()
+    console.log(result)
     return result
   } catch (error) { throw new Error(error) }
 }

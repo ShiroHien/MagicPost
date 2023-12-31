@@ -8,9 +8,9 @@ import TKDiemTK from "../../../../pages/dashboard/ThongKe/TKDiemTK";
     
     TẠI ĐIỂM GIAO DỊCH ...
     <div className="spaceHeader"></div>
-      <div className="bodyContainer">
-          <TKDiemTK />
-      </div>
+    <div className="bodyContainer">
+        <TKDiemTK />
+    </div>
 
   </>
 )

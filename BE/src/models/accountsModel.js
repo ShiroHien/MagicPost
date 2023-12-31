@@ -8,7 +8,7 @@ import { ObjectId } from 'mongodb'
 const ACCOUNT_COLLECTION_NAME = 'accounts'
 const ACCOUNT_COLLECTION_SCHEMA = Joi.object({
   email: Joi.string().required().email(),
-  username: Joi.string().required().alphanum().min(3).max(30).trim().strict(),
+  username: Joi.string().max(30).trim().strict(),
   password: Joi.string().required().pattern(PASSWORD_RULE).message(PASSWORD_RULE_MESSAGE),
   phone: Joi.string().required().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
   fullname: Joi.string().required().min(3).max(50).trim().strict(),
@@ -19,7 +19,7 @@ const ACCOUNT_COLLECTION_SCHEMA = Joi.object({
     TYPE_ACCOUNT.staffOfTransaction,
     TYPE_ACCOUNT.staffOfWarehouse
   ),
-  pointId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
+  pointId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
 })
 
 const INVALID_UPDATE_FIELD = ['_id', 'username']

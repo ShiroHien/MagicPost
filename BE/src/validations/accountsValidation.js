@@ -9,24 +9,23 @@ const createNew = async (req, res, next) => {
    * Tạo Object json chứa điều kiện validate
    */
   const correctCondition = Joi.object({
-    email: Joi.string().required().email(),
-    username: Joi.string().required().alphanum().min(3).max(30).trim().strict(),
-    password: Joi.string().required().pattern(PASSWORD_RULE).message(PASSWORD_RULE_MESSAGE),
+    email: Joi.string().email(),
+    username: Joi.string().alphanum().min(3).max(30).trim().strict(),
+    password: Joi.string().required(),
     phone: Joi.string().required().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
-    fullname: Joi.string().required().min(3).max(50).trim().strict(),
+    fullname: Joi.string().min(3).max(50).trim().strict(),
     typeAccount: Joi.string().valid(
       TYPE_ACCOUNT.admin,
       TYPE_ACCOUNT.leaderOfTransaction,
       TYPE_ACCOUNT.leaderOfWarehouse,
       TYPE_ACCOUNT.staffOfTransaction,
       TYPE_ACCOUNT.staffOfWarehouse
-    ),
-    pointId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
+    )
   })
 
   try {
     // Set abortEarly = false để khi có nhiều lỗi thì trả về tất cả lỗi
-    await correctCondition.validateAsync(req.body, { abortEarly: false })
+    await correctCondition.validateAsync(req.body, { abortEarly: false, allowUnknown: true})
     // Validate dữ liệu hợp lệ thì cho request sang tầng Controller
     next()
   } catch (error) {
@@ -36,10 +35,9 @@ const createNew = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const correctCondition = Joi.object({
-    email: Joi.string().requied().email(),
-    password: Joi.string().requied().pattern(PASSWORD_RULE).message(PASSWORD_RULE_MESSAGE),
+    password: Joi.string(),
     phone: Joi.string().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
-    fullname: Joi.string().requied().min(3).max(50).trim().strict(),
+    fullname: Joi.string().max(50).trim().strict(),
     TYPE_ACCOUNT: Joi.string().valid(
       TYPE_ACCOUNT.admin,
       TYPE_ACCOUNT.leaderOfTransaction,

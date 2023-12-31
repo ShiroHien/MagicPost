@@ -105,5 +105,6 @@ export const transactionPointsService = {
   update,
   deleteOne,
   findOnebyProvinceCity,
-  getTPs
+  getTPs,
+  findDistrictByProvince
 }

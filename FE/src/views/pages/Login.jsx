@@ -13,63 +13,63 @@ import Container from '@mui/material/Container'
 import { useRef, useState, useEffect, useContext } from 'react'
 import {TYPE_ACCOUNT} from '../../utils/constants'
 import { useNavigate } from "react-router-dom"
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export default function Login() {
-  const navigate = useNavigate();  // Get the navigate function from React Router
+  const navigate = useNavigate()  // Get the navigate function from React Router
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const data = {
       email: user,
       password: pwd
-    };
-
-    console.log('data signin', data);
-
-    try {
-      const res = await axios.post(`http://localhost:3377/v1/accounts/signin`, data);
-
-      console.log('result signin', res.data.result);
-      console.log('centerInfo signin', res.data);
-
-      if (res.data.result !== false) {
-        Cookies.set('jwt', res.data.result);
-        Cookies.set('info', JSON.stringify(res.data));
-
-        const accountType = JSON.parse(Cookies.get('info')).typeAccount;
-
-        if (accountType === TYPE_ACCOUNT.admin) {
-          navigate('/leader');
-        } else if (accountType === TYPE_ACCOUNT.leaderOfTransaction) {
-          navigate('/managerDGD');
-        } else if (accountType === TYPE_ACCOUNT.leaderOfWarehouse) {
-          navigate('/managerDTK');
-        } else if (accountType === TYPE_ACCOUNT.staffOfTransaction) {
-          navigate('/staff');
-        } else {
-          navigate('/staff');
-        }
-      } else {
-        alert("Tên đăng nhập hoặc mật khẩu không đúng!");
-      }
-    } catch (err) {
-      console.log("Error from login", err);
     }
 
-    setUser('');
-    setPwd('');
-    setSuccess(true);
-  };
+    console.log('data signin', data)
 
-  const userRef = useRef();
-  const errRef = useRef();
+    try {
+      const res = await axios.post(`http://localhost:3377/v1/accounts/signin`, data)
 
-  const [user, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+      console.log('token signin', res.data.token)
+      console.log('centerInfo signin', res.data)
+
+      if (res.data.success) {
+        Cookies.set('jwt', res.data.token)
+        Cookies.set('info', JSON.stringify(res.data))
+
+        const accountType = JSON.parse(Cookies.get('info')).typeAccount
+
+        if (accountType === TYPE_ACCOUNT.admin) {
+          navigate('/leader')
+        } else if (accountType === TYPE_ACCOUNT.leaderOfTransaction) {
+          navigate('/managerDGD')
+        } else if (accountType === TYPE_ACCOUNT.leaderOfWarehouse) {
+          navigate('/managerDTK')
+        } else if (accountType === TYPE_ACCOUNT.staffOfTransaction) {
+          navigate('/staff')
+        } else {
+          navigate('/staff')
+        }
+      } else {
+        alert("Tên đăng nhập hoặc mật khẩu không đúng!")
+      }
+    } catch (err) {
+      console.log("Error from login", err)
+    }
+
+    setUser('')
+    setPwd('')
+    setSuccess(true)
+  }
+
+  const userRef = useRef()
+  const errRef = useRef()
+
+  const [user, setUser] = useState('')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+  const [success, setSuccess] = useState(false)
 
 
 

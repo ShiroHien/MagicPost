@@ -9,9 +9,9 @@ const axiosInstance = axios.create()
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = Cookies.get('jwt')
-    console.log("Token:", token)
+    // console.log("Token:", token)
     const parts = token.split('.')
-    console.log("Parts:", parts)
+    // console.log("Parts:", parts)
     // Kiểm tra xem token có tồn tại và chưa hết hạn hay không
     if (token) {
       const decodedToken = jwtDecode

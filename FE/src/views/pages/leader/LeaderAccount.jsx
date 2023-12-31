@@ -45,7 +45,7 @@ const rows = [
   return (
     <div>
       <h5>
-        QUẢN LÝ TÀI KHOẢN NHÂN VIÊN
+        QUẢN LÝ TÀI KHOẢN TRƯỞNG ĐIỂM
         <span style={{ marginLeft: '600px'}}>
             <Button className="btn-round createButton" color='danger' type="button" to="/leader/create" tag={Link}>
               Cấp tài khoản
