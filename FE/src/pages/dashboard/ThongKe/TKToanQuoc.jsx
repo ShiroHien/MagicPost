@@ -11,6 +11,16 @@ import PeopleOutlineRoundedIcon from '@mui/icons-material/PeopleOutlineRounded'
 // third-party
 import ReactApexChart from 'react-apexcharts'
 
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Form,
+  FormGroup,
+  Input,
+  Button,
+} from "reactstrap";
+
 // chart options
 const columnChartOptions = {
   chart: {
@@ -109,6 +119,9 @@ const TKToanQuoc = () => {
   ])
 
   const [options, setOptions] = useState(columnChartOptions)
+  const [year, setYear] = useState([])
+  const [rank, setRank] = useState([])
+  const [pointName, setPointName] = useState([])
 
   useEffect(() => {
     setOptions((prevState) => ({
@@ -176,9 +189,71 @@ const TKToanQuoc = () => {
             icon={() => <PeopleOutlineRoundedIcon style={{ color: '#FF9933' }} />}/>
         </Grid>
       </Grid>
+      <h5>
+      <div className='form-row' style={{marginTop: '40px', marginLeft: '100px'}}>
+        <FormGroup className='col-md-3'>
+          <div className="label">Năm</div>
+            <Input id="inputState" type="select" onChange={async (event) => { setYear(event.target.value)}} required>
+              <option selected="">Chọn...</option>
+              {years.map((item, index) => (
+                <option key={`years-${index}`}>
+                  {item.label}
+                </option>
+              ))}
+            </Input>
+          </FormGroup>
+          <FormGroup className='col-md-3'>
+          <div className="label">Điểm</div>
+            <Input id="inputState" type="select" onChange={async (event) => { setRank(event.target.value)}} required>
+              <option selected="">Chọn...</option>
+              {ranks.map((item, index) => (
+                <option key={`years-${index}`}>
+                  {item.label}
+                </option>
+              ))}
+            </Input>
+          </FormGroup>
+          <FormGroup className='col-md-3'>
+          <div className="label">Tên điểm</div>
+            <Input id="inputState" type="select" onChange={async (event) => { setPointName(event.target.value)}} required>
+              <option selected="">Chọn...</option>
+              {points.map((item, index) => (
+                <option key={`years-${index}`}>
+                  {item.label}
+                </option>
+              ))}
+            </Input>
+          </FormGroup>
+      </div>
+      </h5>
       <ReactApexChart options={options} series={series} type="bar" height={430} />
     </div>
   )
 }
 
 export default TKToanQuoc
+
+const years = [
+  {label: "2023"},
+  {label: "2022"},
+  {label: "2021"},
+  {label: "2020"}
+]
+
+const ranks = [
+  {label: "Điểm Tập Kết"},
+  {label: "Điểm Giao Dịch"},
+]
+
+const points = [
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+  {label: "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"},
+]
+
+
+
