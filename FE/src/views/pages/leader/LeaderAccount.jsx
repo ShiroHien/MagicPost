@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import * as React from 'react'
-import { DataGrid } from '@mui/x-data-grid'
-import { Button } from '@mui/material'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import * as React from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { Link } from 'react-router-dom';
+// import { Button } from '@mui/material';
+import {
+  Button,
+  NavLink
+} from "reactstrap";
 
 
 function LeaderAccount() {
@@ -16,12 +21,20 @@ function LeaderAccount() {
       field: 'action',
       headerName: '',
       width: 200,
-      renderCell: () => <Button>Chỉnh sửa</Button>
+      renderCell: () => 
+      <Button className="btn-round" color="danger" type="button" to="/leader/editaccount" tag={Link}>
+        Chỉnh sửa
+      </Button>
     }
   ]
 
+const rows = [
+  { email: 1, fullname: 'Snow', firstName: 'Jon', age: 35 },
+  { email: 2, fullname: 'Snow', firstName: 'Jon', age: 35 },
+];
 
-  const [user, setUser] = useState([])
+
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3377/v1/accounts/truongdiem`).then((res) => {
@@ -31,7 +44,15 @@ function LeaderAccount() {
   }, [])
   return (
     <div>
-      <h1>Quản lý tài khoản trưởng điểm</h1>
+      <h5>
+        QUẢN LÝ TÀI KHOẢN NHÂN VIÊN
+        <span style={{ marginLeft: '600px'}}>
+            <Button className="btn-round createButton" color='danger' type="button" to="/leader/create" tag={Link}>
+              Cấp tài khoản
+            </Button>
+          </span>
+
+        </h5>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           getRowId={(row) => row.email}
@@ -45,6 +66,7 @@ function LeaderAccount() {
           pageSizeOptions={[5, 10]}
         />
       </div>
+
     </div>
   )
 
