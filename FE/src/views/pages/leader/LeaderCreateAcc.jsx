@@ -16,7 +16,7 @@ import axiosInstance from '../../../utils/AxiosInstance'
 // import getAreaByProvince from 'functions/getAreaByProvince'
 import capitalize from '../../../utils/captalized'
 
-function LeaderCreateAcc() {
+function LeaderCreateAcc () {
   const [type, setType] = useState('')
   const [account, setAccount] = useState('')
   const [password, setPassword] = useState('')
@@ -65,38 +65,38 @@ function LeaderCreateAcc() {
     setDistricts(response.data)
     console.log('   district', response.data)
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Xử lý dữ liệu khi form được gửi đi
     console.log('gửi form',pointName)
-    
-  try {
-    if (checkPassword()) {
-    await axiosInstance({
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'post',
-      url: `http://localhost:3377/v1/accounts/create`, //API nào?
-      data: {
-        'typeAccount': type,
-        'password': password,
-        'email': email,
-        'phone': phone,
-        'point_name': pointName,
-        'point_id': pointId,
-        'province': province,
-        'distric': district,
-        'address': address
-      }
-    }).then((response) => {
-      setPointId(response.data._id)
-      alert('Tạo user thành công')
-      window.location.reload()
-  })} else { alert('Mật khẩu nhập lại chưa đúng') } 
-} catch (error) {alert(error.message)}
 
-      
+    try {
+      if (checkPassword()) {
+        await axiosInstance({
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'post',
+          url: `http://localhost:3377/v1/accounts/create`, //API nào?
+          data: {
+            'typeAccount': type,
+            'password': password,
+            'email': email,
+            'phone': phone,
+            'point_name': pointName,
+            'point_id': pointId,
+            'province': province,
+            'distric': district,
+            'address': address
+          }
+          }).then((response) => {
+          setPointId(response.data._id)
+          alert('Tạo user thành công')
+          window.location.reload()
+        })} else { alert('Mật khẩu nhập lại chưa đúng') } 
+    } catch (error) {alert(error.message)}
+  }
   const back = () => {
     navigate(-1)
   }
@@ -271,8 +271,5 @@ function LeaderCreateAcc() {
 
     </>
   )
-
 }
-
-
 export default LeaderCreateAcc
