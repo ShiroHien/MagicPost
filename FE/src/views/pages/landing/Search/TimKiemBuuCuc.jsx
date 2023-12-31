@@ -74,7 +74,7 @@ const TimKiemDgd = () => {
         'Content-Type': 'application/json'
       },
       method: 'post',
-      url: `http://localhost:3377/v1/transaction-points/findid`,
+      url: `http://localhost:3377/v1/transaction-points/findbyprovincity`,
       data: {
         province: selectedProvince,
         city: selectedDistrict

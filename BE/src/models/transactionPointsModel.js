@@ -124,7 +124,7 @@ const pushAccountIds = async(account) => {
   } catch (error) { throw new Error(error) }
 }
 
-const findOneByFilter = async(reqBody) => {
+const findOnebyProvinceCity = async(reqBody) => {
   try {
     const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).findOne({
       province: reqBody.province,
@@ -172,6 +172,7 @@ const getTPs = async(redBody) => {
 export const transactionPointsModel = {
   TRANSACTION_POINT_COLLECTION_NAME,
   TRANSACTION_POINT_COLLECTION_SCHEMA,
+  getTPs,
   createNew,
   findOneById,
   getDetails,
@@ -180,7 +181,6 @@ export const transactionPointsModel = {
   findOneByAddress,
   setLeaderId,
   pushAccountIds,
-  findOneByFilter,
-  findDistrictByProvince,
-  getTPs
+  findOnebyProvinceCity,
+  findDistrictByProvince
 }

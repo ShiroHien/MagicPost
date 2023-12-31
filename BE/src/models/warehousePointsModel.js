@@ -33,6 +33,13 @@ const validateBeforeCreate = async (data) => {
   return await WAREHOUSE_POINT_COLLECTION_SCHEMA.validateAsync(data, { abortEarly: false })
 }
 
+const getWHs = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).find({}).toArray()
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 const createNew = async (data) => {
   try {
     const validData = await validateBeforeCreate(data)
@@ -135,7 +142,7 @@ const pushAccountIds = async(account) => {
   } catch (error) { throw new Error(error) }
 }
 
-const findOneByFilter = async(reqBody) => {
+const findOnebyProvinceCity = async(reqBody) => {
   try {
     const result = await GET_DB().collection(WAREHOUSE_POINT_COLLECTION_NAME).findOne({
       province: reqBody.province,
@@ -145,9 +152,11 @@ const findOneByFilter = async(reqBody) => {
   } catch (error) { throw new Error(error) }
 }
 
+
 export const warehousePointsModel = {
   WAREHOUSE_POINT_COLLECTION_NAME,
   WAREHOUSE_POINT_COLLECTION_SCHEMA,
+  getWHs,
   createNew,
   findOneById,
   getDetails,
@@ -157,5 +166,5 @@ export const warehousePointsModel = {
   pushTransactionPointIds,
   setLeaderId,
   pushAccountIds,
-  findOneByFilter
+  findOnebyProvinceCity
 }

@@ -59,10 +59,22 @@ const deleteOne = async (warehousePointId) => {
   } catch (error) { throw error }
 }
 
-const findOneByFilter = async (reqBody) => {
+const findOnebyProvinceCity = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const result = await warehousePointsModel.findOneByFilter(reqBody)
+    const result = await warehousePointsModel.findOnebyProvinceCity(reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
+    }
+
+    return result
+  } catch (error) { throw error }
+}
+
+const getWHs = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const result = await warehousePointsModel.getWHs(reqBody)
     if (!result) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
     }
@@ -76,5 +88,6 @@ export const warehousePointsService = {
   getDetails,
   update,
   deleteOne,
-  findOneByFilter
+  findOnebyProvinceCity,
+  getWHs
 }

@@ -7,9 +7,7 @@ const Router = express.Router()
 
 // ______________________________General API________________________________________
 Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message: 'GET: API get transaction point' })
-  })
+  .get(warehousePointsController.getWHs)
 
 Router.route('/create')
   .post(warehousePointsValidation.createNew, warehousePointsController.createNew )
@@ -20,7 +18,7 @@ Router.route('/manage/:id')
   .put(warehousePointsValidation.update, warehousePointsController.update) // API sửa dữ liệu
   .delete(warehousePointsController.deleteOne) // API xóa dữ liệu
 
-Router.route('/findid')
-  .post(warehousePointsController.findOneByFilter)
+Router.route('/findbyprovincity')
+  .post(warehousePointsController.findOnebyProvinceCity)
 
 export const warehousePointsRoute = Router

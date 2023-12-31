@@ -8,9 +8,9 @@ import ListDTK from "./ListDTK";
   <>
     <TKDiemTK/>
     <div className="spaceHeader"></div>
-      <div className="bodyContainer">
-        <ListDTK/>
-      </div>
+    <div className="bodyContainer">
+      <ListDTK/>
+    </div>
 
   </>
 )

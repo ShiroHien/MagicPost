@@ -32,9 +32,16 @@ const deleteOne = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
-const findOneByFilter = async (req, res, next) => {
+const findOnebyProvinceCity = async (req, res, next) => {
   try {
-    const result = await warehousePointsService.findOneByFilter(req.body)
+    const result = await warehousePointsService.findOnebyProvinceCity(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const getWHs = async (req, res, next) => {
+  try {
+    const result = await warehousePointsService.getWHs(req.body)
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
 }
@@ -44,5 +51,6 @@ export const warehousePointsController = {
   getDetails,
   update,
   deleteOne,
-  findOneByFilter
+  findOnebyProvinceCity,
+  getWHs
 }

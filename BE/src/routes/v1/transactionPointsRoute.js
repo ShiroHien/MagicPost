@@ -18,8 +18,8 @@ Router.route('/manage/:id')
   .put(transactionPointsValidation.update, transactionPointsController.update) // API sửa dữ liệu
   .delete(transactionPointsController.deleteOne) // API xóa dữ liệu
 
-Router.route('/findid')
-  .post(transactionPointsController.findOneByFilter)
+Router.route('/findbyprovincity')
+  .post(transactionPointsController.findOnebyProvinceCity)
 
 Router.route('/finddistrict')
   .post(transactionPointsController.findDistrictByProvince)

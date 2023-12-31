@@ -71,7 +71,7 @@ const statisticsToanQuoc = async (reqBody) => {
 const statisticsGD = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const transactionPoint = await transactionPointsModel.findOneByFilter(reqBody)
+    const transactionPoint = await transactionPointsModel.findOnebyProvinceCity(reqBody)
     if (!transactionPoint) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
     } else {
@@ -123,7 +123,7 @@ const findOneByCode = async (reqBody) => {
 const statisticsTK = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const warehousePoint = await warehousePointsModel.findOneByFilter(reqBody)
+    const warehousePoint = await warehousePointsModel.findOnebyProvinceCity(reqBody)
     if (!warehousePoint) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
     } else {

@@ -32,9 +32,9 @@ const deleteOne = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
-const findOneByFilter = async (req, res, next) => {
+const findOnebyProvinceCity = async (req, res, next) => {
   try {
-    const result = await transactionPointsService.findOneByFilter(req.body)
+    const result = await transactionPointsService.findOnebyProvinceCity(req.body)
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
 }
@@ -58,7 +58,7 @@ export const transactionPointsController = {
   getDetails,
   update,
   deleteOne,
-  findOneByFilter,
+  findOnebyProvinceCity,
   findDistrictByProvince,
   getTPs
 }

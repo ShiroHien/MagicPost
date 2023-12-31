@@ -1,39 +1,34 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import * as React from 'react'
+import { DataGrid } from '@mui/x-data-grid'
+import { Button } from '@mui/material'
 
 
 function ListDTK() {
-const columns = [
-  { field: 'fullname', headerName: 'Full name', width: 130 },
-  { field: 'phone', headerName: 'Phone', width: 200 },
-  { field: 'email', headerName: 'Email', width: 200 },
-  { field: 'typeAccount', headerName: 'Type', width: 200 },
-  { field: 'username', headerName: 'User Name', width: 200 },
-  {
-    field: 'action',
-    headerName: '',
-    width: 200,
-    renderCell: () => <Button>Chỉnh sửa</Button>,
-  },
-];
-
-const rows = [
-  { email: 1, fullname: 'Snow', firstName: 'Jon', age: 35 },
-  { email: 2, fullname: 'Snow', firstName: 'Jon', age: 35 },
-];
+  const columns = [
+    { field: 'fullname', headerName: 'Full name', width: 130 },
+    { field: 'phone', headerName: 'Phone', width: 200 },
+    { field: 'email', headerName: 'Email', width: 200 },
+    { field: 'typeAccount', headerName: 'Type', width: 200 },
+    { field: 'username', headerName: 'User Name', width: 200 },
+    {
+      field: 'action',
+      headerName: '',
+      width: 200,
+      renderCell: () => <Button>Chỉnh sửa</Button>
+    }
+  ]
 
 
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState([])
 
   useEffect(() => {
-    axios.get('../src/assets/dataTemp/accounts.json').then((res) => {
-      console.log('data2', res.data);
-      setUser(res.data);
-    });
-  }, []);
+    axios.get(`http://localhost:3377/v1/transaction-points`).then((res) => {
+      console.log('data2', res.data)
+      setUser(res.data)
+    })
+  }, [])
   return (
     <div>
       <h1></h1>
@@ -45,15 +40,15 @@ const rows = [
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
+              paginationModel: { page: 0, pageSize: 5 }
+            }
           }}
           pageSizeOptions={[5, 10]}
         />
       </div>
     </div>
-  );
+  )
 
-};
+}
 
-export default ListDTK;
+export default ListDTK
