@@ -39,22 +39,6 @@ const ThongKe = () => {
           <Grid item>
             <Typography variant="h4">Thống kê toàn quốc</Typography>
           </Grid>
-          {/* <Grid item>
-            <TextField
-              id="standard-select-currency"
-              size="small"
-              select
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              sx={{ '& .MuiInputBase-input': { py: 0.5, fontSize: '0.875rem' } }}
-            >
-              {status.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid> */}
         </Grid>
         <MainCard sx={{ mt: 1.75 }}>
           <Stack spacing={1.5} sx={{ mb: -12 }}>
@@ -103,22 +87,6 @@ const ThongKe = () => {
           <Grid item>
             <Typography variant="h4">Thống kê điểm tập kết</Typography>
           </Grid>
-          {/* <Grid item>
-            <TextField
-              id="standard-select-currency"
-              size="small"
-              select
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              sx={{ '& .MuiInputBase-input': { py: 0.5, fontSize: '0.875rem' } }}
-            >
-              {status.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid> */}
         </Grid>
         <MainCard sx={{ mt: 1.75 }}>
           <Stack spacing={1.5} sx={{ mb: -12 }}>
