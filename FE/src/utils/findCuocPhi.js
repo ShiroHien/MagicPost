@@ -39,5 +39,5 @@ export const findCuocPhi = (w, type, weight, size) => {
   console.log(w)
   let postageWithoutVAT = MAIN_POSTAGE + ORTHER_POSTAGE + ADD_POSTAGE * multi
   let postage = postageWithoutVAT * (w + VAT)
-  return postageWithoutVAT.toFixed(2)
+  return postage.toFixed(2)
 }

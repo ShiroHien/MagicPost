@@ -23,10 +23,10 @@ const getDetails = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
-const getAccoutListByType = async (req, res, next) => {
+const getAccoutTruongDiem = async (req, res, next) => {
   try {
     // Điều hướng dữ liệu sang tầng Service (là tầng ở giữa controller và model để xử lý dữ liệu)
-    const account = await accountsService.getAccoutListByType(req.body)
+    const account = await accountsService.getAccoutTruongDiem(req.body)
 
     // Có kết quả thì trả về phía Client
     res.status(StatusCodes.OK).json(account)
@@ -69,12 +69,28 @@ const getAccounts = async (req, res, next) => {
     res.status(StatusCodes.OK).json(result)
   } catch (error) { next(error) }
 }
+
+const getAccountsGDVDGD = async (req, res, next) => {
+  try {
+    const result = await accountsService.getAccountsGDVDGD(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const getAccountsNVDTK = async (req, res, next) => {
+  try {
+    const result = await accountsService.getAccountsNVDTK(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
 export const accountsController = {
   createNew,
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType,
+  getAccoutTruongDiem,
   signIn,
-  getAccounts
+  getAccounts,
+  getAccountsGDVDGD,
+  getAccountsNVDTK
 }

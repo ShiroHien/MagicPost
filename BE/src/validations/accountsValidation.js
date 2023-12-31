@@ -36,10 +36,10 @@ const createNew = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const correctCondition = Joi.object({
-    email: Joi.string().email(),
-    password: Joi.string().pattern(PASSWORD_RULE).message(PASSWORD_RULE_MESSAGE),
+    email: Joi.string().requied().email(),
+    password: Joi.string().requied().pattern(PASSWORD_RULE).message(PASSWORD_RULE_MESSAGE),
     phone: Joi.string().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
-    fullname: Joi.string().min(3).max(50).trim().strict(),
+    fullname: Joi.string().requied().min(3).max(50).trim().strict(),
     TYPE_ACCOUNT: Joi.string().valid(
       TYPE_ACCOUNT.admin,
       TYPE_ACCOUNT.leaderOfTransaction,

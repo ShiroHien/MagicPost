@@ -162,6 +162,13 @@ const findDistrictByProvince = async(reqBody) => {
   } catch (error) { throw new Error(error) }
 }
 
+const getTPs = async(redBody) => {
+  try {
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).find({}).toArray()
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const transactionPointsModel = {
   TRANSACTION_POINT_COLLECTION_NAME,
   TRANSACTION_POINT_COLLECTION_SCHEMA,
@@ -174,5 +181,6 @@ export const transactionPointsModel = {
   setLeaderId,
   pushAccountIds,
   findOneByFilter,
-  findDistrictByProvince
+  findDistrictByProvince,
+  getTPs
 }

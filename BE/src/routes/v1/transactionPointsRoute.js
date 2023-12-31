@@ -7,9 +7,7 @@ const Router = express.Router()
 
 // ______________________________General API________________________________________
 Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message: 'GET: API get transaction point' })
-  })
+  .get(transactionPointsController.getTPs)
 
 Router.route('/create')
   .post(transactionPointsValidation.createNew, transactionPointsController.createNew )

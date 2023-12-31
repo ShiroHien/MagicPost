@@ -2,7 +2,7 @@ export const WHITELIST_DOMAINS = [
   'http://localhost:5173'
 ]
 
-export const TYPE_ACCOUNT = {
+export const TYPE_ACCOUNT_OLD = {
   admin: 'admin',
   leaderOfTransaction: 'leader of transaction',
   leaderOfWarehouse: 'leader of warehouse',
@@ -10,18 +10,13 @@ export const TYPE_ACCOUNT = {
   staffOfWarehouse: 'staff of warehouse'
 }
 
-// export const status = {
-//   pendingT1: 'Pending transaction1',
-//   pendingW1: 'Pending warehouse1',
-//   pendingT2: 'Pending transaction2',
-//   pendingW2: 'Pending warehouse2',
-//   Shipped1: 'Shipped1',
-//   Shipped2: 'Shipped2',
-//   w2wShipped: 'w2wShipped',
-//   cShipped: 'Customer Shipped',
-//   delivered: 'Delivered',
-//   canceled: 'Canceled'
-// }
+export const TYPE_ACCOUNT = {
+  admin: 'Lãnh đạo',
+  leaderOfTransaction: 'Trưởng điểm giao dịch',
+  leaderOfWarehouse: 'Trưởng điểm tập kết',
+  staffOfTransaction: 'Giao dịch viên điểm giao dịch',
+  staffOfWarehouse: 'Nhân viên điểm tập kết'
+}
 
 export const STATUS = {
   pending: 'Pending',

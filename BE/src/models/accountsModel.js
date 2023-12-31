@@ -60,16 +60,7 @@ const getDetails = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
-const getAccoutListByType = async(reqBody) => {
-  try {
-    const types = [TYPE_ACCOUNT.leaderOfTransaction, TYPE_ACCOUNT.leaderOfWarehouse]
-    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
-      typeAccount: { $in: types }
-    }).toArray()
 
-    return result
-  } catch (error) { throw new Error(error) }
-}
 
 const update = async(id, data) => {
   try {
@@ -111,7 +102,43 @@ const signIn = async(reqBody) => {
 
 const getAccounts = async(reqBody) => {
   try {
-    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({}).toArray()
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).updateMany(
+      { typeAccount: TYPE_ACCOUNT.staffOfWarehouse },
+      { $set: { typeAccount: 'Nhân viên điểm tập kết' }}
+    )
+
+    console.log('data', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccoutTruongDiem = async(reqBody) => {
+  try {
+    const types = [TYPE_ACCOUNT.leaderOfTransaction, TYPE_ACCOUNT.leaderOfWarehouse]
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: { $in: types }
+    }).toArray()
+
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccountsGDVDGD = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: TYPE_ACCOUNT.staffOfTransaction
+    }).toArray()
+
+    console.log('data', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccountsNVDTK = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: TYPE_ACCOUNT.staffOfWarehouse
+    }).toArray()
 
     console.log('data', result)
     return result
@@ -126,7 +153,9 @@ export const accountsModel = {
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType,
   signIn,
-  getAccounts
+  getAccounts,
+  getAccoutTruongDiem,
+  getAccountsGDVDGD,
+  getAccountsNVDTK
 }

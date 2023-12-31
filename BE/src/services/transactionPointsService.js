@@ -88,11 +88,22 @@ const findDistrictByProvince = async (reqBody) => {
   } catch (error) { throw error }
 }
 
+const getTPs = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const transactionPoint = await transactionPointsModel.getTPs(reqBody)
+    if (!transactionPoint) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
+    }
+    return transactionPoint
+  } catch (error) { throw error }
+}
+
 export const transactionPointsService = {
   createNew,
   getDetails,
   update,
   deleteOne,
   findOneByFilter,
-  findDistrictByProvince
+  getTPs
 }

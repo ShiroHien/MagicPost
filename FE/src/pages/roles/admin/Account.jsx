@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import * as React from 'react'
+import { DataGrid } from '@mui/x-data-grid'
+import { Button } from '@mui/material'
 
 const columns = [
   { field: 'fullname', headerName: 'Full name', width: 130 },
@@ -14,25 +14,20 @@ const columns = [
     field: 'action',
     headerName: '',
     width: 200,
-    renderCell: () => <Button>Chỉnh sửa</Button>,
-  },
-];
-
-const rows = [
-  { email: 1, fullname: 'Snow', firstName: 'Jon', age: 35 },
-  { email: 2, fullname: 'Snow', firstName: 'Jon', age: 35 },
-];
+    renderCell: () => <Button>Chỉnh sửa</Button>
+  }
+]
 
 const Account = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState([])
 
   // Api get ds all accounts
   useEffect(() => {
-    axios.get(`http://localhost:3377/v1/accounts/`).then((res) => {
-      console.log('data2', res.data);
-      setUser(res.data);
-    });
-  }, []);
+    axios.get(`http://localhost:3377/v1/accounts/truongdiem`).then((res) => {
+      console.log('data2', res.data)
+      setUser(res.data)
+    })
+  }, [])
   return (
     <div>
       <h1>Quản lý tài khoản</h1>
@@ -50,7 +45,7 @@ const Account = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Account;
+export default Account
