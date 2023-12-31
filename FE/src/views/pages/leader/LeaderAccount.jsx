@@ -46,11 +46,12 @@ const rows = [
     <div>
       <h5>
         QUẢN LÝ TÀI KHOẢN NHÂN VIÊN
-        <span style={{ marginLeft: '600px' }}>
+        <span style={{ marginLeft: '600px'}}>
             <Button className="btn-round createButton" color='danger' type="button" to="/leader/create" tag={Link}>
               Cấp tài khoản
             </Button>
           </span>
+
         </h5>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid

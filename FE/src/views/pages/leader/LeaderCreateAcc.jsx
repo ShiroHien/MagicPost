@@ -87,7 +87,8 @@ function LeaderCreateAcc() {
           <Form onSubmit={handleSubmit}>
             <div className="form-row">
             <FormGroup className='col-md-5'>
-                <point htmlFor="rank">Vị trí</point>
+                {/* <point htmlFor="rank">Vị trí</point> */}
+                <div className="label">Vai trò (Type)</div>
                 <Input id="inputState" type="select" onChange={async (event) => { setRank(event.target.value)}} required>
                   <option selected="">Chọn...</option>
                   {ranks.map((item, index) => (
@@ -161,7 +162,8 @@ function LeaderCreateAcc() {
             </div>
             <div className='form-row'>
               <FormGroup className='col-md-5'>
-                <label htmlFor="province">Thành phố/Tỉnh</label>
+                {/* <label htmlFor="province">Thành phố/Tỉnh</label> */}
+                <div className="label">Tỉnh thành</div>
                 <Input
                   id="inputState" type="select" onChange={async (event) => { setProvince(event.target.value) }}
                   defaultValue=""
@@ -176,7 +178,8 @@ function LeaderCreateAcc() {
                 </Input>
               </FormGroup>
               <FormGroup className='col-md-6'>
-                <label htmlFor="district">Quận/Huyện</label>
+                {/* <label htmlFor="district">Quận/Huyện</label> */}
+                <div className="label">Quận huyện</div>
                 <Input
                   id="inputState"
                   type="select"
