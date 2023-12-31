@@ -2,7 +2,7 @@ export const API_ROOT = 'http://localhost:3377'
 
 
 export const TYPE_ACCOUNT = {
-  admin: 'admin',
+  admin: 'Lãnh đạo',
   leaderOfTransaction: 'leader of transaction',
   leaderOfWarehouse: 'leader of warehouse',
   staffOfTransaction: 'staff of transaction',

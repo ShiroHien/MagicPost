@@ -20,6 +20,7 @@ import FromDTK from './pages/staff/FromDTK';
 import IndexLeader from './pages/leader/IndexLeader';
 import LeaderAccount from './pages/leader/LeaderAccount';
 import LeaderDashboard from './pages/leader/LeaderDashBoard';
+import LeaderCreateAcc from './pages/leader/LeaderCreateAcc';
 import ThongKe from '../pages/dashboard/ThongKe';
 import TKDiemTK from '../pages/dashboard/ThongKe/TKDiemTK';
 import TKDaGuiGD from '../pages/dashboard/ThongKe/TKDaGuiGD';
@@ -60,6 +61,7 @@ export const App = () => {
                 <Route index element={<LeaderDashboard  />}/>
                 <Route path='statistics' element={<TKToanQuoc/>} />
                 <Route path='account' element={<LeaderAccount />} />
+                <Route path='create' element={<LeaderCreateAcc />} />
                 <Route path='DTK' element={<LeaderDTK />} />
                 <Route path='DGD' element={<TKKhachGuiGD />} />
             </Route>
