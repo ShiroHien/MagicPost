@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import {
+  Button,
+  NavLink
+} from "reactstrap";
+import { Link } from 'react-router-dom';
+
 
 
 function ListDGD() {
@@ -16,7 +21,7 @@ const columns = [
     field: 'action',
     headerName: '',
     width: 200,
-    renderCell: () => <Button>Chỉnh sửa</Button>,
+    renderCell: () => <Button className="btn-round" color="danger" type="button" to="/leader/editdgd" tag={Link}>Chỉnh sửa</Button>,
   },
 ];
 
@@ -37,7 +42,15 @@ const rows = [
   return (
     <div>
       <h1></h1>
-      <h2>Danh sách các Điểm Giao Dịch</h2>
+      <h3>
+        Danh sách các Điểm Giao Dịch
+        <span style={{ marginLeft: '600px'}}>
+            <Button className="btn-round createButton" color='danger' type="button" to="/leader/createDGD" tag={Link}>
+              Tạo mới
+            </Button>
+          </span>
+        
+        </h3>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           getRowId={(row) => row.email}

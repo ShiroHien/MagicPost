@@ -3,10 +3,10 @@ export const API_ROOT = 'http://localhost:3377'
 
 export const TYPE_ACCOUNT = {
   admin: 'Lãnh đạo',
-  leaderOfTransaction: 'leader of transaction',
-  leaderOfWarehouse: 'leader of warehouse',
-  staffOfTransaction: 'staff of transaction',
-  staffOfWarehouse: 'staff of warehouse'
+  leaderOfTransaction: 'Trưởng điểm giao dịch',
+  leaderOfWarehouse: 'Trưởng điểm tập kết',
+  staffOfTransaction: 'Giao dịch viên điểm giao dịch',
+  staffOfWarehouse: 'Nhân viên điểm tập kết'
 }
 
 export const STATUS = {

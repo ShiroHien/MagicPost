@@ -15,7 +15,7 @@ import Cookies from 'js-cookie';
 // import getAreaByProvince from 'functions/getAreaByProvince';
 // import capitalize from 'functions/captalized';
 
-function LeaderCreateAcc() {
+function CreateAccDTK() {
   const [rank, setRank] = useState("")
   const [account, setAccount] = useState("")
   const [password, setPassword] = useState("")
@@ -84,7 +84,7 @@ function LeaderCreateAcc() {
         <div>
       </div>
         <CardBody>
-          <CardTitle className="my-form-title">Tạo tài khoản Trưởng Điểm</CardTitle>
+          <CardTitle className="my-form-title">Tạo tài khoản nhân viên tập kết</CardTitle>
           <Form onSubmit={handleSubmit}>
             <div className="form-row">
             {/* <FormGroup className='col-md-4'>
@@ -146,8 +146,7 @@ function LeaderCreateAcc() {
                 <Input id="contact_number" placeholder={phone} type="text" onChange={(event) => { setPhone(event.target.value) }} required
                 ></Input>
               </FormGroup>
-              <FormGroup className='col-md-4'>
-                {/* <label htmlFor="province">Thành phố/Tỉnh</label> */}
+              {/* <FormGroup className='col-md-4'>
                 <div className="label">Vị trí</div>
                 <Input
                   id="inputState" type="select" onChange={async (event) => { setRank(event.target.value) }}
@@ -161,11 +160,10 @@ function LeaderCreateAcc() {
                     </option>
                   ))}
                 </Input>
-              </FormGroup>
+              </FormGroup> */}
             </div>
-            <div className='form-row'>
+            {/* <div className='form-row'>
               <FormGroup className='col-md-5'>
-                {/* <label htmlFor="province">Thành phố/Tỉnh</label> */}
                 <div className="label">Tỉnh thành</div>
                 <Input
                   id="inputState" type="select" onChange={async (event) => { setProvince(event.target.value) }}
@@ -181,7 +179,6 @@ function LeaderCreateAcc() {
                 </Input>
               </FormGroup>
               <FormGroup className='col-md-6'>
-                {/* <label htmlFor="district">Quận/Huyện</label> */}
                 <div className="label">Điểm</div>
                 <Input
                   id="inputState"
@@ -200,7 +197,7 @@ function LeaderCreateAcc() {
                 </Input>
               </FormGroup>
             </div>
-          
+           */}
             <Button
               color="danger"
               className="btn-round"
@@ -240,4 +237,4 @@ const PandD = [
   }
 ]
 
-export default LeaderCreateAcc;
+export default CreateAccDTK;

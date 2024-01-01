@@ -1,13 +1,20 @@
 /* eslint-disable quotes */
+import React from 'react'
 import { useState, useEffect } from 'react'
 
-import { Box, Button, FormControl, InputAdornment, Dialog, InputLabel, MenuItem, Select, TextField } from '@mui/material'
+import { Box, FormControl, InputAdornment, Dialog, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 
 import PaidIcon from '@mui/icons-material/Paid'
 import LocalShipping from '@mui/icons-material/LocalShipping'
 
 import axiosInstance from '../../../../utils/AxiosInstance'
 import TableCuocPhi from '../../../../utils/TableCuocPhi'
+import {
+  Button,
+  Modal,
+  ModalBody,
+  FormGroup,
+} from "reactstrap";
 
 const UocTinhCuocPhi = () => {
   const [open, setOpen] = useState('false')
@@ -22,6 +29,7 @@ const UocTinhCuocPhi = () => {
   const [type, setType] = useState()
   const [weight, setWeight] = useState()
   const [Postage, setPostage] = useState()
+  const [modal, setModal] = React.useState(false);
 
 
   //_________________________________HANDLE CHANGE__________________________________________________
@@ -112,6 +120,14 @@ const UocTinhCuocPhi = () => {
       setOpen(false)
     }
   }
+  const handleSubmit = async (e) => {
+    if (selectedDistrict&&selectedDistrict2&&selectedProvince&&selectedDistrict2&&size&&type&&weight) {
+      setPostage(1)
+      setModal(true);
+    }
+    e.preventDefault();
+    console.log("Form submitted successfully");
+  }
 
   const dummyProvince = [
     { label: 'Bắc Giang'},
@@ -137,16 +153,17 @@ const UocTinhCuocPhi = () => {
 
   return (
     <>
-      <Dialog
-        open={open}
-        onClose={() => setOpen(false)}
+      {/* <Dialog
+        
+        // onClose={() => setOpen(false)}
+        // open={open}
         maxWidth='lg' // Chọn kích thước tối đa (xs, sm, md, lg, xl)
         fullWidth>
-        {/* Hiển thị dữ liệu */}
+        Hiển thị dữ liệu
         {(Postage) ? <Box>
           <PaidIcon/> {'Ước tính cước phí'}
           <div>{TableCuocPhi(type, weight, size)}</div>
-        </Box> : <></>}</Dialog>
+        </Box> : <></>}</Dialog> */}
       <Box
         sx={{
           backgroundColor: 'rgb(236, 234, 234)',
@@ -174,7 +191,7 @@ const UocTinhCuocPhi = () => {
               margin: '5px 0px'
             }}
           >
-            <MenuItem value='' disabled><em>Chọn Tỉnh</em></MenuItem>
+            <MenuItem value='' disabled><em>Chọn Tỉnh thành</em></MenuItem>
             {dummyProvince.map((provinces) => (
               <MenuItem value={provinces.label} key={provinces.label} >{provinces.label}</MenuItem>
             ))}
@@ -306,8 +323,51 @@ const UocTinhCuocPhi = () => {
             ))}
           </Select>
         </FormControl>
-        <Button variant='contained' fullWidth onClick={handleSearch}>Tra cứu</Button>
+        <form onSubmit={handleSubmit}> 
+            <Button
+                color="danger"
+                className="btn-round"
+                type="submit">
+                  Tra cứu
+            </Button>
+          </form> 
       </Box>
+      <Modal isOpen={modal} toggle={() => setModal(false)} className="modal-lg">
+        <div className="modal-header justify-content-center">
+          <h4 className="title title-up">
+            Ước tính cước phí
+          </h4>
+        </div>
+        <ModalBody>
+          <div style={{ padding: '0 0' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}
+            >
+            <div style={{ height: 'auto', width: '100%' }} className='centerList'>
+              <div>{TableCuocPhi(type, weight, size)}</div>
+              </div>
+            </div>
+          </div>
+        </ModalBody>
+        <div className="modal-footer">
+        
+          <Button
+            color="danger"
+            type="button"
+            onClick={() => {
+              setModal(false);
+              // window.location.reload() 
+            }}
+          >
+            Đóng
+          </Button>
+        </div>
+      </Modal>
     </>
   )
 }

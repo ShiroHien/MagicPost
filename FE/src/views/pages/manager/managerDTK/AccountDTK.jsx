@@ -2,7 +2,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
+import {
+  Button,
+  NavLink
+} from "reactstrap";
+import { Link } from 'react-router-dom';
+
 
 function AccountDTK() {
 
@@ -16,7 +21,7 @@ const columns = [
     field: 'action',
     headerName: '',
     width: 200,
-    renderCell: () => <Button>Chỉnh sửa</Button>,
+    renderCell: () => <Button className="btn-round" color="danger" type="button" to="/managerDTK/editaccount">Chỉnh sửa</Button>,
   },
 ];
 
@@ -36,7 +41,15 @@ const rows = [
   }, []);
   return (
     <div>
-      <h1>Quản lý tài khoản</h1>
+      <h3>
+        Tài khoản nhân viên Điểm Tập Kết
+        <span style={{ marginLeft: '600px'}}>
+            <Button className="btn-round createButton" color='danger' type="button" to="/managerDTK/createacc" tag={Link}>
+              Cấp tài khoản
+            </Button>
+          </span>
+
+        </h3>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid
           getRowId={(row) => row.email}

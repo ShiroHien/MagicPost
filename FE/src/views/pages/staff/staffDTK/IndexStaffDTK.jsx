@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Outlet } from 'react-router-dom'
-import TKDiemTK from "../../../pages/dashboard/ThongKe/TKDiemTK";
-import ListDTK from "./ListDTK";
+import StaffDTKHome from "./StaffDTKHome";
 
 
- const LeaderDTK = () => (
+ const IndexStaffDTK = () => (
   <>
-    {/* <TKDiemTK/> */}
+    <StaffDTKHome/>
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
-        <ListDTK/>
+          {/* <Outlet/> */}
       </div>
 
   </>
 )
-export default LeaderDTK
+export default IndexStaffDTK

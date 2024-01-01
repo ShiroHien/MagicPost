@@ -49,7 +49,7 @@ export default function Login() {
         } else if (accountType === TYPE_ACCOUNT.staffOfTransaction) {
           navigate('/staff');
         } else {
-          navigate('/staff');
+          navigate('/staffDTK');
         }
       } else {
         alert("Tên đăng nhập hoặc mật khẩu không đúng!");
