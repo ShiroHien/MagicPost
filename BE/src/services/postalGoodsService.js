@@ -90,10 +90,10 @@ const findOneByCode = async (reqBody) => {
     } else {
       let statuses = []
       for (let time = 0; time< result.length; time++) {
-        const data1 = await transactionPointsModel.getListGoodbyPid(result[time].pointIds[0])
-        const data2 = await warehousePointsModel.getListGoodbyPid(result[time].pointIds[1])
-        const data3 = await warehousePointsModel.getListGoodbyPid(result[time].pointIds[2])
-        const data4 = await transactionPointsModel.getListGoodbyPid(result[time].pointIds[3])
+        const data1 = await transactionPointsModel.getDetails(result[time].pointIds[0])
+        const data2 = await warehousePointsModel.getDetails(result[time].pointIds[1])
+        const data3 = await warehousePointsModel.getDetails(result[time].pointIds[2])
+        const data4 = await transactionPointsModel.getDetails(result[time].pointIds[3])
 
         let status = [[result[time].createdAt, 'Đã gửi hàng thành công tại ' + data1.name]]
         const names = ['Đang trên đường đến ' + data2.name, 'Đã đến ' + data2.name, 'Đang trên đường đến ' + data3.name,
@@ -102,11 +102,10 @@ const findOneByCode = async (reqBody) => {
         if (result[time].status != STATUS.pending) {
           if (result[time].status != STATUS.shipped) {
             cnt = cnt + 2
-          }
-          cnt++
+          } else cnt++
         }
         console.log('cnt', cnt)
-        for (let i = 0; i <cnt; i++) {
+        for (let i = 0; i < cnt; i++) {
           status.push([result[time].updatedAtArray[i], names[i]])
         }
         statuses.push(status)
