@@ -21,13 +21,6 @@ function DTKfromDTK() {
 
   const [dataOrder, setDataOrder] = useState([]);
   const [modal1, setModal1] = React.useState(false);
-  const [senderName, setSenderName] = useState([]);
-  const [senderPhone, setSenderPhone] = useState([]);
-  const [receiverName, setReceiverName] = useState([]);
-  const [receiverPhone, setReceiverPhone] = useState([]);
-  const [receiverAddress, setReceiverAddress] = useState([]);
-  const [ID, setID] = useState([]);
-  const [type, setType] = useState([]);
   const [modal2, setModal2] = React.useState(false);
   const [selectedRows, setSelectedRows] = React.useState([]);
   const [detail, setDetail] = useState([]);
@@ -54,7 +47,7 @@ function DTKfromDTK() {
   }
 
   const onRowsSelectionHandler = (ids) => {
-    const selectedRowsData = ids.map((id) => listOrder.find((row) => row.ID === id));
+    const selectedRowsData = ids.map((id) => dataOrder.find((row) => row.ID === id));
     setSelectedRows(selectedRowsData)
     console.log(selectedRowsData);
   };
@@ -87,10 +80,10 @@ function DTKfromDTK() {
     { field: "ID", headerName: "Mã vận đơn", width: 190 },
     { field: "senderName", headerName: "Người gửi", width: 160 },
     { field: "senderPhone", headerName: "Điện thoại", width: 150 },
-    { field: "senderProvince", headerName: "Địa chỉ", width: 250 },
+    { field: "senderProvince", headerName: "Địa chỉ", width: 150 },
     { field: "receiverName", headerName: "Người nhận", width: 160 },
     { field: "receiverPhone", headerName: "Điện thoại", width: 150 },
-    { field: "receiverProvince", headerName: "Địa chỉ", width: 250 },
+    { field: "receiverProvince", headerName: "Địa chỉ", width: 150 },
     { field: "type", headerName: "Loại", width: 110 },
     {
       field: "action",
@@ -179,7 +172,7 @@ function DTKfromDTK() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {detail.map((rowData) => (
+                      {selectedRows.map((rowData) => (
                           <TableRow key={rowData}>
                             <TableCell>{rowData.ID}</TableCell>
                             <TableCell>{rowData.senderName}</TableCell>
@@ -342,8 +335,10 @@ function DTKfromDTK() {
             color="danger"
             type="button"
             onClick={() => {
+              setNewOrders([])
               setModal3(false);
               setDataOrder(newOrders)
+              
             }}
           >
             Đã nhận
@@ -352,6 +347,7 @@ function DTKfromDTK() {
             color="danger"
             type="button"
             onClick={() => {
+              setNewOrders([])
               setModal3(false);
             }}
           >

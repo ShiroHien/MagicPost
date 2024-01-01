@@ -145,8 +145,7 @@ const StaffDGD = () => {
 
   return (
     <div id="chart">
-      <h2>Thống kê tại ...</h2>
-      <h5>Từ ngày ... đến ngày ...</h5>
+      
       <ReactApexChart options={options} series={series} type="bar" height={430} />
     </div>
   )

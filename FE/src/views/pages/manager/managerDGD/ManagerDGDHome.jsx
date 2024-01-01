@@ -131,7 +131,7 @@ export default function ManagerDGDHome() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Transaction Staff
+            Trưởng Điểm Giao Dịch
           </Typography>
         </Toolbar>
       </AppBar>

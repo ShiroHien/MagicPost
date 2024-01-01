@@ -6,8 +6,7 @@ import {
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
 import { useRef } from 'react'
 import React, { useEffect, useState } from 'react'
-// import Cookies from 'js-cookie';
-// import axiosInstance from 'functions/AxiosInstance';
+import axios from 'axios';
 import {
   Card,
   CardBody,
@@ -70,9 +69,7 @@ function FromDTK() {
     }
   ]
 
-  const [data, setData] = useState([]);
-  const [dataCar, setDataCar] = useState([]);
-  const [dataOwner, setDataOwner] = useState([])
+  const [dataOrder, setDataOrder] = useState([]);
   const [modal1, setModal1] = React.useState(false);
   const [senderName, setSenderName] = useState([]);
   const [senderPhone, setSenderPhone] = useState([]);
@@ -87,13 +84,20 @@ function FromDTK() {
   const [modal3, setModal3] = React.useState(false);
   const [newOrders, setNewOrders] = useState([]);
 
+  useEffect(() => {
+    axios.get('../src/assets/dataTemp/postal_goods.json').then((res) => {
+      console.log('data2', res.data);
+      setDataOrder(res.data);
+    });
+  }, []);
+
   const pdfExportComponent = useRef(null);
   const handleExportWithComponent = (event) => {
     pdfExportComponent.current.save();
   }
 
   const onRowsSelectionHandler = (ids) => {
-    const selectedRowsData = ids.map((id) => listOrder.find((row) => row.ID === id));
+    const selectedRowsData = ids.map((id) => dataOrder.find((row) => row.ID === id));
     setSelectedRows(selectedRowsData)
     console.log(selectedRowsData);
   };
@@ -106,19 +110,19 @@ function FromDTK() {
 
   const handleReceived = async (e) => {
     setModal3(true);
-    setNewOrders(listOrder)
+    setNewOrders(dataOrder)
     e.preventDefault();
     console.log("Received successfully");
   }
 
   const detailRowData = (rowData) => {
-    const detailRowData = rowData.map((id) => listOrder.find((row) => row.ID === id));
+    const detailRowData = rowData.map((id) => dataOrder.find((row) => row.ID === id));
     setDetail(detailRowData)
   }
 
   const detailOrder = React.useCallback(
     (params) => () => {
-      const foundOrder = listOrder.find(row => row.ID.toString() === params.id.toString());
+      const foundOrder = dataOrder.find(row => row.ID.toString() === params.id.toString());
       setDetail(foundOrder)
       console.log("yes",detail)
       setModal1(true)
@@ -188,7 +192,7 @@ function FromDTK() {
       </div>
       <div style={{ height: 600, width: '100%' }} className='centerList'>
         <DataGrid
-          rows={listOrder}
+          rows={dataOrder}
           columns={columns}
           getRowId={(row) => row.ID}
           checkboxSelection
@@ -205,7 +209,7 @@ function FromDTK() {
         <ModalBody>
           <div>
             <div className="infoLine">
-              <div style={{ height: 300, width: '100%' }} className='centerList'>
+              <div className='centerList'>
               
                 <table className="listOrders">
                   <tr>
@@ -261,7 +265,7 @@ function FromDTK() {
                 width: '100%',
               }}
             >
-              <div style={{ height: 600, width: '100%' }} className='centerList'>
+              <div className='centerList'>
                 <table className="listOrders">
                   <tr>
                     <th>Mã vận đơn</th>
@@ -304,7 +308,7 @@ function FromDTK() {
             type="button"
             onClick={() => {
               setModal2(false);
-              window.location.reload() 
+              // window.location.reload() 
             }}
           >
             Close
@@ -329,7 +333,7 @@ function FromDTK() {
                 width: '100%',
               }}
             >
-              <div style={{ height: 600, width: 600 }} className='centerList'>
+              <div className='centerList'>
                 <table className="listOrders">
                   <tr>
                     <th>Mã vận đơn</th>
@@ -374,9 +378,9 @@ function FromDTK() {
             type="button"
             onClick={() => {
               setModal2(false);
-              listOrder.concat(newOrders)
-              console.log(listOrder)
-              window.location.reload() 
+              dataOrder(newOrders)
+              // console.log(listOrder)
+              // window.location.reload() 
             }}
           >
             Close

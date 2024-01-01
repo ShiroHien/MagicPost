@@ -4,9 +4,7 @@ import TKDiemTK from "../../../../pages/dashboard/ThongKe/TKDiemTK";
 
  const StatisticDTK = () => (
   <>
-    THỐNG KÊ ĐƠN HÀNG TRONG TUẦN (TỪ NGÀY .. ĐẾN NGÀY ...)
-    
-    TẠI ĐIỂM GIAO DỊCH ...
+    <h5>THỐNG KÊ ĐƠN HÀNG TRONG TUẦN </h5>
     <div className="spaceHeader"></div>
     <div className="bodyContainer">
         <TKDiemTK />

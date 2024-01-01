@@ -132,7 +132,7 @@ export default function ManagerDTKHome() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Transaction Staff
+            Trưởng Điểm Tập Kết
           </Typography>
         </Toolbar>
       </AppBar>

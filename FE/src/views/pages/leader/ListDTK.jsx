@@ -11,11 +11,11 @@ import { Link } from 'react-router-dom';
 
 function ListDTK() {
 const columns = [
-  { field: 'fullname', headerName: 'Full name', width: 130 },
-  { field: 'phone', headerName: 'Phone', width: 200 },
-  { field: 'email', headerName: 'Email', width: 200 },
-  { field: 'typeAccount', headerName: 'Type', width: 200 },
-  { field: 'username', headerName: 'User Name', width: 200 },
+  { field: 'name', headerName: 'Tên', width: 430 },
+  { field: 'streetAddress', headerName: 'Đường', width: 200 },
+  { field: 'city', headerName: 'Quận huyện', width: 200 },
+  { field: 'province', headerName: 'Tỉnh thành', width: 100 },
+  { field: 'warehousePointId', headerName: 'ID', width: 200 },
   {
     field: 'action',
     headerName: '',
@@ -24,18 +24,13 @@ const columns = [
   },
 ];
 
-const rows = [
-  { email: 1, fullname: 'Snow', firstName: 'Jon', age: 35 },
-  { email: 2, fullname: 'Snow', firstName: 'Jon', age: 35 },
-];
 
-
-  const [user, setUser] = useState([]);
+  const [warehousePoint, setWarehousePoint] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3377/v1/transaction-points`).then((res) => {
+    axios.get(`http://localhost:3377/v1/warehouse-points`).then((res) => {
       console.log('data2', res.data)
-      setTransactionPoint(res.data)
+      setWarehousePoint(res.data)
     })
   }, [])
   return (

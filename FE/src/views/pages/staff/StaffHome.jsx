@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react'
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -27,6 +27,8 @@ import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import Logo from '../../../assets/Logo.png'
+import AddCardIcon from '@mui/icons-material/AddCard'
+
 
 const drawerWidth = 240;
 
@@ -131,7 +133,7 @@ export default function StaffHome() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Transaction Staff
+            Nhân viên Điểm Giao Dịch
           </Typography>
         </Toolbar>
       </AppBar>
@@ -182,6 +184,12 @@ export default function StaffHome() {
               </ListItemButton>
             </List>
           </Collapse>
+          <ListItemButton component={Link} to="neworder">
+            <ListItemIcon>
+              <AddCardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Tạo đơn mới" />
+          </ListItemButton>
           <ListItemButton component={Link} to="statistics">
             <ListItemIcon>
               <AnalyticsIcon />

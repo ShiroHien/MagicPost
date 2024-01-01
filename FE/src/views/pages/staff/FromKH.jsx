@@ -1,13 +1,13 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { DataGrid, GridToolbar } from '@mui/x-data-grid'
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {
-  GridActionsCellItem
-} from '@mui/x-data-grid-pro'
+  GridActionsCellItem,
+  GRID_CHECKBOX_SELECTION_COL_DEF,
+} from '@mui/x-data-grid-pro';
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
 import { useRef } from 'react'
 import React, { useEffect, useState } from 'react'
-// import Cookies from 'js-cookie'
-import axiosInstance from '../../../utils/AxiosInstance'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
+import axios from 'axios';
 import {
   Card,
   CardBody,
@@ -19,75 +19,58 @@ import {
   Modal,
   ModalBody,
   InputGroup,
-} from "reactstrap"
+} from "reactstrap";
 // import './FromKH.css'
-import InfoIcon from '@mui/icons-material/Info'
-import Cookies from 'js-cookie'
-// import { Button } from '@mui/material'
+import InfoIcon from '@mui/icons-material/Info';
+// import { Button } from '@mui/material';
 
 function FromKH() {
 
-  // const listOrder = [
-  //   {
-  //     "code": "658bd1a54e4620f67f9f507d",
-  //     "senderName": "Nguyễn Thảo Hiền",
-  //     "senderPhone": "0945884888",
-  //     "receiverName": "Đinh Thị Trà My",
-  //     "receiverPhone": "0359276235",
-  //     "receiverAddress": "111 Lý Thái Tổ, Bắc Giang",
-  //     "type": "Letter",
-  //     "selected": "False"
+  const listOrder = [
+    {
+      "ID": "658bd1a54e4620f67f9f507d",
+      "senderName": "Nguyễn Thảo Hiền",
+      "senderPhone": "0945884888",
+      "receiverName": "Đinh Thị Trà My",
+      "receiverPhone": "0359276235",
+      "receiverAddress": "111 Lý Thái Tổ, Bắc Giang",
+      "type": "Letter",
+      "selected": "False"
+      
+    },
+    {
+      "ID": "658bd1a54e4620f67f9f507e",
+      "senderName": "Nguyễn Thảo Hiền",
+      "senderPhone": "0945884888",
+      "receiverName": "Đinh Thị Trà My",
+      "receiverPhone": "0359276235",
+      "receiverAddress": "70 Nghĩa Đồng, Lục Nam, Bắc Giang",
+      "type": "Letter",
+      "selected": "False"
+    },
+    {
+      "ID": "658bd1a54e4620f67f9f507f",
+      "senderName": "Nguyễn Thảo Hiền",
+      "senderPhone": "0945884888",
+      "receiverName": "Đinh Thị Trà My",
+      "receiverPhone": "0359276235",
+      "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Nam Định",
+      "type": "Letter",
+      "selected": "False"
+    },
+    {
+      "ID": "658bd1a54e4620f67f9f5080",
+      "senderName": "Nguyễn Thảo Hiền",
+      "senderPhone": "0945884888",
+      "receiverName": "Đinh Thị Trà My",
+      "receiverPhone": "0359276235",
+      "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Bắc Giang",
+      "type": "Letter",
+      "selected": "False"
+    }
+  ]
 
-  //   },
-  //   {
-  //     "code": "658bd1a54e4620f67f9f507e",
-  //     "senderName": "Nguyễn Thảo Hiền",
-  //     "senderPhone": "0945884888",
-  //     "receiverName": "Đinh Thị Trà My",
-  //     "receiverPhone": "0359276235",
-  //     "receiverAddress": "70 Nghĩa Đồng, Lục Nam, Bắc Giang",
-  //     "type": "Letter",
-  //     "selected": "False"
-  //   },
-  //   {
-  //     "code": "658bd1a54e4620f67f9f507f",
-  //     "senderName": "Nguyễn Thảo Hiền",
-  //     "senderPhone": "0945884888",
-  //     "receiverName": "Đinh Thị Trà My",
-  //     "receiverPhone": "0359276235",
-  //     "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Nam Định",
-  //     "type": "Letter",
-  //     "selected": "False"
-  //   },
-  //   {
-  //     "code": "658bd1a54e4620f67f9f5080",
-  //     "senderName": "Nguyễn Thảo Hiền",
-  //     "senderPhone": "0945884888",
-  //     "receiverName": "Đinh Thị Trà My",
-  //     "receiverPhone": "0359276235",
-  //     "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Bắc Giang",
-  //     "type": "Letter",
-  //     "selected": "False"
-  //   }
-  // ]
-
-  const [listOrder,setListOrder] = useState()
-
-  // lấy danh sách các đơn hàng khách gửi tới và hiện tại đang ở điểm giao dịch
-  useEffect(async() => {
-    if (!listOrder) {
-      let response = await axiosInstance({
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'get',
-        url: `http://localhost:3377/v1/accounts/manage/${JSON.parse(Cookies.get('info'))._id}`
-      }).then((response) => {
-        setListOrder(response.data)
-      })
-    }}, [listOrder])
-
-  const [data, setData] = useState([]);
+  const [dataOrder, setDataOrder] = useState([]);
   const [dataCar, setDataCar] = useState([]);
   const [dataOwner, setDataOwner] = useState([])
   const [modal1, setModal1] = React.useState(false);
@@ -96,11 +79,20 @@ function FromKH() {
   const [receiverName, setReceiverName] = useState([]);
   const [receiverPhone, setReceiverPhone] = useState([]);
   const [receiverAddress, setReceiverAddress] = useState([]);
-  const [code, setcode] = useState([]);
+  const [ID, setID] = useState([]);
   const [type, setType] = useState([]);
   const [modal2, setModal2] = React.useState(false);
   const [selectedRows, setSelectedRows] = React.useState([]);
   const [detail, setDetail] = useState([]);
+
+
+  useEffect(() => {
+    axios.get('../src/assets/dataTemp/postal_goods.json').then((res) => {
+      console.log('data2', res.data);
+      setDataOrder(res.data);
+    });
+  }, []);
+
 
   const pdfExportComponent = useRef(null);
   const handleExportWithComponent = (event) => {
@@ -108,7 +100,7 @@ function FromKH() {
   }
 
   const onRowsSelectionHandler = (ids) => {
-    const selectedRowsData = ids.map((id) => listOrder.find((row) => row.code === id));
+    const selectedRowsData = ids.map((id) => dataOrder.find((row) => row.ID === id));
     setSelectedRows(selectedRowsData)
     console.log(selectedRowsData);
   };
@@ -116,24 +108,13 @@ function FromKH() {
   const handleSubmit = async (e) => {
     setModal2(true);
     e.preventDefault();
-    let response = await axiosInstance({
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'post',
-      url: `http://localhost:3377/v1/accounts/manage/${JSON.parse(Cookies.get('info'))._id}`,
-      data: selectedRows
-    })
+    console.log("Form submitted successfully", selectedRows);
   }
 
-  const detailRowData = (rowData) => {
-    const detailRowData = rowData.map((id) => listOrder.find((row) => row.code === id));
-    setDetail(detailRowData)
-  }
 
   const detailOrder = React.useCallback(
     (params) => () => {
-      const foundOrder = listOrder.find(row => row.code.toString() === params.id.toString());
+      const foundOrder = listOrder.find(row => row.ID.toString() === params.id.toString());
       setDetail(foundOrder)
       console.log("yes",detail)
       setModal1(true)
@@ -141,12 +122,12 @@ function FromKH() {
     [],
   );
   const columns = [
-    { field: "code", headerName: "Mã vận đơn", width: 190 },
+    { field: "ID", headerName: "Mã vận đơn", width: 100 },
     { field: "senderName", headerName: "Người gửi", width: 160 },
     { field: "senderPhone", headerName: "Điện thoại", width: 150 },
     { field: "receiverName", headerName: "Người nhận", width: 160 },
     { field: "receiverPhone", headerName: "Điện thoại", width: 150 },
-    { field: "receiverAddress", headerName: "Địa chỉ", width: 250 },
+    { field: "receiverProvince", headerName: "Địa chỉ", width: 150 },
     { field: "type", headerName: "Loại", width: 110 },
     {
       field: "action",
@@ -194,9 +175,9 @@ function FromKH() {
       </div>
       <div style={{ height: 600, width: '100%' }} className='centerList'>
         <DataGrid
-          rows={listOrder}
+          rows={dataOrder}
           columns={columns}
-          getRowId={(row) => row.code}
+          getRowId={(row) => row.ID}
           checkboxSelection
           onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
         />
@@ -211,27 +192,37 @@ function FromKH() {
         <ModalBody>
           <div>
             <div className="infoLine">
-              <div style={{ height: 300, width: '100%' }} className='centerList'>
-                <table className="listOrders">
-                  <tr>
-                    <th>Mã vận đơn</th>
-                    <th>Người gửi</th>
-                    <th>Điện thoại</th>
-                    <th>Người nhận</th>
-                    <th>Điện thoại</th>
-                    <th>Địa chỉ</th>
-                    <th>Loại</th>
-                  </tr>
-                  <tbody>
-                    <td>{detail.code}</td>
-                    <td>{detail.senderName}</td>
-                    <td>{detail.senderPhone}</td>
-                    <td>{detail.receiverName}</td>
-                    <td>{detail.receiverPhone}</td>
-                    <td>{detail.receiverAddress}</td>
-                    <td>{detail.type}</td>
-                  </tbody>
-                </table>
+              <div className='centerList'>
+                <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Mã vận đơn</TableCell>
+                          <TableCell>Người gửi</TableCell>
+                          <TableCell>Điện thoại</TableCell>
+                          <TableCell>Địa chỉ</TableCell>
+                          <TableCell>Người nhận</TableCell>
+                          <TableCell>Điện thoại</TableCell>
+                          <TableCell>Địa chỉ</TableCell>
+                          <TableCell>Loại</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {detail.map((rowData) => (
+                            <TableRow key={rowData}>
+                              <TableCell>{rowData.ID}</TableCell>
+                              <TableCell>{rowData.senderName}</TableCell>
+                              <TableCell>{rowData.senderPhone}</TableCell>
+                              <TableCell>{rowData.senderProvince}</TableCell>
+                              <TableCell>{rowData.receiverName}</TableCell>
+                              <TableCell>{rowData.receiverPhone}</TableCell>
+                              <TableCell>{rowData.receiverProvince}</TableCell>
+                              <TableCell>{rowData.type}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                    </Table>
+                  </TableContainer>
               </div>
             </div>
 
@@ -266,31 +257,37 @@ function FromKH() {
                 width: '100%',
               }}
             >
-              <div style={{ height: 600, width: '100%' }} className='centerList'>
-                <table className="listOrders">
-                  <tr>
-                    <th>Mã vận đơn</th>
-                    <th>Người gửi</th>
-                    <th>Điện thoại</th>
-                    <th>Người nhận</th>
-                    <th>Điện thoại</th>
-                    <th>Địa chỉ</th>
-                    <th>Loại</th>
-                  </tr>
-                  <tbody>
-                  {selectedRows.map((rowData) => (
-                    <tr key={rowData}>
-                      <td>{rowData.code}</td>
-                      <td>{rowData.senderName}</td>
-                      <td>{rowData.senderPhone}</td>
-                      <td>{rowData.receiverName}</td>
-                      <td>{rowData.receiverPhone}</td>
-                      <td>{rowData.receiverAddress}</td>
-                      <td>{rowData.type}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                </table>
+              <div className='centerList'>
+              <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Mã vận đơn</TableCell>
+                        <TableCell>Người gửi</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Người nhận</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Loại</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {selectedRows.map((rowData) => (
+                        <TableRow key={rowData}>
+                          <TableCell>{rowData.ID}</TableCell>
+                          <TableCell>{rowData.senderName}</TableCell>
+                          <TableCell>{rowData.senderPhone}</TableCell>
+                          <TableCell>{rowData.senderProvince}</TableCell>
+                          <TableCell>{rowData.receiverName}</TableCell>
+                          <TableCell>{rowData.receiverPhone}</TableCell>
+                          <TableCell>{rowData.receiverProvince}</TableCell>
+                          <TableCell>{rowData.type}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </div>
             </div>
           </div>
@@ -309,10 +306,10 @@ function FromKH() {
             type="button"
             onClick={() => {
               setModal2(false);
-              window.location.reload() 
+              setDataOrder('')
             }}
           >
-            Close
+            Gửi
           </Button>
         </div>
       </Modal>

@@ -1,0 +1,129 @@
+.my-form-title {
+  font-weight: bold;
+  font-size: 24px;
+  color: #333;
+}
+h4 {
+  font-size: 15px;
+}
+h1 {
+  font-size: 25px;
+}
+* {
+  margin: 0;
+  font-size: 15px;
+}
+
+p {
+  
+  margin: 0;
+  padding: 0 px;
+  font-size: 15px;
+}
+/* tieu de moi o, phan in dam */
+b {
+  font-size: 15px;
+}
+
+.parcel-information {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* padding: 0 1rem; */
+  /* position: relative; */
+}
+
+.parcel-information .boxes {
+  background-color: #fff;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3fr; */
+  border: 2px solid black;
+  /* flex: 1; */
+  /* margin-top: 1rem; */
+}
+/* chia khung */
+.parcel-information .boxes .box-1,
+.parcel-information .boxes .box-2,
+.parcel-information .boxes .box-3,
+.parcel-information .boxes .box-4,
+.parcel-information .boxes .box-5,
+.parcel-information .boxes .box-6,
+.parcel-information .boxes .box-7,
+.parcel-information .boxes .box-8 {
+  /* border: 2px solid black; */
+  border-bottom: 2px solid black;
+  
+}
+.parcel-information .boxes .box-1 .sender p,
+.parcel-information .boxes .box-1 .receiver p,
+.parcel-information .boxes .box-2 .parcel-type p{
+  font-size: 15px;
+}
+
+.parcel-information .boxes .box-1 p{
+  font-size: 15px;
+}
+
+/* thụt đầu dòng */
+.parcel-information .boxes .box-1,
+.parcel-information .boxes .box-2,
+.parcel-information .boxes .box-3,
+.parcel-information .boxes .box-4,
+.parcel-information .boxes .box-5,
+.parcel-information .boxes .box-6,
+.parcel-information .boxes .box-7,
+.parcel-information .boxes .box-8 {
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ô 1 1 */
+.parcel-information .boxes .box-1 .code {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+}
+
+.parcel-information .boxes .box-2 .parcel-type .check-box-group label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 15px;
+  overflow: hidden;
+}
+.parcel-information .boxes .box-2 .parcel-type .check-box-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.parcel-information .boxes .box-2 .parcel-type .parcel-type .check-box-group label .input[type="checkbox"]:checked+.custom-checkbox::after {
+  opacity: 1;
+}
+.parcel-information .boxes .box-2 .parcel-content {
+  border: 1px solid black;
+  width: 100%;
+}
+.parcel-information .boxes .box-2 .parcel-content  th, .parcel-content td {
+  border: 1px solid black;
+  padding: 1px;
+  text-align: center;
+}
+.parcel-information .boxes .box-3 .sender-instruction .check-box-group label .input[type="checkbox"]:checked+.custom-checkbox::after {
+  opacity: 1;
+}
+.parcel-information .boxes .box-3 .sender-instruction .check-box-group label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 15px;
+  overflow: hidden;
+}
+.parcel-information .boxes .box-3 .sender-instruction .check-box-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

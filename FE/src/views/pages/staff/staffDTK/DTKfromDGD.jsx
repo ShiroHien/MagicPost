@@ -172,7 +172,7 @@ function DTKfromDGD() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {detail.map((rowData) => (
+                      {selectedRows.map((rowData) => (
                           <TableRow key={rowData}>
                             <TableCell>{rowData.ID}</TableCell>
                             <TableCell>{rowData.senderName}</TableCell>
@@ -337,6 +337,7 @@ function DTKfromDGD() {
             color="danger"
             type="button"
             onClick={() => {
+              setNewOrders([])
               setModal3(false);
               setDataOrder(newOrders)
             }}
@@ -347,7 +348,8 @@ function DTKfromDGD() {
             color="danger"
             type="button"
             onClick={() => {
-              setModal2(false);
+              setNewOrders([])
+              setModal3(false);
             }}
           >
             Close

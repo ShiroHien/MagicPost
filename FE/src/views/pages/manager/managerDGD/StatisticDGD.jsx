@@ -6,9 +6,7 @@ import StaffDGD from "../../../../pages/dashboard/ThongKe/StaffDGD";
 
  const StatisticDGD = () => (
   <>
-    THỐNG KÊ ĐƠN HÀNG TRONG TUẦN (TỪ NGÀY .. ĐẾN NGÀY ...)
-    
-    TẠI ĐIỂM GIAO DỊCH ...
+    <h5>THỐNG KÊ ĐƠN HÀNG TRONG TUẦN </h5>
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
           <StaffDGD />

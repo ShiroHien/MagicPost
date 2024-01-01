@@ -141,7 +141,6 @@ const TKDiemTK = () => {
 
   return (
     <div id="chart">
-      <h2>Thống kê ...</h2>
       <ReactApexChart options={options} series={series} type="bar" height={430} />
     </div>
   )

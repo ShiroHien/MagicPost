@@ -12,11 +12,11 @@ import { Link } from 'react-router-dom';
 function AccountDTK() {
 
 const columns = [
-  { field: 'fullname', headerName: 'Full name', width: 130 },
-  { field: 'phone', headerName: 'Phone', width: 200 },
+  { field: 'fullname', headerName: 'Họ tên', width: 230 },
+  { field: 'phone', headerName: 'Điện thoại', width: 200 },
   { field: 'email', headerName: 'Email', width: 200 },
-  { field: 'typeAccount', headerName: 'Type', width: 200 },
-  { field: 'username', headerName: 'User Name', width: 200 },
+  { field: 'typeAccount', headerName: 'Type', width: 230 },
+  { field: 'username', headerName: 'Tên người dùng', width: 200 },
   {
     field: 'action',
     headerName: '',

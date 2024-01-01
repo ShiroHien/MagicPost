@@ -28,17 +28,15 @@ const TimKiemDgd = () => {
   const [index, setIndex] = useState()
   const [modal, setModal] = useState()
 
-  const handleChange = (event) => {
-    setSelectedProvince(event.target.value)
-  }
+  // const handleChange = (event) => {
+  //   setSelectedProvince(event.target.value)
+  // }
 
-  const handleChange2 = (event) => {
-    setSelectedDistrict(event.target.value)
-  }
+  // const handleChange2 = (event) => {
+  //   setSelectedDistrict(event.target.value)
+  // }
   const toggle = () => {
     setModal(!modal);
-    
-    // e.preventDefault()
     console.log("yes")
     getData()
   }
@@ -106,25 +104,8 @@ const TimKiemDgd = () => {
   
       setPointinfo(filteredNames);
     };
+  const Points = [...new Set(listDGD.filter(item => item.province === selectedProvince && item.district == selectedDistrict).map(item => item.name))]
 
-
-    // useEffect(() => {
-    //   pointInfo();
-    // }, [selectedDistrict]);
-
-  const dummyProvince = [
-    { label: 'Bắc Giang' },
-    { label: 'Đà Nẵng' },
-    { label: 'Hà Nội' },
-    { label: 'Hà Nam' },
-    { label: 'Hải Dương' },
-    { label: 'Hải Phòng' },
-    { label: 'Hồ Chí Minh' },
-    { label: 'Nam Định' },
-    { label: 'Thanh Hóa' },
-    { label: 'Vĩnh Phúc' }
-  ]
-  const dummyPhone = ['0987 651 212', '0356 636 777', '0843 987 234', '0865 756 345', '0956 874 754', '0372 543 123', '0854 678 910']
 
   return (
     <>
@@ -149,6 +130,7 @@ const TimKiemDgd = () => {
               required
             >
               <option value="" disabled>Chọn...</option>
+            
               {[...new Set(listDGD.map(item => item.province))].map((province, index) => (
               <option key={`province-${index}`} value={province}>
                 {province}
@@ -163,13 +145,17 @@ const TimKiemDgd = () => {
               type="select"
               onChange={(event) => {
                 setSelectedDistrict(event.target.value)
-                Province();
+                // Province();
               }}
               value={selectedDistrict}
               required
             >
               <option value="" disabled>Chọn...</option>
-              {filteredDistricts}
+              {[...new Set(listDGD.filter(item => item.province === selectedProvince).map(item => item.district))].map((district, index) => (
+              <option key={`district-${index}`} value={district}>
+                {district}
+              </option>
+              ))}
             </Input>
         </FormGroup>
 
@@ -200,12 +186,14 @@ const TimKiemDgd = () => {
             >
             <div style={{ height: 'auto', width: '100%' }} className='centerList'>
               {/* <div>{TableCuocPhi(type, weight, size)}</div> */}
-                              <ul>
+                              {/* <ul>
                               {pointInfo.map((name, index) => (
             <li key={`name-${index}`}>{name}</li>
           ))}
-                  </ul>
-                
+                  </ul> */}
+                {Points.map((name, index) => (
+              <p key={index}>{name}</p>
+            ))}
               </div>
             </div>
           </div>
@@ -233,140 +221,224 @@ export default TimKiemDgd
 const listDGD = [{
   "district": "Ba Đình",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội"
 },
 {
   "district": "Bắc Từ Liêm",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 35 Cầu Diễn, Bắc Từ Liêm, Hà Nội"
 },
 {
   "district": "Cầu Giấy",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 163 Hoàng Quốc Việt, Cầu Giấy, Hà Nội"
 },
 {
   "district": "Đống Đa",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 240 La Thàn, Đống Đa, Hà Nội"
 },
 {
   "district": "Hoàng Mai",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 328 Lê Trọng Tấn, Hoàng Mai, Hà Nội"
 },
 {
   "district": "Nam Từ Liêm",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 63 Lê Đức Thọ, Nam Từ Liêm, Hà Nội"
 },
 {
   "district": "Thanh Xuân",
   "province": "Hà Nội",
+  "transactionPointId": {
+    "$oid": "658a5d48408f214ddcb8c0de"
+  },
   "name": "Điểm giao dịch tại: 236 Khương Đình, Thanh Xuân, Hà Nội"
 },
 {
   "district": "Hiệp Hoà",
   "province": "Bắc Giang",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ee"
+  },
   "name": "Điểm giao dịch tại: Số 25 Ngô Quyền, Lục Ngạn, Bắc Giang"
 },
 {
   "district": "Sơn Động",
   "province": "Bắc Giang",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ee"
+  },
   "name": "Điểm giao dịch tại: 135 Trần Phú, Sơn Động, Bắc Giang"
 },
 {
   "district": "Tân Yên",
   "province": "Bắc Giang",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ee"
+  },
   "name": "Điểm giao dịch tại: 30 Lý Thường Kiệt, Tân Yên, Bắc Giang"
 },
 {
   "district": "Yên Dũng",
   "province": "Bắc Giang",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ee"
+  },
   "name": "Điểm giao dịch tại: 110 Lê Lợi, Yên Dũng, Bắc Giang"
 },
 {
   "district": "TP. Nam Định",
   "province": "Nam Định",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f4"
+  },
   "name": "Điểm giao dịch tại: 29 Trần Hưng Đạo, TP. Nam Định, Nam Định"
 },
 {
   "district": "Nam Trực",
   "province": "Nam Định",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f4"
+  },
   "name": "Điểm giao dịch tại: 83 Lê Hồng Phong, Nam Trực, Nam Định"
 },
 {
   "district": "Nghĩa Hưng",
   "province": "Nam Định",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f4"
+  },
   "name": "Điểm giao dịch tại: 65 Nghĩa Minh, Nghĩa Hưng, Nam Định"
 },
 {
   "district": "Ý Yên",
   "province": "Nam Định",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f4"
+  },
   "name": "Điểm giao dịch tại: 145 Trần Bình, Ý Yên, Nam Định"
 },
 {
   "district": "Hải Hậu",
   "province": "Nam Định",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f4"
+  },
   "name": "Điểm giao dịch tại: 14 Hải Vân, Hải Hậu, Nam Định"
 },
 {
   "district": "Xuân Trường",
   "province": "Nam Định",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f4"
+  },
   "name": "Điểm giao dịch tại: 17 Xuân Phương, Xuân Trường, Nam Định"
 },
 {
   "district": "TP. Đà Nẵng",
   "province": "Đà Nẵng",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ef"
+  },
   "name": "Điểm giao dịch tại: 14 Đà Lạt, TP. Đà Nẵng, Đà Nẵng"
 },
 {
   "district": "Hải Châu",
   "province": "Đà Nẵng",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ef"
+  },
   "name": "Điểm giao dịch tại: 45 Bạch Đằng, Hải Châu, Đà Nẵng"
 },
 {
   "district": "Thanh Khê",
   "province": "Đà Nẵng",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ef"
+  },
   "name": "Điểm giao dịch tại: 53 Nguyễn Văn Linh, Thanh Khê, Đà Nẵng"
 },
 {
   "district": "Sơn Trà",
   "province": "Đà Nẵng",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ef"
+  },
   "name": "Điểm giao dịch tại: 132 Sơn Chiều, Sơn Trà, Đà Nẵng"
 },
 {
   "district": "Liên Chiểu",
   "province": "Đà Nẵng",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510ef"
+  },
   "name": "Điểm giao dịch tại: 163 Hà Huy Tập, Liên Chiểu, Đà Nẵng"
 },
 {
   "district": "Quận 2",
   "province": "Hồ Chí Minh",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f3"
+  },
   "name": "Điểm giao dịch tại: 84 Trần Thái Tông, Quận 2, Hồ Chí Minh"
 },
 {
   "district": "Quận 9",
   "province": "Hồ Chí Minh",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f3"
+  },
   "name": "Điểm giao dịch tại: 34 Nguyễn Huệ, Quận 9, Hồ Chí Minh"
 },
 {
   "district": "Thủ Đức",
   "province": "Hồ Chí Minh",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f3"
+  },
   "name": "Điểm giao dịch tại: 82 Thảo Điền, Thủ Đức, Hồ Chí Minh"
 },
 {
   "district": "Quận 7",
   "province": "Hồ Chí Minh",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f3"
+  },
   "name": "Điểm giao dịch tại: 51 Võ Văn Tần, Quận 7, Hồ Chí Minh"
 },
 {
   "district": "Quận 12",
   "province": "Hồ Chí Minh",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f3"
+  },
   "name": "Điểm giao dịch tại: 132 Tôn Đức Thắng, Quận 12, Hồ Chí Minh"
 },
 {
   "district": "Tân Phú",
   "province": "Hồ Chí Minh",
+  "transactionPointId": {
+    "$oid": "658a64da86776465254510f3"
+  },
   "name": "Điểm giao dịch tại: 22 Châu Văn Liêm, Tân Phú, Hồ Chí Minh"
 }]

@@ -244,7 +244,6 @@ function LeaderCreateAcc () {
                 </Input>
               </FormGroup>
             </div>
-<<<<<<< HEAD
             <FormGroup>
               <label htmlFor='address'>Địa chỉ</label>
               <Input
@@ -262,9 +261,7 @@ function LeaderCreateAcc () {
                 required
               ></Input>
             </FormGroup>
-=======
           
->>>>>>> thinh4
             <Button
               color='danger'
               className='btn-round'

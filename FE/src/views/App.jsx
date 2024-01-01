@@ -1,11 +1,11 @@
 /* eslint-disable indent */
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import '../assets/css/bootstrap.min.css'
-import '../assets/scss/now-ui-kit.scss?v=1.5.0'
-import '../assets/demo/demo.css?v=1.5.0'
-import '../assets/demo/nucleo-icons-page-styles.css?v=1.5.0'
+import '../assets/css/bootstrap.min.css';
+import '../assets/scss/now-ui-kit.scss?v=1.5.0';
+import '../assets/demo/demo.css?v=1.5.0';
+import '../assets/demo/nucleo-icons-page-styles.css?v=1.5.0';
 
 
 import Index from './pages/landing/Index';
@@ -32,6 +32,7 @@ import TKDaGuiGD from '../pages/dashboard/ThongKe/TKDaGuiGD';
 import TKKhachGuiGD from '../pages/dashboard/ThongKe/TKKhachGuiGD';
 import TKToanQuoc from '../pages/dashboard/ThongKe/TKToanQuoc';
 import StaffStatistic from './pages/staff/StaffStatistic';
+import StaffNewOrder from './pages/staff/StaffNewOrder';
 import IndexmanagerDTK from './pages/manager/managerDTK/IndexmanagerDTK';
 import AccountDTK from './pages/manager/managerDTK/AccountDTK';
 import StatisticDTK from './pages/manager/managerDTK/StatisticDTK';
@@ -81,10 +82,11 @@ export const App = () => {
                 <Route path='createDGD' element={<LeaderCreateDGD />} />
                 <Route path='editdgd' element={<LeaderEditDGD/>} />
             </Route>
-
+            
             <Route path='staff' element={<Indexstaff />}>
                 <Route index element={<StaffHome />}/>
                 <Route path='fromKH' element={<FromKH />}/>
+                <Route path='neworder' element={<StaffNewOrder/>}/>
                 <Route path='fromDTK' element={<FromDTK />}/>
                 <Route path='statistics' element={<StaffStatistic />}/>
             </Route>
@@ -102,7 +104,7 @@ export const App = () => {
                 <Route path='createacc' element={<CreateAccDTK />} />
                 <Route path='statistics' element={<StatisticDTK />}/>
             </Route>
-
+            
             <Route path='managerDGD' element={<IndexmanagerDGD />}>
                 <Route index element={<ManagerDGDHome  />}/>
                 <Route path='account' element={<AccountDGD />} />
