@@ -11,9 +11,9 @@ const createNew = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
-const getDetails = async (req, res, next) => {
+const getListGoodbyPid = async (req, res, next) => {
   try {
-    const postalGood = await postalGoodsService.getDetails(req.params.id)
+    const postalGood = await postalGoodsService.getListGoodbyPid(req.params.id)
     res.status(StatusCodes.OK).json(postalGood)
   } catch (error) { next(error) }
 }
@@ -55,7 +55,7 @@ const findOneByCode = async (req, res, next) => {
 
 export const postalGoodsController = {
   createNew,
-  getDetails,
+  getListGoodbyPid,
   update,
   statisticsToanQuoc,
   statisticsGD,

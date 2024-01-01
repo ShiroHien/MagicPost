@@ -27,10 +27,10 @@ const createNew = async (transactionId, reqBody) => {
   } catch (error) { throw error }
 }
 
-const getDetails = async (postalGoodId) => {
+const getListGoodbyPid = async (postalGoodId) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const postalGood = await postalGoodsModel.getDetails(postalGoodId)
+    const postalGood = await postalGoodsModel.getListGoodbyPid(postalGoodId)
     if (!postalGood) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
     }
@@ -71,18 +71,15 @@ const statisticsToanQuoc = async (reqBody) => {
 const statisticsGD = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const transactionPoint = await transactionPointsModel.findOnebyProvinceCity(reqBody)
-    if (!transactionPoint) {
-      throw new ApiError(StatusCodes.NOT_FOUND, 'TransactionPoint Not Found!')
-    } else {
-      const result = await postalGoodsModel.statisticsGD(transactionPoint._id, reqBody)
-      if (!result) {
-        throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
-      }
-      return result
+    const result = await postalGoodsModel.statisticsGD(reqBody._id, reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
     }
-  } catch (error) { throw error }
+    return result
+  }
+  catch (error) { throw error }
 }
+
 
 const findOneByCode = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
@@ -93,10 +90,10 @@ const findOneByCode = async (reqBody) => {
     } else {
       let statuses = []
       for (let time = 0; time< result.length; time++) {
-        const data1 = await transactionPointsModel.getDetails(result[time].pointIds[0])
-        const data2 = await warehousePointsModel.getDetails(result[time].pointIds[1])
-        const data3 = await warehousePointsModel.getDetails(result[time].pointIds[2])
-        const data4 = await transactionPointsModel.getDetails(result[time].pointIds[3])
+        const data1 = await transactionPointsModel.getListGoodbyPid(result[time].pointIds[0])
+        const data2 = await warehousePointsModel.getListGoodbyPid(result[time].pointIds[1])
+        const data3 = await warehousePointsModel.getListGoodbyPid(result[time].pointIds[2])
+        const data4 = await transactionPointsModel.getListGoodbyPid(result[time].pointIds[3])
 
         let status = [[result[time].createdAt, 'Đã gửi hàng thành công tại ' + data1.name]]
         const names = ['Đang trên đường đến ' + data2.name, 'Đã đến ' + data2.name, 'Đang trên đường đến ' + data3.name,
@@ -123,22 +120,18 @@ const findOneByCode = async (reqBody) => {
 const statisticsTK = async (reqBody) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const warehousePoint = await warehousePointsModel.findOnebyProvinceCity(reqBody)
-    if (!warehousePoint) {
-      throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
-    } else {
-      const result = await postalGoodsModel.statisticsTK(warehousePoint._id, reqBody)
-      if (!result) {
-        throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
-      }
-      return result
+    const result = await postalGoodsModel.statisticsTK(reqBody._id, reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'PostalGood Not Found!')
     }
-  } catch (error) { throw error }
+    return result
+  }
+  catch (error) { throw error }
 }
 
 export const postalGoodsService = {
   createNew,
-  getDetails,
+  getListGoodbyPid,
   update,
   statisticsToanQuoc,
   statisticsGD,

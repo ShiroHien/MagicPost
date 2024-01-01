@@ -13,14 +13,14 @@ Router.route('/')
   })
 
 Router.route('/create/:transactionId')
-  .get((req, res) => { 
+  .get((req, res) => {
     res.status(StatusCodes.OK).json({ message: 'GET: API get postal goods' })
   })
   .post(postalGoodsValidation.createNew, postalGoodsController.createNew ) // API tạo dữ liệu hàng hóa tại điểm giao dịch qua id
 
 
 Router.route('/manage/:id')
-  .get(postalGoodsController.getDetails) // API Lấy dữ liệu từ id & API chỉnh sửa dữ liệu từ id
+  .get(postalGoodsController.getListGoodbyPid) // API Lấy dữ liệu từ id & API chỉnh sửa dữ liệu từ id
   .put(postalGoodsValidation.update, postalGoodsController.update) // API sửa dữ liệu hàng hóa tại điểm giao dịch qua id
 
 

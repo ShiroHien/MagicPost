@@ -14,7 +14,7 @@ Router.route('/create')
 
 Router.route('/manage/:id')
   .get(accountsController.getDetails)
-  .put(accountsValidation.update, accountsController.update)
+  .put(accountsController.update)
   .delete(accountsController.deleteOne)
 
 Router.route('/truongdiem')

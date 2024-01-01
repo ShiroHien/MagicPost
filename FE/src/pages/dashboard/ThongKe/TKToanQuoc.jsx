@@ -3,7 +3,7 @@ import AnalyticEcommerce from './AnalyticEcommerce'
 
 // material-ui
 import { useTheme } from '@mui/material/styles'
-import { Grid, Typography } from '@mui/material'
+import { capitalize, Grid, Typography } from '@mui/material'
 import WarehouseIcon from '@mui/icons-material/Warehouse'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart'
 import PeopleOutlineRoundedIcon from '@mui/icons-material/PeopleOutlineRounded'
@@ -21,7 +21,8 @@ import {
   FormGroup,
   Input,
   Button,
-} from "reactstrap";
+} from "reactstrap"
+import { InfoCircleFilled } from '@ant-design/icons'
 
 // chart options
 const columnChartOptions = {
@@ -130,29 +131,18 @@ const TKToanQuoc = () => {
     }
   ])
   const [options, setOptions] = useState(columnChartOptions)
-  const [year, setYear] = useState('2023')
-  const [type, setType] = useState([])
-  const [pointName, setPointName] = useState([])
+  const [year, setYear] = useState(2023)
+  const [type, setType] = useState('')
+  const [pointName, setPointName] = useState('')
+  const [listPoints, setListPoints] = useState([])
 
 
   {/* tổng đơn - sửa số liệu here */}
   const [totalTQ, setTotalTQ] = useState(0)
 
-  const getTotalTQ = () => {
-    if (totalTQ === 0) {
-      getDefaltChart()
-      console.log('Tính tổng đơn...')
-      getDataForFilterTQ()
-      console.log(totalTQ)
-    }
-    return totalTQ+''
-  }
-  const getDefaltChart = () => {
-    console.log('Thống kê toàn quốc...')
-    getDataForFilter()
-  }
   // Gọi API thống kê tổng đơn toàn quốc trong năm
-  const getDataForFilterTQ = async () => {
+  const getTotalByYear = async () => {
+    console.log('getTotalByYear...', year)
     let response = await axiosInstance({
       headers: {
         'Content-Type': 'application/json'
@@ -160,31 +150,20 @@ const TKToanQuoc = () => {
       method: 'post',
       url: `http://localhost:3377/v1/postal-goods/statisticsTQ/`,
       data: {
-        statisticType: 'total'
+        statisticType: 'total',
+        filterType: 'monthOfYear',
+        filterValue: Number(year)
       }
     }).then((response) => {
+      console.log('data totalTQ', response.data[0])
+      console.log('Tổng đơn', response.data[0].count)
       setTotalTQ(response.data[0].count)
     })
   }
 
-  const handleChange = async(event) => {
-    setYear(event.target.value)
-    console.log('Thống kê toàn quốc...')
-    await getDataForFilter()
-  }
-  const handleChange2 = async(event) => {
-    console.log('Thống kê toàn quốc...')
-    setYear(event.target.value)
-    await getDataForFilter()
-  }
-  const handleChange3 = async(event) => {
-    setPointName(event.target.value)
-    console.log('Thống kê toàn quốc...')
-    await getDataForFilter()
-  }
-
   // Gọi API thống kê tổng đơn toàn quốc trong năm
-  const getDataForFilter = async () => {
+  const getDataForChartByYear = async () => {
+    console.log('getDataForChartByYear...', year)
     let response = await axiosInstance({
       headers: {
         'Content-Type': 'application/json'
@@ -198,7 +177,14 @@ const TKToanQuoc = () => {
       }
     }).then((response) => {
       // Set seri từ dữ liệu trả về
-      let seriesCopy = [...series]
+      let seriesCopy = [{
+        name: 'Thành công',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        name: 'Thất bại',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      }]
       for (let i = 0; i < response.data.length; i++ )
       {
         let month = response.data[i].month - 1
@@ -208,10 +194,163 @@ const TKToanQuoc = () => {
           seriesCopy[1].data[month] = response.data[i].count
         }
       }
+      console.log('response data ', response.data)
+      console.log('Dữ liệu biểu đồ sau khi được cập nhật: ', seriesCopy)
       setSeries(seriesCopy)
     })
   }
 
+  const getDataTKbyId = async (id) => {
+    console.log('getDataTKbyId...', id, pointName)
+    await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsTK`,
+      // params: {
+      //   warehouseId: warehouseId
+      // },
+      data: {
+        _id: id,
+        statisticType: null,
+        filterType: 'monthOfYear',
+        filterValue: Number(year)
+      }
+    }).then((response) => {
+      let seriesCopy = [{
+        name: 'Hàng gửi',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        name: 'Hàng nhận',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      }]
+      for (let t = 0; t < 2; t++) {
+        for (let i = 0; i < response.data[t].length; i++ ) {
+          let value = response.data[t][i].month - 1
+          seriesCopy[t].data[value] += response.data[t][i].count
+        }
+        console.log('response data ', response.data)
+        console.log('Dữ liệu biểu đồ sau khi được cập nhật: ', seriesCopy)
+        setSeries(seriesCopy)
+      }
+
+    })
+  }
+
+  const getDataGDbyId = async (id) => {
+    console.log('getDataGDbyId...', id, pointName, year)
+    await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/postal-goods/statisticsGD`,
+      // params: {
+      //   warehouseId: warehouseId
+      // },
+      data: {
+        _id: id,
+        statisticType: null,
+        filterType: 'monthOfYear',
+        filterValue: Number(year)
+      }
+      
+    }).then((response) => {
+      let seriesCopy = [{
+        name: 'Hàng khách gửi',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        name: 'Hàng vận chuyển đi',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+      }]
+      for (let t = 0; t < 2; t++) {
+        for (let i = 0; i < response.data[t].length; i++ ) {
+          let value = response.data[t][i].month - 1
+          seriesCopy[t].data[value] += response.data[t][i].count
+        }
+        console.log('response data ', response.data)
+        console.log('Dữ liệu biểu đồ sau khi được cập nhật: ', seriesCopy)
+        setSeries(seriesCopy)
+      }
+    })
+  }
+
+  useEffect(() => {
+    // Gọi API để lấy dữ liệu cho lần đầu tiên
+    console.log('lấy dữ liệu tổng đơn toàn quốc cho lần đầu tiên...')
+    getTotalByYear(year)
+    console.log('lấy dữ liệu biểu đồ toàn quốc cho lần đầu tiên...')
+    getDataForChartByYear(year)
+  }, [])
+
+
+  useEffect(() => {
+    // Gọi API để lấy dữ liệu cho lần tiếp theo
+    getTotalByYear()
+    getDataForChartByYear()
+  }, [year])
+
+  useEffect(() => {
+    // Gọi API để lấy dữ liệu cho lần đầu tiên
+    setSeries([{
+      name: 'Hàng gửi',
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      name: 'Hàng nhận',
+      data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }])
+  }, [type])
+
+
+  useEffect(() => {
+    // Gọi API để lấy dữ liệu cho lần tiếp theo
+    // getTotalByYear()
+    if (pointName.includes('Điểm giao dịch')) {
+      const foundPoint = listPoints.find((point) => point.label === pointName)
+      let id = ''
+      if (foundPoint) {
+        id = foundPoint._id
+        getDataGDbyId(id)
+      }
+      
+    }
+    if (pointName.includes('Điểm tập kết')) {
+      const foundPoint = listPoints.find((point) => point.label === pointName)
+      let id = ''
+      if (foundPoint) {
+        id = foundPoint._id
+        getDataTKbyId(id)
+      }
+      
+    }
+  }, [pointName])
+
+  const changeYear = (event) => {
+    setYear(event.target.value)
+  }
+
+  // SET pointName
+  const changeType = async(event) => {
+    setType(event.target.value)
+    if (event.target.value === 'Điểm Tập Kết') {
+      await axiosInstance.get(`http://localhost:3377/v1/warehouse-points`).then((res) => {
+        console.log(res.data)
+        setListPoints(res.data.map((point) => ({label: point.name, _id: point._id})))
+        console.log(res.data.map((point) => ({label: point.name, _id: point._id})))
+      })} else if (event.target.value == 'Điểm Giao Dịch') {
+      await axiosInstance.get(`http://localhost:3377/v1/transaction-points`).then((res) => {
+        console.log(res.data)
+        setListPoints(res.data.map((point) => ({label: point.name, _id: point._id})))
+        console.log(res.data.map((point) => ({label: point.name, _id: point._id})))
+      })}
+  }
+  const changePointName = async(event) => {
+    setPointName(event.target.value)
+  }
 
   useEffect(() => {
     setOptions((prevState) => ({
@@ -257,7 +396,7 @@ const TKToanQuoc = () => {
         <Grid item xs={12} sm={6} md={2} lg={3}>
           <AnalyticEcommerce
             title="Điểm tập kết"
-            count="5"
+            count="10"
             icon={() => <WarehouseIcon style={{ color: '#DC143C' }} />}/>
         </Grid>
         <Grid item xs={12} sm={6} md={2} lg={3}>
@@ -268,8 +407,8 @@ const TKToanQuoc = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={2} lg={3}>
           <AnalyticEcommerce
-            title="Tổng đơn hàng TQ"
-            count={getTotalTQ()}
+            title="Tổng toàn bộ đơn hàng"
+            count="5513"
             icon={() => <AddShoppingCartIcon style={{ color: '#00CC00' }} />}/>
         </Grid>
         <Grid item xs={12} sm={6} md={2} lg={3}>
@@ -283,7 +422,7 @@ const TKToanQuoc = () => {
         <div className='form-row' style={{marginTop: '40px', marginLeft: '100px'}}>
           <FormGroup className='col-md-3'>
             <div className="label">Năm</div>
-            <Input id="inputState" type="select" onChange={handleChange}>
+            <Input id="inputState" type="select" onChange={changeYear}>
               <option selected="">2023</option>
               {years.map((item, index) => (
                 <option key={`years-${index}`}>
@@ -294,7 +433,7 @@ const TKToanQuoc = () => {
           </FormGroup>
           <FormGroup className='col-md-3'>
             <div className="label">Điểm</div>
-            <Input id="inputState" type="select" onChange={handleChange2}>
+            <Input id="inputState" type="select" onChange={changeType}>
               <option selected="">Tất cả</option>
               {types.map((item, index) => (
                 <option key={`years-${index}`}>
@@ -305,9 +444,9 @@ const TKToanQuoc = () => {
           </FormGroup>
           <FormGroup className='col-md-3'>
             <div className="label">Tên điểm</div>
-            <Input id="inputState" type="select" onChange={handleChange3}>
+            <Input id="inputState" type="select" onChange={changePointName}>
               <option selected="">Tất cả</option>
-              {points.map((item, index) => (
+              {listPoints.map((item, index) => (
                 <option key={`years-${index}`}>
                   {item.label}
                 </option>
@@ -324,26 +463,26 @@ const TKToanQuoc = () => {
 export default TKToanQuoc
 
 const years = [
-  { label: '2023' },
-  { label: '2022' },
-  { label: '2021' },
-  { label: '2020' }
+  { label: 2022 },
+  { label: 2021 },
+  { label: 2020 }
 ]
 
 const types = [
-  { label: 'Điểm Tập Kết' },
   { label: 'Điểm Giao Dịch' },
+  { label: 'Điểm Tập Kết' }
+
 ]
 
-const points = [
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-  {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
-]
+// const points = [
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+//   {label: 'Điểm giao dịch tại: 123 Chùa Láng, Ba Đình, Hà Nội'},
+// ]
 
 
 

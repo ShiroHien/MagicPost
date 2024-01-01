@@ -1,13 +1,13 @@
-import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import {
-  GridActionsCellItem,
-  GRID_CHECKBOX_SELECTION_COL_DEF,
-} from '@mui/x-data-grid-pro';
+  GridActionsCellItem
+} from '@mui/x-data-grid-pro'
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
 import { useRef } from 'react'
 import React, { useEffect, useState } from 'react'
-// import Cookies from 'js-cookie';
-// import axiosInstance from 'functions/AxiosInstance';
+// import Cookies from 'js-cookie'
+import axiosInstance from '../../../utils/AxiosInstance'
 import {
   Card,
   CardBody,
@@ -19,56 +19,73 @@ import {
   Modal,
   ModalBody,
   InputGroup,
-} from "reactstrap";
+} from "reactstrap"
 // import './FromKH.css'
-import InfoIcon from '@mui/icons-material/Info';
-// import { Button } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info'
+import Cookies from 'js-cookie'
+// import { Button } from '@mui/material'
 
 function FromKH() {
 
-  const listOrder = [
-    {
-      "ID": "658bd1a54e4620f67f9f507d",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "111 Lý Thái Tổ, Bắc Giang",
-      "type": "Letter",
-      "selected": "False"
-      
-    },
-    {
-      "ID": "658bd1a54e4620f67f9f507e",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "70 Nghĩa Đồng, Lục Nam, Bắc Giang",
-      "type": "Letter",
-      "selected": "False"
-    },
-    {
-      "ID": "658bd1a54e4620f67f9f507f",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Nam Định",
-      "type": "Letter",
-      "selected": "False"
-    },
-    {
-      "ID": "658bd1a54e4620f67f9f5080",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Bắc Giang",
-      "type": "Letter",
-      "selected": "False"
-    }
-  ]
+  // const listOrder = [
+  //   {
+  //     "code": "658bd1a54e4620f67f9f507d",
+  //     "senderName": "Nguyễn Thảo Hiền",
+  //     "senderPhone": "0945884888",
+  //     "receiverName": "Đinh Thị Trà My",
+  //     "receiverPhone": "0359276235",
+  //     "receiverAddress": "111 Lý Thái Tổ, Bắc Giang",
+  //     "type": "Letter",
+  //     "selected": "False"
+
+  //   },
+  //   {
+  //     "code": "658bd1a54e4620f67f9f507e",
+  //     "senderName": "Nguyễn Thảo Hiền",
+  //     "senderPhone": "0945884888",
+  //     "receiverName": "Đinh Thị Trà My",
+  //     "receiverPhone": "0359276235",
+  //     "receiverAddress": "70 Nghĩa Đồng, Lục Nam, Bắc Giang",
+  //     "type": "Letter",
+  //     "selected": "False"
+  //   },
+  //   {
+  //     "code": "658bd1a54e4620f67f9f507f",
+  //     "senderName": "Nguyễn Thảo Hiền",
+  //     "senderPhone": "0945884888",
+  //     "receiverName": "Đinh Thị Trà My",
+  //     "receiverPhone": "0359276235",
+  //     "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Nam Định",
+  //     "type": "Letter",
+  //     "selected": "False"
+  //   },
+  //   {
+  //     "code": "658bd1a54e4620f67f9f5080",
+  //     "senderName": "Nguyễn Thảo Hiền",
+  //     "senderPhone": "0945884888",
+  //     "receiverName": "Đinh Thị Trà My",
+  //     "receiverPhone": "0359276235",
+  //     "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Bắc Giang",
+  //     "type": "Letter",
+  //     "selected": "False"
+  //   }
+  // ]
+
+  const [listOrder,setListOrder] = useState()
+
+  // lấy danh sách các đơn hàng khách gửi tới và hiện tại đang ở điểm giao dịch
+  useEffect(async() => {
+    if (!listOrder) {
+      let response = await axiosInstance({
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'get',
+        url: `http://localhost:3377/v1/accounts/manage/${JSON.parse(Cookies.get('info'))._id}`
+      }).then((response) => {
+        setListOrder(response.data)
+      })
+    }}, [listOrder])
 
   const [data, setData] = useState([]);
   const [dataCar, setDataCar] = useState([]);
@@ -79,7 +96,7 @@ function FromKH() {
   const [receiverName, setReceiverName] = useState([]);
   const [receiverPhone, setReceiverPhone] = useState([]);
   const [receiverAddress, setReceiverAddress] = useState([]);
-  const [ID, setID] = useState([]);
+  const [code, setcode] = useState([]);
   const [type, setType] = useState([]);
   const [modal2, setModal2] = React.useState(false);
   const [selectedRows, setSelectedRows] = React.useState([]);
@@ -91,7 +108,7 @@ function FromKH() {
   }
 
   const onRowsSelectionHandler = (ids) => {
-    const selectedRowsData = ids.map((id) => listOrder.find((row) => row.ID === id));
+    const selectedRowsData = ids.map((id) => listOrder.find((row) => row.code === id));
     setSelectedRows(selectedRowsData)
     console.log(selectedRowsData);
   };
@@ -99,17 +116,24 @@ function FromKH() {
   const handleSubmit = async (e) => {
     setModal2(true);
     e.preventDefault();
-    console.log("Form submitted successfully", selectedRows);
+    let response = await axiosInstance({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      url: `http://localhost:3377/v1/accounts/manage/${JSON.parse(Cookies.get('info'))._id}`,
+      data: selectedRows
+    })
   }
 
   const detailRowData = (rowData) => {
-    const detailRowData = rowData.map((id) => listOrder.find((row) => row.ID === id));
+    const detailRowData = rowData.map((id) => listOrder.find((row) => row.code === id));
     setDetail(detailRowData)
   }
 
   const detailOrder = React.useCallback(
     (params) => () => {
-      const foundOrder = listOrder.find(row => row.ID.toString() === params.id.toString());
+      const foundOrder = listOrder.find(row => row.code.toString() === params.id.toString());
       setDetail(foundOrder)
       console.log("yes",detail)
       setModal1(true)
@@ -117,7 +141,7 @@ function FromKH() {
     [],
   );
   const columns = [
-    { field: "ID", headerName: "Mã vận đơn", width: 190 },
+    { field: "code", headerName: "Mã vận đơn", width: 190 },
     { field: "senderName", headerName: "Người gửi", width: 160 },
     { field: "senderPhone", headerName: "Điện thoại", width: 150 },
     { field: "receiverName", headerName: "Người nhận", width: 160 },
@@ -172,7 +196,7 @@ function FromKH() {
         <DataGrid
           rows={listOrder}
           columns={columns}
-          getRowId={(row) => row.ID}
+          getRowId={(row) => row.code}
           checkboxSelection
           onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
         />
@@ -199,7 +223,7 @@ function FromKH() {
                     <th>Loại</th>
                   </tr>
                   <tbody>
-                    <td>{detail.ID}</td>
+                    <td>{detail.code}</td>
                     <td>{detail.senderName}</td>
                     <td>{detail.senderPhone}</td>
                     <td>{detail.receiverName}</td>
@@ -256,7 +280,7 @@ function FromKH() {
                   <tbody>
                   {selectedRows.map((rowData) => (
                     <tr key={rowData}>
-                      <td>{rowData.ID}</td>
+                      <td>{rowData.code}</td>
                       <td>{rowData.senderName}</td>
                       <td>{rowData.senderPhone}</td>
                       <td>{rowData.receiverName}</td>

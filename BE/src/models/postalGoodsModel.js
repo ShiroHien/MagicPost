@@ -97,11 +97,13 @@ const findOneById = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
-const getDetails = async(id) => {
+const getListGoodbyPid = async(id) => {
   try {
-    const result = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).findOne({
-      _id: new ObjectId(id)
-    })
+    const result = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).find({
+      pointIds: { $elemMatch: { $eq: id } },
+      status: STATUS.pending,
+      orderNo: 0
+    }).toArray()
     return result
   } catch (error) { throw new Error(error) }
 }
@@ -154,8 +156,7 @@ const statisticsToanQuoc = async(reqBody) => {
         }
       ]
       const result = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline).toArray()
-      return result || null
-
+      return result
     } else if (reqBody.filterType == 'monthOfYear') {
       const filterValue = reqBody.filterValue
 
@@ -201,7 +202,8 @@ const statisticsToanQuoc = async(reqBody) => {
 
 const statisticsGD = async(transactionId, reqBody) => {
   try {
-    if (reqBody.filterType == 'dayOfWeek') {
+    if (reqBody.filterType == 'monthOfYear') {
+      console.log('statistic GD ', transactionId, reqBody)
       const filterValue = reqBody.filterValue
 
       const pipeline = [
@@ -211,8 +213,8 @@ const statisticsGD = async(transactionId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 0] }, { '$week': { '$toDate': '$createdAt' } }],
-                  [new ObjectId(transactionId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 0] }, { '$year': { '$toDate': '$createdAt' } }],
+                  [new ObjectId(transactionId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -220,7 +222,7 @@ const statisticsGD = async(transactionId, reqBody) => {
           {
             '$group': {
               '_id': {
-                'day': { '$dayOfWeek': { '$toDate': '$createdAt' } }
+                'month': { '$month': { '$toDate': '$createdAt' } }
               },
               'count': { '$sum': 1 }
             }
@@ -228,12 +230,12 @@ const statisticsGD = async(transactionId, reqBody) => {
           {
             '$project': {
               '_id': 0,
-              'day': '$_id.day',
+              'month': '$_id.month',
               'count': 1
             }
           },
           {
-            '$sort': { 'day': 1 }
+            '$sort': { 'month': 1 }
           }
         ],
         // _______________________________pipeline 1________________________________________
@@ -242,8 +244,8 @@ const statisticsGD = async(transactionId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 3] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 7] } } }],
-                  [new ObjectId(transactionId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 3] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 6] } } }],
+                  [new ObjectId(transactionId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -251,7 +253,7 @@ const statisticsGD = async(transactionId, reqBody) => {
           {
             '$group': {
               '_id': {
-                'day': { '$dayOfWeek': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 7] } } }
+                'month': { '$month': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 6] } } }
               },
               'count': { '$sum': 1 }
             }
@@ -259,29 +261,49 @@ const statisticsGD = async(transactionId, reqBody) => {
           {
             '$project': {
               '_id': 0,
-              'day': '$_id.day',
+              'month': '$_id.month',
               'count': 1
             }
           },
           {
-            '$sort': { 'day': 1 }
+            '$sort': { 'month': 1 }
           }
         ]
       ]
       const result1 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline[0]).toArray()
       const result2 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline[1]).toArray()
 
-      // console.log("result1", result1)
-      // console.log("result2", result2)
+      console.log("result1", result1)
+      console.log("result2", result2)
       const result = [result1, result2]
       return result
+
+
+
+
+      // const testpipeline = [
+      //   {
+      //     '$match': {
+      //       '$expr': {
+      //         '$eq': [
+      //           [{ $arrayElemAt: ['$pointIds', 0] }, { '$year': { '$toDate': '$createdAt' } }],
+      //           [new ObjectId(transactionId), filterValue] // instead of filterValue
+      //         ]
+      //       }
+      //     }
+      //   }
+      // ]
+
+      // const Testresult3 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(testpipeline).toArray()
+      // console.log('test', Testresult3)
+      // return Testresult3
     }
   } catch (error) { throw new Error(error) }
 }
 
 const statisticsTK = async(warehouseId, reqBody) => {
   try {
-    if (reqBody.statisticType == 'total' && reqBody.filterType == 'dayOfWeek') {
+    if (reqBody.statisticType == 'total' && reqBody.filterType == 'monthOfYear') {
       const filterValue = reqBody.filterValue
       const pipeline = [
         [
@@ -290,8 +312,8 @@ const statisticsTK = async(warehouseId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 1] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }],
-                  [new ObjectId(warehouseId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 1] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }],
+                  [new ObjectId(warehouseId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -315,8 +337,8 @@ const statisticsTK = async(warehouseId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 2] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 3] } } }],
-                  [new ObjectId(warehouseId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 2] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 3] } } }],
+                  [new ObjectId(warehouseId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -339,12 +361,16 @@ const statisticsTK = async(warehouseId, reqBody) => {
       const result1 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline[1]).toArray()
       // console.log("result0", result0)
       // console.log("result1", result1)
-      const result = {
-        count: result0[0].count + result1[0].count
-      }
-      // console.log(result)
-      return result
-    } else if (reqBody.filterType == 'dayOfWeek') {
+      // if (result0 && result1) {
+      //   const result = {
+      //     count: result0[0].count + result1[0].count
+      //   }
+      //   // console.log(result)
+      //   return result
+      // } else return [0]
+      return result0.concat(result1)
+    } else if (reqBody.filterType == 'monthOfYear') {
+      console.log('statistic TK ', warehouseId, reqBody)
       const filterValue = reqBody.filterValue
 
       const pipeline = [
@@ -354,8 +380,8 @@ const statisticsTK = async(warehouseId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 1] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }],
-                  [new ObjectId(warehouseId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 1] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }],
+                  [new ObjectId(warehouseId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -363,7 +389,7 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$group': {
               '_id': {
-                'day': { '$dayOfWeek': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }
+                'month': { '$month': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }
               },
               'count': { '$sum': 1 }
             }
@@ -371,12 +397,12 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$project': {
               '_id': 0,
-              'day': '$_id.day',
+              'month': '$_id.month',
               'count': 1
             }
           },
           {
-            '$sort': { 'day': 1 }
+            '$sort': { 'month': 1 }
           }
         ],
         // _______________________________pipeline 1________________________________________
@@ -385,8 +411,8 @@ const statisticsTK = async(warehouseId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 2] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 3] } } }],
-                  [new ObjectId(warehouseId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 2] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 3] } } }],
+                  [new ObjectId(warehouseId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -394,7 +420,7 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$group': {
               '_id': {
-                'day': { '$dayOfWeek': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 3] } } }
+                'month': { '$month': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 3] } } }
               },
               'count': { '$sum': 1 }
             }
@@ -402,12 +428,12 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$project': {
               '_id': 0,
-              'day': '$_id.day',
+              'month': '$_id.month',
               'count': 1
             }
           },
           {
-            '$sort': { 'day': 1 }
+            '$sort': { 'month': 1 }
           }
         ],
         [
@@ -416,8 +442,8 @@ const statisticsTK = async(warehouseId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 1] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 2] } } }],
-                  [new ObjectId(warehouseId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 1] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 2] } } }],
+                  [new ObjectId(warehouseId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -425,7 +451,7 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$group': {
               '_id': {
-                'day': { '$dayOfWeek': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 2] } } }
+                'month': { '$month': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 2] } } }
               },
               'count': { '$sum': 1 }
             }
@@ -433,12 +459,12 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$project': {
               '_id': 0,
-              'day': '$_id.day',
+              'month': '$_id.month',
               'count': 1
             }
           },
           {
-            '$sort': { 'day': 1 }
+            '$sort': { 'month': 1 }
           }
         ],
         // _______________________________pipeline 3________________________________________
@@ -447,8 +473,8 @@ const statisticsTK = async(warehouseId, reqBody) => {
             '$match': {
               '$expr': {
                 '$eq': [
-                  [{ $arrayElemAt: ['$pointIds', 2] }, { '$week': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 4] } } }],
-                  [new ObjectId(warehouseId), { '$week': { '$toDate': Date.now() } }] // instead of filterValue
+                  [{ $arrayElemAt: ['$pointIds', 2] }, { '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 4] } } }],
+                  [new ObjectId(warehouseId), filterValue] // instead of filterValue
                 ]
               }
             }
@@ -456,7 +482,7 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$group': {
               '_id': {
-                'day': { '$dayOfWeek': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 4] } } }
+                'month': { '$month': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 4] } } }
               },
               'count': { '$sum': 1 }
             }
@@ -464,12 +490,12 @@ const statisticsTK = async(warehouseId, reqBody) => {
           {
             '$project': {
               '_id': 0,
-              'day': '$_id.day',
+              'month': '$_id.month',
               'count': 1
             }
           },
           {
-            '$sort': { 'day': 1 }
+            '$sort': { 'month': 1 }
           }
         ]
       ]
@@ -477,13 +503,31 @@ const statisticsTK = async(warehouseId, reqBody) => {
       const result1 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline[1]).toArray()
       const result2 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline[2]).toArray()
       const result3 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(pipeline[3]).toArray()
-      // console.log("result0", result0)
-      // console.log("result1", result1)
-      // console.log("result2", result2)
-      // console.log("result3", result3)
+      console.log("result0", result0)
+      console.log("result1", result1)
+      console.log("result2", result2)
+      console.log("result3", result3)
       const result = [result0.concat(result1), result2.concat(result3)]
-      // console.log(result)
+      console.log(result)
       return result
+
+      // const testpipeline = [
+      //   {
+      //     '$match': {
+      //       '$expr': {
+      //         '$eq': [
+      //           [{ '$year': { '$toDate':{ $arrayElemAt: ['$updatedAtArray', 1] } } }],
+      //           [filterValue] // instead of filterValue
+      //         ]
+      //       }
+      //     }
+      //   }
+      // ]
+     
+
+      // const Testresult3 = await GET_DB().collection(POSTAL_GOOD_COLLECTION_NAME).aggregate(testpipeline).toArray()
+
+      // return Testresult3
     }
   } catch (error) { throw new Error(error) }
 }
@@ -504,7 +548,7 @@ export const postalGoodsModel = {
   POSTAL_GOOD_COLLECTION_SCHEMA,
   createNew,
   findOneById,
-  getDetails,
+  getListGoodbyPid,
   update,
   statisticsToanQuoc,
   statisticsGD,
