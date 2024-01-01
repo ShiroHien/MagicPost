@@ -5,16 +5,23 @@ import { transactionPointsController } from '~/controllers/transactionPointsCont
 
 const Router = express.Router()
 
+// ______________________________General API________________________________________
 Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message: 'GET: API get transaction point' })
-  })
+  .get(transactionPointsController.getTPs)
+
+Router.route('/create')
   .post(transactionPointsValidation.createNew, transactionPointsController.createNew )
 
-// Xét một biến id vào trong trong param của transaction point để lấy data
-Router.route('/:id')
-  .get(transactionPointsController.getDetails)
-  .put(transactionPointsValidation.update, transactionPointsController.update)
-  .delete(transactionPointsController.deleteOne)
+
+Router.route('/manage/:id')
+  .get(transactionPointsController.getDetails) // API lấy dữ liệu từ id
+  .put(transactionPointsValidation.update, transactionPointsController.update) // API sửa dữ liệu
+  .delete(transactionPointsController.deleteOne) // API xóa dữ liệu
+
+Router.route('/findbyprovincity')
+  .post(transactionPointsController.findOnebyProvinceCity)
+
+Router.route('/finddistrict')
+  .post(transactionPointsController.findDistrictByProvince)
 
 export const transactionPointsRoute = Router

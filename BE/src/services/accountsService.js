@@ -1,10 +1,10 @@
 import { accountsModel } from '~/models/accountsModel'
 import ApiError from '~/utils/ApiError'
 import { StatusCodes } from 'http-status-codes'
-import { TYPE_ACCOUNT } from '~/utils/constants'
+import { TYPE_ACCOUNT, TYPE_ACCOUNTVNS } from '~/utils/constants'
 import { transactionPointsModel } from '~/models/transactionPointsModel'
 import { warehousePointsModel } from '~/models/warehousePointsModel'
-
+import { postalGoodsModel } from '~/models/postalGoodsModel'
 const createNew = async (reqBody) => {
   // Xử lý logic dữ liệu tùy đặc thù dự án
   // eslint-disable-next-line no-useless-catch
@@ -41,20 +41,27 @@ const getDetails = async (accountId) => {
     const account = await accountsModel.getDetails(accountId)
     if (!account) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    } else {
+      const id = account.pointId
+      const listGoods = await postalGoodsModel.getListGoodbyPid(id)
+      console.log('WH id', id)
+      listGoods.forEach(function (account) {
+        account.selected = false
+      })
+      console.log('list good', listGoods.length)
+      return listGoods
     }
 
-    return account
   } catch (error) { throw error }
 }
 
-const getAccoutListByType = async(reqBody) => {
+const getAccoutTruongDiem = async(reqBody) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const account = await accountsModel.getAccoutListByType(reqBody)
+    const account = await accountsModel.getAccoutTruongDiem(reqBody)
     if (!account) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
     }
-
     return account
   } catch (error) { throw error }
 }
@@ -83,10 +90,58 @@ const deleteOne = async (accountId) => {
   } catch (error) { throw error }
 }
 
+const signIn = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.signIn(reqBody)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    }
+    return account
+  } catch (error) { throw error }
+}
+
+const getAccounts = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.getAccounts(reqBody)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    }
+    return account
+  } catch (error) { throw error }
+}
+
+const getAccountsGDVDGD = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.getAccountsGDVDGD(reqBody)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    }
+    return account
+  } catch (error) { throw error }
+}
+
+const getAccountsNVDTK = async(reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const account = await accountsModel.getAccountsNVDTK(reqBody)
+    if (!account) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Account Not Found!')
+    }
+    return account
+  } catch (error) { throw error }
+}
+
 export const accountsService = {
   createNew,
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType
+  getAccoutTruongDiem,
+  signIn,
+  getAccounts,
+  getAccountsGDVDGD,
+  getAccountsNVDTK
 }

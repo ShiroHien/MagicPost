@@ -8,7 +8,7 @@ const createNew = async (reqBody) => {
   try {
     const newWarehousePoint = {
       ...reqBody,
-      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city + ', ' + reqBody.province
     }
 
     // Gọi tới tầng Model để xử lý lưu bản ghi newWarehousePoint vào trong Database
@@ -39,7 +39,7 @@ const update = async (warehousePointId, reqBody) => {
   try {
     const updateData = {
       ...reqBody,
-      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city
+      name: 'Điểm tập kết tại: ' + reqBody.streetAddress + ', ' + reqBody.city + ', ' + reqBody.province
     }
 
     const updatedWarehousePoint = await warehousePointsModel.update(warehousePointId, updateData)
@@ -59,9 +59,35 @@ const deleteOne = async (warehousePointId) => {
   } catch (error) { throw error }
 }
 
+const findOnebyProvinceCity = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const result = await warehousePointsModel.findOnebyProvinceCity(reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
+    }
+
+    return result
+  } catch (error) { throw error }
+}
+
+const getWHs = async (reqBody) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const result = await warehousePointsModel.getWHs(reqBody)
+    if (!result) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'WarehousePoint Not Found!')
+    }
+
+    return result
+  } catch (error) { throw error }
+}
+
 export const warehousePointsService = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOnebyProvinceCity,
+  getWHs
 }

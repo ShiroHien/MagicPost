@@ -8,17 +8,18 @@ import { ObjectId } from 'mongodb'
 const ACCOUNT_COLLECTION_NAME = 'accounts'
 const ACCOUNT_COLLECTION_SCHEMA = Joi.object({
   email: Joi.string().required().email(),
-  username: Joi.string().required().alphanum().min(3).max(30).trim().strict(),
+  username: Joi.string().max(30).trim().strict(),
   password: Joi.string().required().pattern(PASSWORD_RULE).message(PASSWORD_RULE_MESSAGE),
   phone: Joi.string().required().pattern(PHONE_RULE).message(PHONE_RULE_MESSAGE),
   fullname: Joi.string().required().min(3).max(50).trim().strict(),
   typeAccount: Joi.string().valid(
+    TYPE_ACCOUNT.admin,
     TYPE_ACCOUNT.leaderOfTransaction,
     TYPE_ACCOUNT.leaderOfWarehouse,
     TYPE_ACCOUNT.staffOfTransaction,
     TYPE_ACCOUNT.staffOfWarehouse
   ),
-  pointId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
+  pointId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
 })
 
 const INVALID_UPDATE_FIELD = ['_id', 'username']
@@ -59,16 +60,7 @@ const getDetails = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
-const getAccoutListByType = async(reqBody) => {
-  try {
-    const types = [TYPE_ACCOUNT.leaderOfTransaction, TYPE_ACCOUNT.leaderOfWarehouse]
-    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
-      typeAccount: { $in: types }
-    }).toArray()
 
-    return result
-  } catch (error) { throw new Error(error) }
-}
 
 const update = async(id, data) => {
   try {
@@ -97,6 +89,62 @@ const deleteOne = async(id) => {
   } catch (error) { throw new Error(error) }
 }
 
+const signIn = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).findOne({
+      email: reqBody.email,
+      password: reqBody.password
+    })
+
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccounts = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).updateMany(
+      { typeAccount: TYPE_ACCOUNT.staffOfWarehouse },
+      { $set: { typeAccount: 'Nhân viên điểm tập kết' }}
+    )
+
+    console.log('data', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccoutTruongDiem = async(reqBody) => {
+  try {
+    const types = [TYPE_ACCOUNT.leaderOfTransaction, TYPE_ACCOUNT.leaderOfWarehouse]
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: { $in: types }
+    }).toArray()
+
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccountsGDVDGD = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: TYPE_ACCOUNT.staffOfTransaction
+    }).toArray()
+
+    console.log('data', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getAccountsNVDTK = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(ACCOUNT_COLLECTION_NAME).find({
+      typeAccount: TYPE_ACCOUNT.staffOfWarehouse
+    }).toArray()
+
+    console.log('data', result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const accountsModel = {
   ACCOUNT_COLLECTION_NAME,
   ACCOUNT_COLLECTION_SCHEMA,
@@ -105,5 +153,9 @@ export const accountsModel = {
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType
+  signIn,
+  getAccounts,
+  getAccoutTruongDiem,
+  getAccountsGDVDGD,
+  getAccountsNVDTK
 }

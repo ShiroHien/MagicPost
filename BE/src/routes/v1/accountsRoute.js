@@ -2,24 +2,29 @@ import express from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { accountsValidation } from '~/validations/accountsValidation'
 import { accountsController } from '~/controllers/accountsController'
+import { authenticateToken } from '~/middlewares/authenticateToken'
 
 const Router = express.Router()
 
 Router.route('/')
-  .get((req, res) => {
-    res.status(StatusCodes.OK).json({ message: 'GET: API get account' })
-  })
-  .post(accountsValidation.createNew, accountsController.createNew )
+  .post(accountsController.getAccounts)
 
-// Xét một biến id vào trong trong param của account để lấy data
-Router.route('/:id')
+Router.route('/create')
+  .post(accountsValidation.createNew, accountsController.createNew)
+
+Router.route('/manage/:id')
   .get(accountsController.getDetails)
-  .put(accountsValidation.update, accountsController.update)
+  .put(accountsController.update)
   .delete(accountsController.deleteOne)
 
+Router.route('/truongdiem')
+  .get(accountsController.getAccoutTruongDiem)
+Router.route('/gdvdgd')
+  .get(accountsController.getAccountsGDVDGD)
+Router.route('/nvdtk/')
+  .get(accountsController.getAccountsNVDTK)
+Router.route('/signin', authenticateToken)
+  .post(accountsController.signIn)
 
-//
-Router.route('/:id/type')
-  .get(accountsController.getAccoutListByType)
 
 export const accountsRoute = Router

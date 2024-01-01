@@ -1,5 +1,7 @@
 import { accountsService } from '~/services/accountsService'
 import { StatusCodes } from 'http-status-codes'
+const jwt = require('jsonwebtoken')
+const cookieParser = require('cookie-parser');
 
 const createNew = async (req, res, next) => {
   try {
@@ -21,10 +23,10 @@ const getDetails = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
-const getAccoutListByType = async (req, res, next) => {
+const getAccoutTruongDiem = async (req, res, next) => {
   try {
     // Điều hướng dữ liệu sang tầng Service (là tầng ở giữa controller và model để xử lý dữ liệu)
-    const account = await accountsService.getAccoutListByType(req.body)
+    const account = await accountsService.getAccoutTruongDiem(req.body)
 
     // Có kết quả thì trả về phía Client
     res.status(StatusCodes.OK).json(account)
@@ -45,10 +47,50 @@ const deleteOne = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const signIn = async (req, res, next) => {
+  try {
+    const account = await accountsService.signIn(req.body)
+    const secretKey = 'MYserCRETKey'
+    const email = account.email
+    const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' })
+    res.cookie('token', token, { httpOnly: true })
+    const result = {
+      ...account,
+      token: token,
+      success: true
+    }
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const getAccounts = async (req, res, next) => {
+  try {
+    const result = await accountsService.getAccounts(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const getAccountsGDVDGD = async (req, res, next) => {
+  try {
+    const result = await accountsService.getAccountsGDVDGD(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const getAccountsNVDTK = async (req, res, next) => {
+  try {
+    const result = await accountsService.getAccountsNVDTK(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
 export const accountsController = {
   createNew,
   getDetails,
   update,
   deleteOne,
-  getAccoutListByType
+  getAccoutTruongDiem,
+  signIn,
+  getAccounts,
+  getAccountsGDVDGD,
+  getAccountsNVDTK
 }

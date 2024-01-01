@@ -60,7 +60,6 @@ const findOneByAddress = async(warehouseId, receiverCity, receiverProvince) => {
       city: receiverCity,
       warehousePointId: new ObjectId(warehouseId)
     })
-    console.log('result', result)
     return result
   } catch (error) { throw new Error(error) }
 }
@@ -125,9 +124,57 @@ const pushAccountIds = async(account) => {
   } catch (error) { throw new Error(error) }
 }
 
+const findOnebyProvinceCity = async(reqBody) => {
+  try {
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).findOne({
+      province: reqBody.province,
+      city: reqBody.city
+    })
+    return result
+  } catch (error) { throw new Error(error) }
+}
+const findDistrictByProvince = async(reqBody) => {
+  try {
+    const pipeline = [
+      {
+        '$match': {
+          '$expr': {
+            '$eq': ['$province', reqBody.selectedprovince]
+          }
+        }
+      },
+      {
+        '$group': {
+          // '_id': '$district', // Sử dụng trường 'district' để nhóm theo quận/huyện
+          _id: '$city',
+          'label': { '$first': '$city' }
+        }
+      },
+      {
+        '$project': {
+          '_id': 0,
+          'label': 1
+        }
+      }
+    ]
+    
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).aggregate(pipeline).toArray()
+    console.log(result)
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
+const getTPs = async(redBody) => {
+  try {
+    const result = await GET_DB().collection(TRANSACTION_POINT_COLLECTION_NAME).find({}).toArray()
+    return result
+  } catch (error) { throw new Error(error) }
+}
+
 export const transactionPointsModel = {
   TRANSACTION_POINT_COLLECTION_NAME,
   TRANSACTION_POINT_COLLECTION_SCHEMA,
+  getTPs,
   createNew,
   findOneById,
   getDetails,
@@ -135,5 +182,7 @@ export const transactionPointsModel = {
   deleteOne,
   findOneByAddress,
   setLeaderId,
-  pushAccountIds
+  pushAccountIds,
+  findOnebyProvinceCity,
+  findDistrictByProvince
 }

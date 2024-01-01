@@ -1,7 +1,6 @@
 import { transactionPointsService } from '~/services/transactionPointsService'
 import { StatusCodes } from 'http-status-codes'
 
-
 const createNew = async (req, res, next) => {
   try {
     // Điều hướng dữ liệu sang tầng Service (là tầng ở giữa controller và model để xử lý dữ liệu)
@@ -33,9 +32,33 @@ const deleteOne = async (req, res, next) => {
   } catch (error) { next(error) }
 }
 
+const findOnebyProvinceCity = async (req, res, next) => {
+  try {
+    const result = await transactionPointsService.findOnebyProvinceCity(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const findDistrictByProvince = async (req, res, next) => {
+  try {
+    const result = await transactionPointsService.findDistrictByProvince(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
+const getTPs = async (req, res, next) => {
+  try {
+    const result = await transactionPointsService.getTPs(req.body)
+    res.status(StatusCodes.OK).json(result)
+  } catch (error) { next(error) }
+}
+
 export const transactionPointsController = {
   createNew,
   getDetails,
   update,
-  deleteOne
+  deleteOne,
+  findOnebyProvinceCity,
+  findDistrictByProvince,
+  getTPs
 }
