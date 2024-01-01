@@ -226,14 +226,18 @@ const TKToanQuoc = () => {
         name: 'Hàng nhận',
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }]
+      let total = 0
       for (let t = 0; t < 2; t++) {
         for (let i = 0; i < response.data[t].length; i++ ) {
           let value = response.data[t][i].month - 1
           seriesCopy[t].data[value] += response.data[t][i].count
+          total = total + response.data[t][i].count
         }
         console.log('response data ', response.data)
         console.log('Dữ liệu biểu đồ sau khi được cập nhật: ', seriesCopy)
         setSeries(seriesCopy)
+        total = Math.floor(total / 1.5)
+        setTotalTQ(total)
       }
 
     })
@@ -266,14 +270,18 @@ const TKToanQuoc = () => {
         name: 'Hàng vận chuyển đi',
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       }]
+      let total = 0
       for (let t = 0; t < 2; t++) {
         for (let i = 0; i < response.data[t].length; i++ ) {
           let value = response.data[t][i].month - 1
           seriesCopy[t].data[value] += response.data[t][i].count
+          total = total + response.data[t][i].count
         }
         console.log('response data ', response.data)
         console.log('Dữ liệu biểu đồ sau khi được cập nhật: ', seriesCopy)
         setSeries(seriesCopy)
+        total = Math.floor(total / 1.5)
+        setTotalTQ(total)
       }
     })
   }
@@ -455,6 +463,10 @@ const TKToanQuoc = () => {
           </FormGroup>
         </div>
       </h5>
+      <Typography variant="h6" color="secondary">
+        Tổng đơn năm {year}
+      </Typography>
+      <Typography variant="h4">{totalTQ}</Typography>
       <ReactApexChart options={options} series={series} type="bar" height={430} />
     </div>
   )
