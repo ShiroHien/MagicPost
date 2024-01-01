@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import {
   GridActionsCellItem,
@@ -6,94 +7,49 @@ import {
 import { PDFExport, savePDF } from '@progress/kendo-react-pdf'
 import { useRef } from 'react'
 import React, { useEffect, useState } from 'react'
-// import Cookies from 'js-cookie';
-// import axiosInstance from 'functions/AxiosInstance';
 import {
   Card,
   CardBody,
   CardTitle,
-  Form,
   Button,
-  FormGroup,
-  Input,
   Modal,
   ModalBody,
-  InputGroup,
 } from "reactstrap";
-// import './DTKfromDGD.css'
 import InfoIcon from '@mui/icons-material/Info';
-// import { Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'
 
 function DTKfromDGD() {
 
-  const listOrder = [
-    {
-      "ID": "658bd1a54e4620f67f9f507d",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "111 Lý Thái Tổ, Bắc Giang",
-      "type": "Letter",
-      "selected": "False"
-      
-    },
-    {
-      "ID": "658bd1a54e4620f67f9f507e",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "70 Nghĩa Đồng, Lục Nam, Bắc Giang",
-      "type": "Letter",
-      "selected": "False"
-    },
-    {
-      "ID": "658bd1a54e4620f67f9f507f",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Nam Định",
-      "type": "Letter",
-      "selected": "False"
-    },
-    {
-      "ID": "658bd1a54e4620f67f9f5080",
-      "senderName": "Nguyễn Thảo Hiền",
-      "senderPhone": "0945884888",
-      "receiverName": "Đinh Thị Trà My",
-      "receiverPhone": "0359276235",
-      "receiverAddress": "70 Nghĩa Đồng, Nghĩa Hưng, Bắc Giang",
-      "type": "Letter",
-      "selected": "False"
-    }
-  ]
-
-  const [data, setData] = useState([]);
-  const [dataCar, setDataCar] = useState([]);
-  const [dataOwner, setDataOwner] = useState([])
+  const [dataOrder, setDataOrder] = useState([]);
   const [modal1, setModal1] = React.useState(false);
-  const [senderName, setSenderName] = useState([]);
-  const [senderPhone, setSenderPhone] = useState([]);
-  const [receiverName, setReceiverName] = useState([]);
-  const [receiverPhone, setReceiverPhone] = useState([]);
-  const [receiverAddress, setReceiverAddress] = useState([]);
-  const [ID, setID] = useState([]);
-  const [type, setType] = useState([]);
   const [modal2, setModal2] = React.useState(false);
   const [selectedRows, setSelectedRows] = React.useState([]);
-  const [detail, setDetail] = useState([]);
+  const [detail, setDetail] = React.useState([]);
   const [modal3, setModal3] = React.useState(false);
   const [newOrders, setNewOrders] = useState([]);
 
+  useEffect(() => {
+    axios.get('../src/assets/dataTemp/postal_goods.json').then((res) => {
+      console.log('data2', res.data);
+      setDataOrder(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get('../src/assets/dataTemp/DGDtoDTK.json').then((res) => {
+      console.log('data2', res.data);
+      setNewOrders(res.data);
+    });
+  }, []);
+
+  
   const pdfExportComponent = useRef(null);
   const handleExportWithComponent = (event) => {
     pdfExportComponent.current.save();
   }
 
   const onRowsSelectionHandler = (ids) => {
-    const selectedRowsData = ids.map((id) => listOrder.find((row) => row.ID === id));
+    const selectedRowsData = ids.map((id) => dataOrder.find((row) => row.ID === id));
     setSelectedRows(selectedRowsData)
     console.log(selectedRowsData);
   };
@@ -106,21 +62,15 @@ function DTKfromDGD() {
 
   const handleReceived = async (e) => {
     setModal3(true);
-    setNewOrders(listOrder)
     e.preventDefault();
     console.log("Received successfully");
   }
 
-  const detailRowData = (rowData) => {
-    const detailRowData = rowData.map((id) => listOrder.find((row) => row.ID === id));
-    setDetail(detailRowData)
-  }
-
   const detailOrder = React.useCallback(
     (params) => () => {
-      const foundOrder = listOrder.find(row => row.ID.toString() === params.id.toString());
-      setDetail(foundOrder)
-      console.log("yes",detail)
+      const foundOrder = dataOrder.find(row => row.ID.toString() === params.id.toString());
+      setDetail(selectedRows)
+      console.log("detail",detail)
       setModal1(true)
     },
     [],
@@ -130,9 +80,10 @@ function DTKfromDGD() {
     { field: "ID", headerName: "Mã vận đơn", width: 190 },
     { field: "senderName", headerName: "Người gửi", width: 160 },
     { field: "senderPhone", headerName: "Điện thoại", width: 150 },
+    { field: "senderProvince", headerName: "Địa chỉ", width: 150 },
     { field: "receiverName", headerName: "Người nhận", width: 160 },
     { field: "receiverPhone", headerName: "Điện thoại", width: 150 },
-    { field: "receiverAddress", headerName: "Địa chỉ", width: 250 },
+    { field: "receiverProvince", headerName: "Địa chỉ", width: 150 },
     { field: "type", headerName: "Loại", width: 110 },
     {
       field: "action",
@@ -186,9 +137,9 @@ function DTKfromDGD() {
          
         </div>
       </div>
-      <div style={{ height: 600, width: '100%' }} className='centerList'>
+      <div className='centerList'>
         <DataGrid
-          rows={listOrder}
+          rows={dataOrder}
           columns={columns}
           getRowId={(row) => row.ID}
           checkboxSelection
@@ -205,28 +156,37 @@ function DTKfromDGD() {
         <ModalBody>
           <div>
             <div className="infoLine">
-              <div style={{ height: 300, width: '100%' }} className='centerList'>
-              
-                <table className="listOrders">
-                  <tr>
-                    <th>Mã vận đơn</th>
-                    <th>Người gửi</th>
-                    <th>Điện thoại</th>
-                    <th>Người nhận</th>
-                    <th>Điện thoại</th>
-                    <th>Địa chỉ</th>
-                    <th>Loại</th>
-                  </tr>
-                  <tbody>
-                    <td>{detail.ID}</td>
-                    <td>{detail.senderName}</td>
-                    <td>{detail.senderPhone}</td>
-                    <td>{detail.receiverName}</td>
-                    <td>{detail.receiverPhone}</td>
-                    <td>{detail.receiverAddress}</td>
-                    <td>{detail.type}</td>
-                  </tbody>
-                </table>
+              <div className='centerList'>
+                <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Mã vận đơn</TableCell>
+                        <TableCell>Người gửi</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Người nhận</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Loại</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {detail.map((rowData) => (
+                          <TableRow key={rowData}>
+                            <TableCell>{rowData.ID}</TableCell>
+                            <TableCell>{rowData.senderName}</TableCell>
+                            <TableCell>{rowData.senderPhone}</TableCell>
+                            <TableCell>{rowData.senderProvince}</TableCell>
+                            <TableCell>{rowData.receiverName}</TableCell>
+                            <TableCell>{rowData.receiverPhone}</TableCell>
+                            <TableCell>{rowData.receiverProvince}</TableCell>
+                            <TableCell>{rowData.type}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                  </Table>
+                </TableContainer>
               </div>
             </div>
 
@@ -249,6 +209,7 @@ function DTKfromDGD() {
           <h4 className="title title-up">
             Tạo đơn thành công
           </h4>
+          
         </div>
         <ModalBody>
           <PDFExport ref={pdfExportComponent} fileName="magicpost.pdf" paperSize="A4" margin={"5 pt"} scale={0.5}>
@@ -261,31 +222,37 @@ function DTKfromDGD() {
                 width: '100%',
               }}
             >
-              <div style={{ height: 600, width: '100%' }} className='centerList'>
-                <table className="listOrders">
-                  <tr>
-                    <th>Mã vận đơn</th>
-                    <th>Người gửi</th>
-                    <th>Điện thoại</th>
-                    <th>Người nhận</th>
-                    <th>Điện thoại</th>
-                    <th>Địa chỉ</th>
-                    <th>Loại</th>
-                  </tr>
-                  <tbody>
-                  {selectedRows.map((rowData) => (
-                    <tr key={rowData}>
-                      <td>{rowData.ID}</td>
-                      <td>{rowData.senderName}</td>
-                      <td>{rowData.senderPhone}</td>
-                      <td>{rowData.receiverName}</td>
-                      <td>{rowData.receiverPhone}</td>
-                      <td>{rowData.receiverAddress}</td>
-                      <td>{rowData.type}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                </table>
+              <div className='centerList'>
+                <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Mã vận đơn</TableCell>
+                        <TableCell>Người gửi</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Người nhận</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Loại</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {selectedRows.map((rowData) => (
+                        <TableRow key={rowData}>
+                          <TableCell>{rowData.ID}</TableCell>
+                          <TableCell>{rowData.senderName}</TableCell>
+                          <TableCell>{rowData.senderPhone}</TableCell>
+                          <TableCell>{rowData.senderProvince}</TableCell>
+                          <TableCell>{rowData.receiverName}</TableCell>
+                          <TableCell>{rowData.receiverPhone}</TableCell>
+                          <TableCell>{rowData.receiverProvince}</TableCell>
+                          <TableCell>{rowData.type}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </div>
             </div>
           </div>
@@ -304,18 +271,18 @@ function DTKfromDGD() {
             type="button"
             onClick={() => {
               setModal2(false);
-              window.location.reload() 
+              setDataOrder('')
             }}
           >
-            Close
+            Gửi
           </Button>
         </div>
       </Modal>
 
-      <Modal isOpen={modal3} toggle={() => setModal2(false)} className="modal-lg">
+      <Modal isOpen={modal3} toggle={() => setModal3(false)} className="modal-lg">
         <div className="modal-header justify-content-center">
           <h4 className="title title-up">
-            Danh sách đơn gửi từ Điểm Tập Kết
+            Danh sách đơn gửi từ Điểm Giao Dịch
           </h4>
         </div>
         <ModalBody>
@@ -329,31 +296,38 @@ function DTKfromDGD() {
                 width: '100%',
               }}
             >
-              <div style={{ height: 600, width: 600 }} className='centerList'>
-                <table className="listOrders">
-                  <tr>
-                    <th>Mã vận đơn</th>
-                    <th>Người gửi</th>
-                    <th>Điện thoại</th>
-                    <th>Người nhận</th>
-                    <th>Điện thoại</th>
-                    <th>Địa chỉ</th>
-                    <th>Loại</th>
-                  </tr>
-                  <tbody>
-                  {selectedRows.map((rowData) => (
-                    <tr key={rowData}>
-                      <td>{rowData.ID}</td>
-                      <td>{rowData.senderName}</td>
-                      <td>{rowData.senderPhone}</td>
-                      <td>{rowData.receiverName}</td>
-                      <td>{rowData.receiverPhone}</td>
-                      <td>{rowData.receiverAddress}</td>
-                      <td>{rowData.type}</td>
-                    </tr>
-                  ))}
-                </tbody>
-                </table>
+              <div className='centerList'>
+              <TableContainer component={Paper} sx={{ marginTop: '20px' }}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Mã vận đơn</TableCell>
+                        <TableCell>Người gửi</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Người nhận</TableCell>
+                        <TableCell>Điện thoại</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Loại</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {newOrders.map((rowData) => (
+                        <TableRow key={rowData}>
+                          <TableCell>{rowData.ID}</TableCell>
+                          <TableCell>{rowData.senderName}</TableCell>
+                          <TableCell>{rowData.senderPhone}</TableCell>
+                          <TableCell>{rowData.senderProvince}</TableCell>
+                          <TableCell>{rowData.receiverName}</TableCell>
+                          <TableCell>{rowData.receiverPhone}</TableCell>
+                          <TableCell>{rowData.receiverProvince}</TableCell>
+                          <TableCell>{rowData.type}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                  
               </div>
             </div>
           </div>
@@ -363,8 +337,8 @@ function DTKfromDGD() {
             color="danger"
             type="button"
             onClick={() => {
-              setModal2(false);
-              window.location.reload() 
+              setModal3(false);
+              setDataOrder(newOrders)
             }}
           >
             Đã nhận
@@ -374,9 +348,6 @@ function DTKfromDGD() {
             type="button"
             onClick={() => {
               setModal2(false);
-              listOrder.concat(newOrders)
-              console.log(listOrder)
-              window.location.reload() 
             }}
           >
             Close
