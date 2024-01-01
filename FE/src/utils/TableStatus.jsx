@@ -4,12 +4,12 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered'
 const TableStatus = (statuses) => {
   return (
     <TableContainer component={Paper} sx={{ margin: '20px' }}>
-      Thông tin vận đơn
+      <h5>Thông tin vận đơn</h5>
       {statuses.map((status) => (
         // eslint-disable-next-line react/jsx-key
         <Table>
           <TableHead>
-            <FormatListNumberedIcon/>  Thông tin chi tiết vận đơn
+            <FormatListNumberedIcon/> Chi tiết
             <TableRow>
               <TableCell>Thời gian</TableCell>
               <TableCell>Vị trí</TableCell>

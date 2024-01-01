@@ -26,7 +26,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
-import Logo from '../../../assets/Logo.png'
+import Logo from '../../../../assets/Logo.png'
 
 const drawerWidth = 240;
 
@@ -96,7 +96,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function StaffHome() {
+export default function StaffDTKHome() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -131,7 +131,7 @@ export default function StaffHome() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Transaction Staff
+            NHÂN VIÊN ĐIỂM TẬP KẾT
           </Typography>
         </Toolbar>
       </AppBar>
@@ -151,42 +151,17 @@ export default function StaffHome() {
         </DrawerHeader>
         <Divider />
         <List>
-          <ListItemButton onClick={handleListClick}>
+          <ListItemButton component={Link} to="fromDTK">
+              <ListItemIcon>
+                <WarehouseIcon />
+              </ListItemIcon>
+              <ListItemText primary="Từ Điểm Tập Kết" />
+            </ListItemButton>
+          <ListItemButton component={Link} to="fromDGD">
             <ListItemIcon>
-              <ManageHistoryIcon />
+              <LocalShippingIcon />
             </ListItemIcon>
-            <ListItemText primary="Quản lý" />
-            {listOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={listOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemButton
-                sx={{ pl: 4 }}
-                component={Link}
-                to="fromKH"
-              >
-                <ListItemIcon>
-                  <LocalShippingIcon />
-                </ListItemIcon>
-                <ListItemText primary="Điểm giao dịch" />
-              </ListItemButton>
-              <ListItemButton
-                sx={{ pl: 4 }}
-                component={Link}
-                to="fromDTK"
-              >
-                <ListItemIcon>
-                  <WarehouseIcon />
-                </ListItemIcon>
-                <ListItemText primary="Điểm tập kết" />
-              </ListItemButton>
-            </List>
-          </Collapse>
-          <ListItemButton component={Link} to="statistics">
-            <ListItemIcon>
-              <AnalyticsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Thống kê" />
+            <ListItemText primary="Từ Điểm Giao Dịch" />
           </ListItemButton>
         </List>
         <List>

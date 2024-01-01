@@ -1,24 +1,32 @@
 import React, { useState } from 'react'
-import { Box, Button, TextField, Dialog} from '@mui/material'
+import { Box,  TextField, Dialog} from '@mui/material'
 import Title from '../Title'
 import Paragraph from '../Paragraph'
 import TableStatus from '../../../../utils/TableStatus'
 import axiosInstance from '../../../../utils/AxiosInstance'
+import {
+  Button,
+  Modal,
+  ModalBody,
+} from "reactstrap";
 
 const TraCuuMVD = ({ onSubmit }) => {
   const [code, setCode] = useState('')
   const [status, setStatus] = useState([])
   const [open, setOpen] =useState(false)
+  const [modal, setModal] = React.useState(false);
 
   const handleChangeMVD = (event) => {
     setCode(event.target.value)
+    console.log(code)
   }
-  const handleSubmit = (e) => {
-    if (code) {
-      e.preventDefault()
-      getData()
-      setOpen(true)
-    }
+
+  const toggle = () => {
+    setModal(!modal);
+    
+    // e.preventDefault()
+    console.log("yes")
+    getData()
   }
 
   const getData = async() => {
@@ -38,15 +46,15 @@ const TraCuuMVD = ({ onSubmit }) => {
 
   return (
     <>
-      <div>
-        <Dialog
+      
+        {/* <Dialog
           open={open}
           onClose={() => setOpen(false)}
           maxWidth='lg' // Chọn kích thước tối đa (xs, sm, md, lg, xl)
           fullWidth
         >
           <div>{TableStatus(status)}</div>
-        </Dialog>
+        </Dialog> */}
         <Box
           sx={{
             width: '55%',
@@ -63,9 +71,9 @@ const TraCuuMVD = ({ onSubmit }) => {
             textAlign={'center'}
           />
           <Box
-            component="form"
-            noValidate
-            onSubmit={onSubmit}
+            // component="form"
+            // noValidate
+            // onSubmit={onSubmit}
             sx={{
               mt: 1,
               py: 2,
@@ -75,17 +83,18 @@ const TraCuuMVD = ({ onSubmit }) => {
               alignItems: 'center'
             }}>
             <TextField sx={{ width: '400px' }}
-              margin="normal"
-              required
+              // margin="normal"
+              // required
               fullWidth
-              id="mvd"
+              id="filled-start-adornment"
               label="VD: 12345, 12346,"
-              name="mvd"
+              // name="mvd"
               value={code}
               onChange={handleChangeMVD}
               autoFocus
+              variant='filled'
             />
-            <Button
+            {/* <Button
               onClick={handleSubmit}
               variant="contained"
               fullWidth
@@ -106,10 +115,57 @@ const TraCuuMVD = ({ onSubmit }) => {
               }}
             >
                         Tra cứu
+            </Button> */}
+            {/* <form onSubmit={handleSubmit}>  */}
+            <Button
+              onClick={toggle}
+                color="danger"
+                className="btn-round"
+                type="submit">
+                  Tra cứu
             </Button>
+          {/* </form>  */}
           </Box>
         </Box>
-      </div>
+      {/* </div> */}
+      <Modal isOpen={modal} toggle={() => setModal(false)} className="modal-lg">
+        <div className="modal-header justify-content-center">
+          {/* <h4 className="title title-up">
+            Ước tính cước phí
+          </h4> */}
+        </div>
+        <ModalBody>
+        
+          <div style={{ padding: '0 0' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}
+            >
+            <div style={{ height: 'auto', width: '100%' }} className='centerList'>
+              <div>{TableStatus(status)}</div>
+              </div>
+            </div>
+          </div>
+      
+        </ModalBody>
+        <div className="modal-footer">
+        
+          <Button
+            color="danger"
+            type="button"
+            onClick={() => {
+              setModal(false);
+              // window.location.reload() 
+            }}
+          >
+            Đóng
+          </Button>
+        </div>
+      </Modal>
     </>
   )
 }

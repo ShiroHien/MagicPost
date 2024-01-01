@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TKDiemTK from "../../../../pages/dashboard/ThongKe/TKDiemTK";
+import TKKhachGuiGD from "../../../../pages/dashboard/ThongKe/TKKhachGuiGD";
+import StaffDGD from "../../../../pages/dashboard/ThongKe/StaffDGD";
 
 
  const StatisticDGD = () => (
@@ -9,7 +11,7 @@ import TKDiemTK from "../../../../pages/dashboard/ThongKe/TKDiemTK";
     TẠI ĐIỂM GIAO DỊCH ...
     <div className="spaceHeader"></div>
       <div className="bodyContainer">
-          <TKDiemTK />
+          <StaffDGD />
       </div>
 
   </>

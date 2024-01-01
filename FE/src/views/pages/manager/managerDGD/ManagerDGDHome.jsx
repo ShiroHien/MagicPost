@@ -26,6 +26,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
+import Logo from '../../../../assets/Logo.png'
 
 const drawerWidth = 240;
 
@@ -136,7 +137,10 @@ export default function ManagerDGDHome() {
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-          <h4 style={{ display: 'flex', left: '50px' }}>Dinh Thi Tra My</h4>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src={Logo} alt="" width={'40px'} style={{ marginRight: '20px' }} />
+            <h4 style={{  display: 'flex', marginTop: '30px', marginRight: '10px' }}>MagicPost</h4>
+          </div>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />
@@ -151,7 +155,7 @@ export default function ManagerDGDHome() {
             <ListItemIcon>
               <AccountCircleIcon />
             </ListItemIcon>
-            <ListItemText primary="Tài khoản" />
+            <ListItemText primary="Quản lý tài khoản" />
           </ListItemButton>
           <ListItemButton component={Link} to="statistics">
             <ListItemIcon>
