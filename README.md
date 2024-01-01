@@ -6,7 +6,7 @@
 
 ## Công việc trong dự án
 - Nguyễn Thảo Hiền: 
-    Bố cục Web & Giao diện Frontend: Thiết kế figma và triển khai UX/UI chung; Construct folders; Tạo theme; Phát triển dashboard với menu tùy chỉnh; Tạo landing page; Tạo trang đăng nhập; Tích hợp column charts và danh sách; Đảm bảo giao diện responsive; Xác thực người dùng và quản lý phiên làm việc ...
+    Bố cục Web & Giao diện Frontend: Thiết kế figma và triển khai UX/UI chung; Construct folders; Tạo theme; Phát triển dashboard với menu tùy chỉnh; Tạo landing page; Tạo trang đăng nhập; Tích hợp column charts và danh sách; Đảm bảo giao diện Responsive; Xác thực người dùng và quản lý phiên làm việc ...
 - Đinh Thị Trà My: 
     Backend API & Xây dựng Database & Xử lý Logic dữ liệu : Thiết kế và triển khai Backend API; Phát triển và quản lý CSDL; Phân loại và định tuyến (qua router layer), kiểm tra xác thực dữ liệu hợp lệ (qua validation layer), điều hướng dữ liệu (qua controller layer), xử lí logic dữ liệu (qua service layer) và tương tác với DB (qua model layer); Tích hợp gợi ý nhập liệu và bộ lọc thông minh; Phát triển hệ thống login phân quyền; Bảo vệ route với JWT và cookie; Xác thực đăng nhập tại frontend ...
 - Đào Thị Kim Thịnh: 
@@ -14,6 +14,7 @@
 
 
 ### Github: https://github.com/ShiroHien/MagicPost
+### Demo: https://drive.google.com/file/d/1FMyVmOIYmRF3rGY2rClNMdaPqcZi_XYt/view?usp=sharing
 
 
 # Quick start
@@ -21,6 +22,8 @@
 1.  Download the project's zip
 2.  Make sure you have node.js (<https://nodejs.org/en/?ref=creativetim>) installed
 3.  Type `npm install` in terminal/console in the source folder where `package.json` is located
-4.  Run in terminal `npm start`.
+4.  Run in terminal `npm run dev`.
+5.  Open in browser 'http://localhost:5173/'
 
 # Note: 
+Nhóm sử dụng dữ liệu NoSQL MongoDB được lưu trên cơ sở dữ liệu đám mây (MongoDB Atlas Cloud Database) connect qua URI và sử dụng thư viện chính chủ của nó MongoDB NodeJS Driver
